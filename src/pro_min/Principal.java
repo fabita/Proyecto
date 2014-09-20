@@ -4,6 +4,8 @@
  */
 package pro_min;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Usuario
@@ -28,37 +30,107 @@ public class Principal extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jmnuModificar = new javax.swing.JMenuItem();
+        jmnuSalir = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/luna.gif"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 649, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 319, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 375, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 375, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jScrollPane1.setViewportView(jPanel1);
 
-        jMenu1.setText("Archivo");
+        jMenuBar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jMenuItem1.setText("Modificar - Crear Nuevo Usuario");
-        jMenu1.add(jMenuItem1);
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/archivo2.png"))); // NOI18N
+        jMenu1.setToolTipText("Archivo");
+        jMenu1.setLabel("");
+
+        jmnuModificar.setText("Modificar - Crear Nuevo Usuario");
+        jmnuModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmnuModificarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmnuModificar);
+        jmnuModificar.getAccessibleContext().setAccessibleName("jmnuModificar");
+
+        jmnuSalir.setLabel("Salir");
+        jmnuSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmnuSalirActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmnuSalir);
+        jmnuSalir.getAccessibleContext().setAccessibleName("jmnuSalir");
 
         jMenuBar1.add(jMenu1);
+        jMenu1.getAccessibleContext().setAccessibleName("mnuArchivo");
 
-        jMenu2.setText("Edit");
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Reporte.png"))); // NOI18N
+        jMenu4.setToolTipText("Reporte");
+        jMenu4.setLabel("");
+        jMenuBar1.add(jMenu4);
+        jMenu4.getAccessibleContext().setAccessibleName("mnuReporte");
+
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/baseDatos2.png"))); // NOI18N
+        jMenu2.setToolTipText("Base de Datos");
+        jMenu2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/baseDatos1.png"))); // NOI18N
+        jMenu2.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/baseDatos3.png"))); // NOI18N
+
+        jMenuItem2.setText("BD Aditivos");
+        jMenu2.add(jMenuItem2);
+
+        jMenuItem3.setText("BD Personal");
+        jMenu2.add(jMenuItem3);
+
+        jMenuItem4.setText("BD Maquinaria");
+        jMenu2.add(jMenuItem4);
+
+        jMenuItem5.setText("BD Herramientas");
+        jMenu2.add(jMenuItem5);
+
+        jMenuItem6.setText("BD Sondajes");
+        jMenu2.add(jMenuItem6);
+
+        jMenuItem7.setText("BD Combustibles");
+        jMenu2.add(jMenuItem7);
+
         jMenuBar1.add(jMenu2);
+        jMenu2.getAccessibleContext().setAccessibleName("mnuBD");
+
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ControlAvances.png"))); // NOI18N
+        jMenu3.setToolTipText("Control de Avances");
+        jMenuBar1.add(jMenu3);
+        jMenu3.getAccessibleContext().setAccessibleName("mnuAvancesControl");
 
         setJMenuBar(jMenuBar1);
 
@@ -70,11 +142,23 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jmnuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnuSalirActionPerformed
+        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realmente salir del sistema?",
+                "Salir del sistema", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+            System.exit(0);
+    }//GEN-LAST:event_jmnuSalirActionPerformed
+
+    private void jmnuModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnuModificarActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jmnuModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -118,11 +202,21 @@ public class Principal extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenuItem jmnuModificar;
+    private javax.swing.JMenuItem jmnuSalir;
     // End of variables declaration//GEN-END:variables
 }
