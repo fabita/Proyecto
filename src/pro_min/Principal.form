@@ -17,6 +17,7 @@
               <Image iconType="3" name="/Imagenes/archivo2.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Archivo"/>
+            <Property name="label" type="java.lang.String" value=""/>
           </Properties>
           <AccessibilityProperties>
             <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="mnuArchivo"/>
@@ -59,6 +60,7 @@
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor Por defecto"/>
             </Property>
+            <Property name="label" type="java.lang.String" value=""/>
           </Properties>
           <AccessibilityProperties>
             <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="mnuReporte"/>
@@ -234,7 +236,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="673" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="669" max="32767" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="330" max="-2" attributes="0"/>
                   </Group>
               </Group>
