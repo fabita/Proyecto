@@ -23,6 +23,9 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     
+    BDConexion bd = new BDConexion();
+    Connection cn = bd.conexion();
+    
     public Login() {
         initComponents();
         setLocationRelativeTo(null);
@@ -50,27 +53,22 @@ public class Login extends javax.swing.JFrame {
             if ("".equals(txtusuario.getText()) || "".equals(txtcontra.getPassword()))
             {
                 JOptionPane.showMessageDialog(null, "Rellene Todos los Campos", "Campos Vacios",
-                    JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.INFORMATION_MESSAGE);
             }
             else
             {
             if(encontrado==1) // si nos devuelve un registro significa que la autenticacion es correcta y mostramos el formulario
             {
-                 JOptionPane.showMessageDialog(null, "Bienvenido\n"
-                    + "Has ingresado satisfactoriamente al sistema", "Ingreso Exitoso!",
-                    JOptionPane.INFORMATION_MESSAGE);
+                 JOptionPane.showMessageDialog(null, "Bienvenido\n" + "Has ingresado satisfactoriamente al sistema", "Ingreso Exitoso!",
+                 JOptionPane.INFORMATION_MESSAGE);
                  
                 Principal prin = new Principal();
                 prin.setVisible(true);
                 dispose();
-               //this.setVisible(true);
-               //this.setVisible(false);
             }
             else
             {
-                 JOptionPane.showMessageDialog(null, "Ingreso de Datos Incorrectos",
-                 "Usuario ó Contraseña Incorrecta",javax.swing.JOptionPane.ERROR_MESSAGE);
-                 //this.setVisible(false);
+                 JOptionPane.showMessageDialog(null, "Ingreso de Datos Incorrectos", "Usuario ó Contraseña Incorrecta",javax.swing.JOptionPane.ERROR_MESSAGE);
             }
                //cerramos la conexion
                rs.close();
@@ -164,16 +162,12 @@ public class Login extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
-        /*this.hide();
-        Principal prin = new Principal();
-        prin.show();*/
-        
-    String usu=txtusuario.getText();
-    String pas=new String(txtcontra.getPassword());
-    acceder(usu, pas);
-    
-    
-    
+        this.hide();
+       // Principal prin = new Principal();
+       // prin.show();
+       String usu=txtusuario.getText();
+       String pas=new String(txtcontra.getPassword());
+       acceder(usu, pas);
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -239,6 +233,5 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtcontra;
     private javax.swing.JTextField txtusuario;
     // End of variables declaration//GEN-END:variables
-    BDConexion cc = new BDConexion();
-    Connection cn = cc.conexion();
+    
 }

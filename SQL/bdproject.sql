@@ -1,29 +1,5 @@
--- MySQL Administrator dump 1.4
---
--- ------------------------------------------------------
--- Server version	5.5.8-log
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-
-
---
--- Create schema bdproject
---
-
 CREATE DATABASE IF NOT EXISTS bdproject;
 USE bdproject;
-
---
--- Definition of table `login`
---
 
 DROP TABLE IF EXISTS `login`;
 CREATE TABLE `login` (
@@ -31,24 +7,64 @@ CREATE TABLE `login` (
   `usuario` varchar(45) NOT NULL DEFAULT 'promin',
   `password` varchar(45) NOT NULL DEFAULT 'promin',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+);
 
---
--- Dumping data for table `login`
---
+CREATE TABLE `vehiculos` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `tipo_equipo` varchar(45) NOT NULL,
+  `numero_placa` varchar(20) NOT NULL,
+  `marca` varchar(35) NOT NULL,
+  `fabricante` varchar(35) NOT NULL,
+  `ano_fabricacion` int(4) NOT NULL,
+  PRIMARY KEY (`id`)
+);
 
-/*!40000 ALTER TABLE `login` DISABLE KEYS */;
-INSERT INTO `login` (`id`,`usuario`,`password`) VALUES 
+CREATE TABLE `aditivos` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `producto` varchar(45) NOT NULL,
+  `fabricante` varchar(25),
+  `envase` varchar(20) NOT NULL,
+  `contenido` varchar(15) NOT NULL,
+  `precio` double,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `accesorios` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(45) NOT NULL,
+  `fabricante` varchar(25),
+  `precio` double,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `personal` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `codigo_empresa` int(15) NOT NULL,
+  `DNI` int(8) NOT NULL,
+  `nombres` varchar(45) NOT NULL,
+  `apellidos` varchar(45) NOT NULL,
+  `Cargo_Proyecto` varchar(45) NOT NULL,
+  `brevete` varchar(15),
+  `fotocheck_minero` varchar(45),
+  `vencimiento_fotocheck` varchar(45),
+  `IPSS` varchar(45) NOT NULL,
+  `tip_Sangre` varchar(45),
+  `fecha_nacimiento` varchar(45),
+  `dpto_nacimiento` varchar(45),
+  `dpto_residencia` varchar(45),
+  `direccion` varchar(45),
+  `tel_fijo` int(45),
+  `celular` int(45),
+  `email` varchar(45),
+  `tel_emergencia` int(45),
+  `persona_contact` varchar(45),
+  `relacion_contact` varchar(45),
+  PRIMARY KEY (`id`)
+);
+INSERT INTO `login` (`id`,`usuario`,`password`) VALUES
  (1,'promin','promin');
-/*!40000 ALTER TABLE `login` ENABLE KEYS */;
 
 
 
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+
