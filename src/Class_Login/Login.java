@@ -65,10 +65,22 @@ public class Login extends javax.swing.JFrame {
                 Principal prin = new Principal();
                 prin.setVisible(true);
                 dispose();
+<<<<<<< HEAD
             }
             else
             {
                  JOptionPane.showMessageDialog(null, "Ingreso de Datos Incorrectos", "Usuario ó Contraseña Incorrecta",javax.swing.JOptionPane.ERROR_MESSAGE);
+=======
+              
+            }
+            else
+            {
+                 JOptionPane.showMessageDialog(null, "Ingreso de Datos Incorrectos",
+                 "Usuario ó Contraseña Incorrecta",javax.swing.JOptionPane.ERROR_MESSAGE);
+                 txtusuario.setText("");
+                 txtcontra.setText("");
+                 
+>>>>>>> 2447c49a771d4fdbc7f0e72505cb6993d3ba5ba2
             }
                //cerramos la conexion
                rs.close();
