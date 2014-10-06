@@ -24,6 +24,7 @@ public class BD_Aditivos extends javax.swing.JFrame {
     DefaultTableModel model;
     BDConexion bd = new BDConexion();
     Connection cn = bd.conexion();
+    Statement sent;
     
     public BD_Aditivos() {
         initComponents();
@@ -35,10 +36,10 @@ public class BD_Aditivos extends javax.swing.JFrame {
     
     void cargar(String valor){
         
-        String []titulos={"Producto","Fabricante","Envase","Contenido","Precio"};  
-        String []Registros= new String[5];
+        String []titulos={"ID", "Producto","Fabricante","Envase","Contenido","Precio"};  
+        String []Registros= new String[6];
         
-        String sql="SELECT * FROM aditivos WHERE CONCAT(producto, fabricante, envase, contenido, precio) LIKE '%"+valor+"%'";
+        String sql="SELECT * FROM aditivos WHERE CONCAT(id, producto, fabricante, envase, contenido, precio) LIKE '%"+valor+"%'";
         model=new DefaultTableModel(null,titulos);
         
         try {
@@ -46,11 +47,12 @@ public class BD_Aditivos extends javax.swing.JFrame {
              ResultSet rs = st.executeQuery(sql);
              while(rs.next())
              {
-                  Registros[0]= rs.getString("producto");
-                   Registros[1]= rs.getString("fabricante");
-                   Registros[2]= rs.getString("envase");
-                   Registros[3]= rs.getString("contenido");
-                   Registros[4]= rs.getString("precio");
+                 Registros[0]= rs.getString("id");
+                  Registros[1]= rs.getString("producto");
+                   Registros[2]= rs.getString("fabricante");
+                   Registros[3]= rs.getString("envase");
+                   Registros[4]= rs.getString("contenido");
+                   Registros[5]= rs.getString("precio");
                    model.addRow(Registros);
              } 
              t_datos.setModel(model);
@@ -61,8 +63,8 @@ public class BD_Aditivos extends javax.swing.JFrame {
     
     void mostrarAditivos(){
         
-        String []titulos={"Producto","Fabricante","Envase","Contenido","Precio"};  
-        String []Registros= new String[5];
+        String []titulos={"ID", "Producto","Fabricante","Envase","Contenido","Precio"};  
+        String []Registros= new String[6];
         
         String sql="SELECT * FROM aditivos";
         model=new DefaultTableModel(null,titulos);
@@ -72,11 +74,12 @@ public class BD_Aditivos extends javax.swing.JFrame {
              ResultSet rs = st.executeQuery(sql);
              while(rs.next())
              {
-                   Registros[0]= rs.getString("producto");
-                   Registros[1]= rs.getString("fabricante");
-                   Registros[2]= rs.getString("envase");
-                   Registros[3]= rs.getString("contenido");
-                   Registros[4]= rs.getString("precio");
+                   Registros[0]= rs.getString("id");
+                   Registros[1]= rs.getString("producto");
+                   Registros[2]= rs.getString("fabricante");
+                   Registros[3]= rs.getString("envase");
+                   Registros[4]= rs.getString("contenido");
+                   Registros[5]= rs.getString("precio");
                    model.addRow(Registros);
              } 
              t_datos.setModel(model);
@@ -166,6 +169,11 @@ public class BD_Aditivos extends javax.swing.JFrame {
             }
         ));
         t_datos.getTableHeader().setReorderingAllowed(false);
+        t_datos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                t_datosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(t_datos);
 
         jLabel1.setText("Base de Datos Aditivos");
@@ -252,6 +260,11 @@ public class BD_Aditivos extends javax.swing.JFrame {
         });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -451,8 +464,73 @@ public class BD_Aditivos extends javax.swing.JFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
-        desbloquear();
+        try{
+            desbloquear();
+            String sql = "Update aditivos set producto=?, fabricante=?, envase=?, contenido=?, precio=?" + "where id=?";
+            int fila = t_datos.getSelectedRow();
+            String dao = (String)t_datos.getValueAt(fila, 0);
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, txtProducto.getText());
+            ps.setString(2, txtFabricante.getText());
+            ps.setString(3, txtEnvase.getText());
+            ps.setString(4, txtContenido.getText());
+            ps.setString(5, txtPrecio.getText());
+            ps.setString(6, dao);
+            
+            int n = ps.executeUpdate();
+            if(n>0){
+               limpiar();
+               mostrarAditivos();
+               JOptionPane.showMessageDialog(null, "Datos Modificados");
+               bloquear();
+            }
+        }
+        catch (Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
+        }
     }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void t_datosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_datosMouseClicked
+        // TODO add your handling code here:
+        if (evt.getButton()==1)
+        {
+            int fila = t_datos.getSelectedRow();
+            try{
+                desbloquear();
+                String sql = "select * from aditivos where id="+ t_datos.getValueAt(fila, 0);
+                sent=cn.createStatement();
+                ResultSet rs = sent.executeQuery(sql);
+                rs.next();
+                txtProducto.setText(rs.getString("producto"));
+                txtFabricante.setText(rs.getString("fabricante"));
+                txtEnvase.setText(rs.getString("envase"));
+                txtContenido.setText(rs.getString("contenido"));
+                txtPrecio.setText(rs.getString("precio"));
+            } catch (Exception ex)
+            {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_t_datosMouseClicked
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        try{
+            int fila = t_datos.getSelectedRow();
+            String sql = "delete from aditivos where id=" + t_datos.getValueAt(fila, 0);
+            sent = cn.createStatement();
+            int n = sent.executeUpdate(sql);
+            if(n>0){
+                mostrarAditivos();
+                JOptionPane.showMessageDialog(null, "Datos Eliminados");
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
