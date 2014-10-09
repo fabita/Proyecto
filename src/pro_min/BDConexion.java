@@ -20,7 +20,7 @@ public class BDConexion {
       try {
            //Cargamos el Driver MySQL
            Class.forName("com.mysql.jdbc.Driver");
-           conect = DriverManager.getConnection("jdbc:mysql://localhost/bdproject","root","root");
+           conect = DriverManager.getConnection("jdbc:mysql://localhost/bdproject1","root","root");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error "+e);
         }
