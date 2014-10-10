@@ -5,6 +5,9 @@
 package BD;
 
 import java.sql.*;
+import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pro_min.BDConexion;
@@ -26,7 +29,98 @@ public class BD_Vehiculos extends javax.swing.JFrame {
     
     public BD_Vehiculos() {
         initComponents();
+        limpiar();
+        bloquear();
+        cargar("");
+        mostrarAditivos();
     }
+    
+    void cargar(String valor){
+        
+        String []titulos={"ID", "Tipo de equipo", "Numero o placa", "Marca", "Fabricante", "Año de fabricacion"};  
+        String []Registros= new String[6];
+        
+        String sql="SELECT * FROM vehiculos WHERE CONCAT(id, tipo_equipo, numero_placa, marca, fabricante, año_fabricacion) LIKE '%"+valor+"%'";
+        model=new DefaultTableModel(null,titulos);
+        
+        try {
+             Statement st = cn.createStatement();
+             ResultSet rs = st.executeQuery(sql);
+             while(rs.next())
+             {
+                 Registros[0]= rs.getString("id");
+                  Registros[1]= rs.getString("tipo_equipo");
+                   Registros[2]= rs.getString("numero_placa");
+                   Registros[3]= rs.getString("marca");
+                   Registros[4]= rs.getString("fabricante");
+                   Registros[5]= rs.getString("año_fabricacion");
+                   model.addRow(Registros);
+             } 
+             t_datos.setModel(model);
+        } catch (SQLException ex) {
+             Logger.getLogger(BD_Aditivos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    void mostrarAditivos(){
+        
+        String []titulos={"ID", "Tipo de Equipo","Numero o Placa","Marca","Fabricante","Año de Fabricacion"};  
+        String []Registros= new String[6];
+        
+        String sql="SELECT * FROM vehiculos";
+        model=new DefaultTableModel(null,titulos);
+        
+        try {
+             Statement st = cn.createStatement();
+             ResultSet rs = st.executeQuery(sql);
+             while(rs.next())
+             {
+                   Registros[0]= rs.getString("id");
+                   Registros[1]= rs.getString("tipo_equipo");
+                   Registros[2]= rs.getString("numero_placa");
+                   Registros[3]= rs.getString("marca");
+                   Registros[4]= rs.getString("fabricante");
+                   Registros[5]= rs.getString("año_fabricacion");
+                   model.addRow(Registros);
+             } 
+             t_datos.setModel(model);
+        } catch (SQLException ex) {
+             Logger.getLogger(BD_Aditivos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    void limpiar(){
+    txtTipEquipo.setText ("");
+    txtNum_Placa.setText ("");
+    txtMarca.setText ("");
+    txtFabricante.setText ("");
+    txtAño_Fabricacion.setYear(2014);
+    }
+    
+    void bloquear(){
+    txtTipEquipo.setEnabled(false);
+    txtNum_Placa.setEnabled(false);
+    txtMarca.setEnabled(false);
+    txtFabricante.setEnabled(false);
+    txtAño_Fabricacion.setEnabled(false);
+    
+    btnNuevo.setEnabled(true);
+    btnGuardar.setEnabled(false);
+    
+    }
+    
+    void desbloquear(){
+    txtTipEquipo.setEnabled(true);
+    txtNum_Placa.setEnabled(true);
+    txtMarca.setEnabled(true);
+    txtFabricante.setEnabled(true);
+    txtAño_Fabricacion.setEnabled(true);
+    
+    btnNuevo.setEnabled(false);
+    btnGuardar.setEnabled(true);
+    
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,17 +131,17 @@ public class BD_Vehiculos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtEnvase = new javax.swing.JTextField();
+        txtMarca = new javax.swing.JTextField();
         btnModificar = new javax.swing.JButton();
         txtBusqueda = new javax.swing.JTextField();
         btnEliminar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         btnNuevo = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        txtProducto = new javax.swing.JTextField();
+        txtTipEquipo = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
-        txtContenido = new javax.swing.JTextField();
+        txtFabricante = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -55,15 +149,15 @@ public class BD_Vehiculos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         t_datos = new javax.swing.JTable();
-        txtFabricante = new javax.swing.JTextField();
+        txtNum_Placa = new javax.swing.JTextField();
         btnMostrar = new javax.swing.JButton();
-        jYearChooser1 = new com.toedter.calendar.JYearChooser();
+        txtAño_Fabricacion = new com.toedter.calendar.JYearChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        txtEnvase.addActionListener(new java.awt.event.ActionListener() {
+        txtMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEnvaseActionPerformed(evt);
+                txtMarcaActionPerformed(evt);
             }
         });
 
@@ -103,9 +197,9 @@ public class BD_Vehiculos extends javax.swing.JFrame {
 
         jLabel3.setText("Numero o Placa :");
 
-        txtProducto.addActionListener(new java.awt.event.ActionListener() {
+        txtTipEquipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProductoActionPerformed(evt);
+                txtTipEquipoActionPerformed(evt);
             }
         });
 
@@ -118,9 +212,9 @@ public class BD_Vehiculos extends javax.swing.JFrame {
             }
         });
 
-        txtContenido.addActionListener(new java.awt.event.ActionListener() {
+        txtFabricante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContenidoActionPerformed(evt);
+                txtFabricanteActionPerformed(evt);
             }
         });
 
@@ -137,7 +231,7 @@ public class BD_Vehiculos extends javax.swing.JFrame {
 
         jLabel2.setText("Tipo de Equipo :");
 
-        jLabel1.setText("Base de Datos Aditivos");
+        jLabel1.setText("Base de Datos Vehiculos");
 
         t_datos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -155,9 +249,9 @@ public class BD_Vehiculos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(t_datos);
 
-        txtFabricante.addActionListener(new java.awt.event.ActionListener() {
+        txtNum_Placa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFabricanteActionPerformed(evt);
+                txtNum_PlacaActionPerformed(evt);
             }
         });
 
@@ -172,23 +266,9 @@ public class BD_Vehiculos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(171, 171, 171)
-                        .addComponent(jLabel1)))
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,16 +290,30 @@ public class BD_Vehiculos extends javax.swing.JFrame {
                                         .addComponent(btnEliminar))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtContenido, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jYearChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                                            .addComponent(txtEnvase))
+                                            .addComponent(txtNum_Placa, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtAño_Fabricacion, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtTipEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                                            .addComponent(txtMarca))
                                         .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnCancelar)))
                 .addGap(21, 21, 21))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(157, 157, 157)
+                        .addComponent(jLabel1)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,25 +323,25 @@ public class BD_Vehiculos extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTipEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(txtFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNum_Placa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel5))
-                    .addComponent(txtEnvase, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMarca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(txtContenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4))
-                    .addComponent(jYearChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAño_Fabricacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevo)
@@ -269,24 +363,25 @@ public class BD_Vehiculos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtEnvaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnvaseActionPerformed
+    private void txtMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMarcaActionPerformed
         // TODO add your handling code here:
-        txtEnvase.transferFocus();
-    }//GEN-LAST:event_txtEnvaseActionPerformed
+        txtMarca.transferFocus();
+    }//GEN-LAST:event_txtMarcaActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
-       /* try {
+        try {
             desbloquear();
-            String sql = "Update aditivos set producto=?, fabricante=?, envase=?, contenido=?, precio=?" + "where id=?";
+            String sql = "Update vehiculos set tipo_equipo=?, numero_placa=?, marca=?, fabricante=?, año_fabricacion=?" + "where id=?";
             int fila = t_datos.getSelectedRow();
             String dao = (String) t_datos.getValueAt(fila, 0);
             PreparedStatement ps = cn.prepareStatement(sql);
-            ps.setString(1, txtProducto.getText());
-            ps.setString(2, txtFabricante.getText());
-            ps.setString(3, txtEnvase.getText());
-            ps.setString(4, txtContenido.getText());
-            ps.setString(5, txtPrecio.getText());
+        
+            ps.setString(1, txtTipEquipo.getText());
+            ps.setString(2, txtNum_Placa.getText());
+            ps.setString(3, txtMarca.getText());
+            ps.setString(4, txtFabricante.getText());
+            ps.setInt(5, txtAño_Fabricacion.getYear());
             ps.setString(6, dao);
 
             int n = ps.executeUpdate();
@@ -298,24 +393,24 @@ public class BD_Vehiculos extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
-        }*/
+        }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void txtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaActionPerformed
         // TODO add your handling code here:
-        //cargar(txtBusqueda.getText());
+        cargar(txtBusqueda.getText());
     }//GEN-LAST:event_txtBusquedaActionPerformed
 
     private void txtBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyReleased
         // TODO add your handling code here:
-        //cargar(txtBusqueda.getText());
+        cargar(txtBusqueda.getText());
     }//GEN-LAST:event_txtBusquedaKeyReleased
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        /*try {
+        try {
             int fila = t_datos.getSelectedRow();
-            String sql = "delete from aditivos where id=" + t_datos.getValueAt(fila, 0);
+            String sql = "delete from vehiculos where id=" + t_datos.getValueAt(fila, 0);
             sent = cn.createStatement();
             int n = sent.executeUpdate(sql);
             if (n > 0) {
@@ -324,59 +419,69 @@ public class BD_Vehiculos extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
-        }*/
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
-        //desbloquear();
+        desbloquear();
     }//GEN-LAST:event_btnNuevoActionPerformed
 
-    private void txtProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductoActionPerformed
+    private void txtTipEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipEquipoActionPerformed
         // TODO add your handling code here:
-        txtProducto.transferFocus();
-    }//GEN-LAST:event_txtProductoActionPerformed
+        txtTipEquipo.transferFocus();
+    }//GEN-LAST:event_txtTipEquipoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void txtContenidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContenidoActionPerformed
+    private void txtFabricanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFabricanteActionPerformed
         // TODO add your handling code here:
-        txtContenido.transferFocus();
-    }//GEN-LAST:event_txtContenidoActionPerformed
+        txtFabricante.transferFocus();
+    }//GEN-LAST:event_txtFabricanteActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
         // TODO add your handling code here:
         //ConexionBD con = new ConexionBD();
         //Connection cn = con.Conexion();
-        String producto, fabricante, envase, contenido, precio;
+        
+        
+        txtTipEquipo.setEnabled(true);
+        txtNum_Placa.setEnabled(true);
+        txtMarca.setEnabled(true);
+        txtFabricante.setEnabled(true);
+        txtAño_Fabricacion.setEnabled(true);
+    
+        String TipEquipo, Num_Placa, Marca, Fabricante;
+        int Año_Fabricacion;
         String sql = "";
-        producto = txtProducto.getText();
-        fabricante = txtFabricante.getText();
-        envase = txtEnvase.getText();
-        contenido = txtContenido.getText();
-        precio = txtPrecio.getText();
+        TipEquipo = txtTipEquipo.getText();
+        Num_Placa = txtNum_Placa.getText();
+        Marca = txtMarca.getText();
+        Fabricante = txtFabricante.getText();
+        Año_Fabricacion = txtAño_Fabricacion.getYear();
 
 
-        sql = "INSERT INTO aditivos (producto, fabricante, envase, contenido, precio) VALUES (?,?,?,?,?)";
+        sql = "INSERT INTO vehiculos (tipo_equipo, numero_placa, marca, fabricante, año_fabricacion) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement pst = cn.prepareStatement(sql);
-            pst.setString(1, producto);
-            pst.setString(2, fabricante);
-            pst.setString(3, envase);
-            pst.setString(4, contenido);
-            pst.setString(5, precio);
+            pst.setString(1, TipEquipo);
+            pst.setString(2, Num_Placa);
+            pst.setString(3, Marca);
+            pst.setString(4, Fabricante);
+            pst.setInt(5, Año_Fabricacion);
 
             int n = pst.executeUpdate();
             if (n > 0) {
                 JOptionPane.showMessageDialog(null, "Registro Guardado con exito");
-               // bloquear();
+                bloquear();
                 btnNuevo.setEnabled(true);
                 btnGuardar.setEnabled(false);
-               // cargar("");
+                cargar("");
+                limpiar();
 
             }
         } catch (SQLException ex) {
@@ -389,26 +494,26 @@ public class BD_Vehiculos extends javax.swing.JFrame {
         if (evt.getButton() == 1) {
             int fila = t_datos.getSelectedRow();
             try {
-//                desbloquear();
-                String sql = "select * from aditivos where id=" + t_datos.getValueAt(fila, 0);
+                desbloquear();
+                String sql = "select * from vehiculos where id=" + t_datos.getValueAt(fila, 0);
                 sent = cn.createStatement();
                 ResultSet rs = sent.executeQuery(sql);
                 rs.next();
-                txtProducto.setText(rs.getString("producto"));
+                txtTipEquipo.setText(rs.getString("tipo_equipo"));
+                txtNum_Placa.setText(rs.getString("numero_placa"));
+                txtMarca.setText(rs.getString("marca"));
                 txtFabricante.setText(rs.getString("fabricante"));
-                txtEnvase.setText(rs.getString("envase"));
-                txtContenido.setText(rs.getString("contenido"));
-                txtPrecio.setText(rs.getString("precio"));
+                txtAño_Fabricacion.setYear(rs.getInt("año_fabricacion"));
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
     }//GEN-LAST:event_t_datosMouseClicked
 
-    private void txtFabricanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFabricanteActionPerformed
+    private void txtNum_PlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNum_PlacaActionPerformed
         // TODO add your handling code here:
-        txtFabricante.transferFocus();
-    }//GEN-LAST:event_txtFabricanteActionPerformed
+        txtNum_Placa.transferFocus();
+    }//GEN-LAST:event_txtNum_PlacaActionPerformed
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         // TODO add your handling code here:
@@ -471,12 +576,12 @@ public class BD_Vehiculos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private com.toedter.calendar.JYearChooser jYearChooser1;
     private javax.swing.JTable t_datos;
+    private com.toedter.calendar.JYearChooser txtAño_Fabricacion;
     private javax.swing.JTextField txtBusqueda;
-    private javax.swing.JTextField txtContenido;
-    private javax.swing.JTextField txtEnvase;
     private javax.swing.JTextField txtFabricante;
-    private javax.swing.JTextField txtProducto;
+    private javax.swing.JTextField txtMarca;
+    private javax.swing.JTextField txtNum_Placa;
+    private javax.swing.JTextField txtTipEquipo;
     // End of variables declaration//GEN-END:variables
 }
