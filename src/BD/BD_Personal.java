@@ -31,27 +31,27 @@ public class BD_Personal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         t_datos = new javax.swing.JTable();
-        txtPrecio = new javax.swing.JTextField();
-        txtProducto = new javax.swing.JTextField();
-        txtEnvase = new javax.swing.JTextField();
+        txtCargoProy = new javax.swing.JTextField();
+        txtCodEmp = new javax.swing.JTextField();
+        txtNombres = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtBusqueda = new javax.swing.JTextField();
         btnMostrar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        txtFabricante = new javax.swing.JTextField();
+        txtDni = new javax.swing.JTextField();
         btnEliminar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         btnModificar = new javax.swing.JButton();
-        txtContenido = new javax.swing.JTextField();
+        txtApellidos = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txtPrecio1 = new javax.swing.JTextField();
+        txtBrevete = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txtPrecio2 = new javax.swing.JTextField();
-        txtFabricante1 = new javax.swing.JTextField();
+        txtFotocheck = new javax.swing.JTextField();
+        txtIpss = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         txtPrecio3 = new javax.swing.JTextField();
@@ -59,8 +59,7 @@ public class BD_Personal extends javax.swing.JFrame {
         txtPrecio4 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        txtProducto1 = new javax.swing.JTextField();
-        txtEnvase1 = new javax.swing.JTextField();
+        txtVencFotoch = new javax.swing.JTextField();
         txtContenido1 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -77,6 +76,7 @@ public class BD_Personal extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         txtPrecio11 = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
+        cmbTipoSangre = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -112,21 +112,21 @@ public class BD_Personal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(t_datos);
 
-        txtPrecio.addActionListener(new java.awt.event.ActionListener() {
+        txtCargoProy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPrecioActionPerformed(evt);
+                txtCargoProyActionPerformed(evt);
             }
         });
 
-        txtProducto.addActionListener(new java.awt.event.ActionListener() {
+        txtCodEmp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProductoActionPerformed(evt);
+                txtCodEmpActionPerformed(evt);
             }
         });
 
-        txtEnvase.addActionListener(new java.awt.event.ActionListener() {
+        txtNombres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEnvaseActionPerformed(evt);
+                txtNombresActionPerformed(evt);
             }
         });
 
@@ -154,9 +154,9 @@ public class BD_Personal extends javax.swing.JFrame {
 
         jLabel5.setText("Nombres :");
 
-        txtFabricante.addActionListener(new java.awt.event.ActionListener() {
+        txtDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFabricanteActionPerformed(evt);
+                txtDniActionPerformed(evt);
             }
         });
 
@@ -176,9 +176,9 @@ public class BD_Personal extends javax.swing.JFrame {
             }
         });
 
-        txtContenido.addActionListener(new java.awt.event.ActionListener() {
+        txtApellidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContenidoActionPerformed(evt);
+                txtApellidosActionPerformed(evt);
             }
         });
 
@@ -195,23 +195,23 @@ public class BD_Personal extends javax.swing.JFrame {
 
         jLabel8.setText("Brevete :");
 
-        txtPrecio1.addActionListener(new java.awt.event.ActionListener() {
+        txtBrevete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPrecio1ActionPerformed(evt);
+                txtBreveteActionPerformed(evt);
             }
         });
 
         jLabel9.setText("Fotockeck :");
 
-        txtPrecio2.addActionListener(new java.awt.event.ActionListener() {
+        txtFotocheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPrecio2ActionPerformed(evt);
+                txtFotocheckActionPerformed(evt);
             }
         });
 
-        txtFabricante1.addActionListener(new java.awt.event.ActionListener() {
+        txtIpss.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFabricante1ActionPerformed(evt);
+                txtIpssActionPerformed(evt);
             }
         });
 
@@ -237,15 +237,9 @@ public class BD_Personal extends javax.swing.JFrame {
 
         jLabel14.setText("Fecha de Nacimiento :");
 
-        txtProducto1.addActionListener(new java.awt.event.ActionListener() {
+        txtVencFotoch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProducto1ActionPerformed(evt);
-            }
-        });
-
-        txtEnvase1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEnvase1ActionPerformed(evt);
+                txtVencFotochActionPerformed(evt);
             }
         });
 
@@ -313,6 +307,8 @@ public class BD_Personal extends javax.swing.JFrame {
 
         jLabel22.setText("Relacion Contact.");
 
+        cmbTipoSangre.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -366,11 +362,11 @@ public class BD_Personal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 26, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtFabricante1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtProducto1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEnvase1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPrecio2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtIpss, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                    .addComponent(txtVencFotoch, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                    .addComponent(txtFotocheck, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmbTipoSangre, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(93, 93, 93)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel14)
@@ -388,12 +384,12 @@ public class BD_Personal extends javax.swing.JFrame {
                                                     .addComponent(jLabel22)
                                                     .addComponent(jLabel21)))))))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtFabricante)
-                                .addComponent(txtProducto)
-                                .addComponent(txtEnvase)
-                                .addComponent(txtContenido)
-                                .addComponent(txtPrecio)
-                                .addComponent(txtPrecio1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtDni)
+                                .addComponent(txtCodEmp)
+                                .addComponent(txtNombres)
+                                .addComponent(txtApellidos)
+                                .addComponent(txtCargoProy)
+                                .addComponent(txtBrevete, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(53, 53, 53)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPrecio4, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -415,7 +411,7 @@ public class BD_Personal extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel14)
                     .addComponent(txtContenido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -423,44 +419,44 @@ public class BD_Personal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtEnvase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addGap(7, 7, 7)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtContenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6)
                             .addComponent(jLabel12))
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCargoProy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
                             .addComponent(jLabel17))
                         .addGap(7, 7, 7)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtPrecio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtBrevete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8)
                             .addComponent(jLabel18))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtPrecio2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtFotocheck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtProducto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtVencFotoch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15)
                             .addComponent(jLabel20))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtFabricante1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIpss, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtEnvase1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(cmbTipoSangre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
@@ -508,8 +504,6 @@ public class BD_Personal extends javax.swing.JFrame {
                 .addComponent(btnCancelar)
                 .addContainerGap())
         );
-
-        jLabel1.getAccessibleContext().setAccessibleName("Base de Datos Personal");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -577,20 +571,20 @@ public class BD_Personal extends javax.swing.JFrame {
         }**/
     }//GEN-LAST:event_t_datosMouseClicked
 
-    private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
+    private void txtCargoProyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCargoProyActionPerformed
         // TODO add your handling code here:
-        txtPrecio.transferFocus();
-    }//GEN-LAST:event_txtPrecioActionPerformed
+        txtCargoProy.transferFocus();
+    }//GEN-LAST:event_txtCargoProyActionPerformed
 
-    private void txtProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductoActionPerformed
+    private void txtCodEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodEmpActionPerformed
         // TODO add your handling code here:
-        txtProducto.transferFocus();
-    }//GEN-LAST:event_txtProductoActionPerformed
+        txtCodEmp.transferFocus();
+    }//GEN-LAST:event_txtCodEmpActionPerformed
 
-    private void txtEnvaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnvaseActionPerformed
+    private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
         // TODO add your handling code here:
-        txtEnvase.transferFocus();
-    }//GEN-LAST:event_txtEnvaseActionPerformed
+        txtNombres.transferFocus();
+    }//GEN-LAST:event_txtNombresActionPerformed
 
     private void txtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaActionPerformed
         // TODO add your handling code here:
@@ -607,10 +601,10 @@ public class BD_Personal extends javax.swing.JFrame {
         //mostrarAditivos();
     }//GEN-LAST:event_btnMostrarActionPerformed
 
-    private void txtFabricanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFabricanteActionPerformed
+    private void txtDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDniActionPerformed
         // TODO add your handling code here:
-        txtFabricante.transferFocus();
-    }//GEN-LAST:event_txtFabricanteActionPerformed
+        txtDni.transferFocus();
+    }//GEN-LAST:event_txtDniActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
@@ -655,27 +649,27 @@ public class BD_Personal extends javax.swing.JFrame {
         }*/
     }//GEN-LAST:event_btnModificarActionPerformed
 
-    private void txtContenidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContenidoActionPerformed
+    private void txtApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidosActionPerformed
         // TODO add your handling code here:
-        txtContenido.transferFocus();
-    }//GEN-LAST:event_txtContenidoActionPerformed
+        txtApellidos.transferFocus();
+    }//GEN-LAST:event_txtApellidosActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void txtPrecio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecio1ActionPerformed
+    private void txtBreveteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBreveteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecio1ActionPerformed
+    }//GEN-LAST:event_txtBreveteActionPerformed
 
-    private void txtPrecio2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecio2ActionPerformed
+    private void txtFotocheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFotocheckActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecio2ActionPerformed
+    }//GEN-LAST:event_txtFotocheckActionPerformed
 
-    private void txtFabricante1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFabricante1ActionPerformed
+    private void txtIpssActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIpssActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFabricante1ActionPerformed
+    }//GEN-LAST:event_txtIpssActionPerformed
 
     private void txtPrecio3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecio3ActionPerformed
         // TODO add your handling code here:
@@ -685,13 +679,9 @@ public class BD_Personal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPrecio4ActionPerformed
 
-    private void txtProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProducto1ActionPerformed
+    private void txtVencFotochActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVencFotochActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtProducto1ActionPerformed
-
-    private void txtEnvase1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnvase1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEnvase1ActionPerformed
+    }//GEN-LAST:event_txtVencFotochActionPerformed
 
     private void txtContenido1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContenido1ActionPerformed
         // TODO add your handling code here:
@@ -773,6 +763,7 @@ public class BD_Personal extends javax.swing.JFrame {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnMostrar;
     private javax.swing.JButton btnNuevo;
+    private javax.swing.JComboBox cmbTipoSangre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -797,18 +788,18 @@ public class BD_Personal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable t_datos;
+    private javax.swing.JTextField txtApellidos;
+    private javax.swing.JTextField txtBrevete;
     private javax.swing.JTextField txtBusqueda;
-    private javax.swing.JTextField txtContenido;
+    private javax.swing.JTextField txtCargoProy;
+    private javax.swing.JTextField txtCodEmp;
     private javax.swing.JTextField txtContenido1;
-    private javax.swing.JTextField txtEnvase;
-    private javax.swing.JTextField txtEnvase1;
-    private javax.swing.JTextField txtFabricante;
-    private javax.swing.JTextField txtFabricante1;
-    private javax.swing.JTextField txtPrecio;
-    private javax.swing.JTextField txtPrecio1;
+    private javax.swing.JTextField txtDni;
+    private javax.swing.JTextField txtFotocheck;
+    private javax.swing.JTextField txtIpss;
+    private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtPrecio10;
     private javax.swing.JTextField txtPrecio11;
-    private javax.swing.JTextField txtPrecio2;
     private javax.swing.JTextField txtPrecio3;
     private javax.swing.JTextField txtPrecio4;
     private javax.swing.JTextField txtPrecio5;
@@ -816,7 +807,6 @@ public class BD_Personal extends javax.swing.JFrame {
     private javax.swing.JTextField txtPrecio7;
     private javax.swing.JTextField txtPrecio8;
     private javax.swing.JTextField txtPrecio9;
-    private javax.swing.JTextField txtProducto;
-    private javax.swing.JTextField txtProducto1;
+    private javax.swing.JTextField txtVencFotoch;
     // End of variables declaration//GEN-END:variables
 }
