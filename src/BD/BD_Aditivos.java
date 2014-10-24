@@ -26,8 +26,11 @@ public class BD_Aditivos extends javax.swing.JFrame {
     Connection cn = bd.conexion();
     Statement sent;
     
-    public BD_Aditivos() {
+         public BD_Aditivos() {
         initComponents();
+        
+        setLocationRelativeTo(null);
+        
         limpiar();
         bloquear();
         cargar("");

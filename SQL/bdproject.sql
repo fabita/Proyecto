@@ -29,6 +29,25 @@ CREATE TABLE `aditivos` (
   PRIMARY KEY (`id`)
 );
 
+CREATE TABLE `actividades` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `actividad` varchar(45) NOT NULL,
+  `tipo` varchar(20) NOT NULL,
+  `cobrable` varchar(35) NOT NULL,
+  `observ` varchar(35) NOT NULL,
+   PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `combustibles` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `producto` varchar(45) NOT NULL,
+  `fabricante` varchar(25) NOT NULL,  
+  `envase` varchar(20) NOT NULL,  
+  `contenido` varchar(15) NOT NULL,
+  `precio` double,
+   PRIMARY KEY (`id`)
+);
+
 CREATE TABLE `accesorios` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(45) NOT NULL,

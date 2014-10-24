@@ -26,8 +26,10 @@ public class BDAccesorios extends javax.swing.JFrame {
     Connection cn = bd.conexion();
     Statement sent;
     
-    public BDAccesorios() {
+        public BDAccesorios() {
         initComponents();
+        
+        setLocationRelativeTo(null);  
         
         limpiar();
         bloquear();

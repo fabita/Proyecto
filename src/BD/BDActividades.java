@@ -3,6 +3,17 @@
  * and open the template in the editor.
  */
 package BD;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import pro_min.BDConexion;
+
 
 /**
  *
@@ -13,9 +24,106 @@ public class BDActividades extends javax.swing.JFrame {
     /**
      * Creates new form BDActividades
      */
+    
+    DefaultTableModel model;
+    BDConexion bd = new BDConexion();
+    Connection cn = bd.conexion();
+    Statement sent;
+
+    
     public BDActividades() {
         initComponents();
+        setLocationRelativeTo(null);
+        limpiar();
+        bloquear();
+        cargar("");
+        mostrarActividades();
+
     }
+        void cargar(String valor){
+        
+        String []titulos={"ID", "Actividad","Tipo","Cobrable","Observaciones"};  
+        String []Registros= new String[5];
+        
+        String sql="SELECT * FROM actividades WHERE CONCAT(id, actividad, tipo, cobrable, observ) LIKE '%"+valor+"%'";
+        model=new DefaultTableModel(null,titulos);
+        
+        try {
+             Statement st = cn.createStatement();
+             ResultSet rs = st.executeQuery(sql);
+             while(rs.next())
+             {
+                   Registros[0]= rs.getString("id");
+                   Registros[1]= rs.getString("actividad");
+                   Registros[2]= rs.getString("tipo");
+                   Registros[3]= rs.getString("cobrable");
+                   Registros[4]= rs.getString("observ");
+                  
+                   model.addRow(Registros);
+             } 
+             t_datos.setModel(model);
+        } catch (SQLException ex) {
+             Logger.getLogger(BDActividades.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    void mostrarActividades(){
+        
+         String []titulos={"ID", "Actividad","Tipo","Cobrable","Observaciones"};  
+        String []Registros= new String[5];
+        
+        String sql="SELECT * FROM actividades";
+        model=new DefaultTableModel(null,titulos);
+        
+        try {
+             Statement st = cn.createStatement();
+             ResultSet rs = st.executeQuery(sql);
+             while(rs.next())
+             {
+                   Registros[0]= rs.getString("id");
+                    Registros[1]= rs.getString("actividad");
+                   Registros[2]= rs.getString("tipo");
+                   Registros[3]= rs.getString("cobrable");
+                   Registros[4]= rs.getString("observ");
+                   model.addRow(Registros);
+             } 
+             t_datos.setModel(model);
+        } catch (SQLException ex) {
+             Logger.getLogger(BDActividades.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+            void limpiar(){
+            txtActividad.setText ("");
+            txtTipo.setText ("");
+            txtCobrable.setText ("");
+            txtObserv.setText ("");
+
+            }
+
+            void bloquear(){
+            txtActividad.setEnabled(false);
+            txtTipo.setEnabled(false);
+            txtCobrable.setEnabled(false);
+            txtObserv.setEnabled(false);
+
+
+            btnNuevo.setEnabled(true);
+            btnGuardar.setEnabled(false);
+
+            }
+
+            void desbloquear(){
+            txtActividad.setEnabled(true);
+            txtTipo.setEnabled(true);
+            txtCobrable.setEnabled(true);
+            txtObserv.setEnabled(true);
+
+
+            btnNuevo.setEnabled(false);
+            btnGuardar.setEnabled(true);
+
+            }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,14 +135,14 @@ public class BDActividades extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel5 = new javax.swing.JLabel();
-        txtEnvase = new javax.swing.JTextField();
-        txtFabricante = new javax.swing.JTextField();
+        txtCobrable = new javax.swing.JTextField();
+        txtTipo = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtBusqueda = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
-        txtProducto = new javax.swing.JTextField();
+        txtActividad = new javax.swing.JTextField();
         btnNuevo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         t_datos = new javax.swing.JTable();
@@ -43,22 +151,22 @@ public class BDActividades extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnMostrar = new javax.swing.JButton();
-        txtContenido = new javax.swing.JTextField();
+        txtObserv = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel5.setText("Cobrable :");
 
-        txtEnvase.addActionListener(new java.awt.event.ActionListener() {
+        txtCobrable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEnvaseActionPerformed(evt);
+                txtCobrableActionPerformed(evt);
             }
         });
 
-        txtFabricante.addActionListener(new java.awt.event.ActionListener() {
+        txtTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFabricanteActionPerformed(evt);
+                txtTipoActionPerformed(evt);
             }
         });
 
@@ -91,9 +199,9 @@ public class BDActividades extends javax.swing.JFrame {
             }
         });
 
-        txtProducto.addActionListener(new java.awt.event.ActionListener() {
+        txtActividad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProductoActionPerformed(evt);
+                txtActividadActionPerformed(evt);
             }
         });
 
@@ -138,16 +246,16 @@ public class BDActividades extends javax.swing.JFrame {
 
         jLabel6.setText("Observaciones :");
 
-        btnMostrar.setText("Mostrar Aditivos");
+        btnMostrar.setText("Mostrar Actividades");
         btnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMostrarActionPerformed(evt);
             }
         });
 
-        txtContenido.addActionListener(new java.awt.event.ActionListener() {
+        txtObserv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContenidoActionPerformed(evt);
+                txtObservActionPerformed(evt);
             }
         });
 
@@ -164,11 +272,11 @@ public class BDActividades extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnNuevo)
-                                .addGap(48, 48, 48)
-                                .addComponent(btnGuardar)
-                                .addGap(43, 43, 43)
-                                .addComponent(btnModificar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnGuardar)
+                                .addGap(55, 55, 55)
+                                .addComponent(btnModificar)
+                                .addGap(61, 61, 61)
                                 .addComponent(btnEliminar))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7)
@@ -183,51 +291,51 @@ public class BDActividades extends javax.swing.JFrame {
                             .addComponent(btnCancelar)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(148, 148, 148)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtEnvase, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel2))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtProducto)
-                                        .addComponent(txtFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtContenido, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtCobrable, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtActividad)
+                                    .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtObserv, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(274, 274, 274)))
                 .addGap(34, 34, 34))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(195, 195, 195))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(23, 23, 23)
                 .addComponent(jLabel1)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtEnvase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCobrable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtContenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtObserv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevo)
@@ -249,15 +357,15 @@ public class BDActividades extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtEnvaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnvaseActionPerformed
+    private void txtCobrableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCobrableActionPerformed
         // TODO add your handling code here:
-        txtEnvase.transferFocus();
-    }//GEN-LAST:event_txtEnvaseActionPerformed
+        txtCobrable.transferFocus();
+    }//GEN-LAST:event_txtCobrableActionPerformed
 
-    private void txtFabricanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFabricanteActionPerformed
+    private void txtTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoActionPerformed
         // TODO add your handling code here:
-        txtFabricante.transferFocus();
-    }//GEN-LAST:event_txtFabricanteActionPerformed
+        txtTipo.transferFocus();
+    }//GEN-LAST:event_txtTipoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
@@ -266,59 +374,61 @@ public class BDActividades extends javax.swing.JFrame {
 
     private void txtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaActionPerformed
         // TODO add your handling code here:
-        //cargar(txtBusqueda.getText());
+        cargar(txtBusqueda.getText());
     }//GEN-LAST:event_txtBusquedaActionPerformed
 
     private void txtBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyReleased
         // TODO add your handling code here:
-        //cargar(txtBusqueda.getText());
+        cargar(txtBusqueda.getText());
     }//GEN-LAST:event_txtBusquedaKeyReleased
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        /*try {
+         try {
             int fila = t_datos.getSelectedRow();
-            String sql = "delete from aditivos where id=" + t_datos.getValueAt(fila, 0);
+            String sql = "delete from actividades where id=" + t_datos.getValueAt(fila, 0);
             sent = cn.createStatement();
             int n = sent.executeUpdate(sql);
             if (n > 0) {
-                mostrarAditivos();
+                mostrarActividades();
                 JOptionPane.showMessageDialog(null, "Datos Eliminados");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
-        }*/
+        }
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void txtProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductoActionPerformed
+    private void txtActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtActividadActionPerformed
         // TODO add your handling code here:
-        txtProducto.transferFocus();
-    }//GEN-LAST:event_txtProductoActionPerformed
+        txtActividad.transferFocus();
+    }//GEN-LAST:event_txtActividadActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
-        //desbloquear();
+        desbloquear();
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void t_datosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_datosMouseClicked
         // TODO add your handling code here:
-        /*if (evt.getButton() == 1) {
+         if (evt.getButton() == 1) {
             int fila = t_datos.getSelectedRow();
             try {
                 desbloquear();
-                String sql = "select * from aditivos where id=" + t_datos.getValueAt(fila, 0);
+                String sql = "select * from actividades where id=" + t_datos.getValueAt(fila, 0);
                 sent = cn.createStatement();
                 ResultSet rs = sent.executeQuery(sql);
                 rs.next();
-                txtProducto.setText(rs.getString("producto"));
-                txtFabricante.setText(rs.getString("fabricante"));
-                txtEnvase.setText(rs.getString("envase"));
-                txtContenido.setText(rs.getString("contenido"));
-                txtPrecio.setText(rs.getString("precio"));
+                txtActividad.setText(rs.getString("producto"));
+                txtTipo.setText(rs.getString("fabricante"));
+                txtCobrable.setText(rs.getString("envase"));
+                txtObserv.setText(rs.getString("contenido"));
+                
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-        }*/
+        }
+
     }//GEN-LAST:event_t_datosMouseClicked
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -326,23 +436,23 @@ public class BDActividades extends javax.swing.JFrame {
         // TODO add your handling code here:
         //ConexionBD con = new ConexionBD();
         //Connection cn = con.Conexion();
-        /*String producto, fabricante, envase, contenido, precio;
+             String actividad, tipo, cobrable, observ;
         String sql = "";
-        producto = txtProducto.getText();
-        fabricante = txtFabricante.getText();
-        envase = txtEnvase.getText();
-        contenido = txtContenido.getText();
-        precio = txtPrecio.getText();
+        actividad = txtActividad.getText();
+        tipo = txtTipo.getText();
+        cobrable = txtCobrable.getText();
+        observ = txtObserv.getText();
+        
 
 
-        sql = "INSERT INTO aditivos (producto, fabricante, envase, contenido, precio) VALUES (?,?,?,?,?)";
+        sql = "INSERT INTO actividades (actividad, tipo, cobrable, observ) VALUES (?,?,?,?)";
         try {
             PreparedStatement pst = cn.prepareStatement(sql);
-            pst.setString(1, producto);
-            pst.setString(2, fabricante);
-            pst.setString(3, envase);
-            pst.setString(4, contenido);
-            pst.setString(5, precio);
+            pst.setString(1, actividad);
+            pst.setString(2, tipo);
+            pst.setString(3, cobrable);
+            pst.setString(4, observ);
+           
 
             int n = pst.executeUpdate();
             if (n > 0) {
@@ -355,45 +465,47 @@ public class BDActividades extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             System.out.print(ex.getMessage());
-        }*/
+        }
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
-        /*try {
+             try {
             desbloquear();
-            String sql = "Update aditivos set producto=?, fabricante=?, envase=?, contenido=?, precio=?" + "where id=?";
+            String sql = "Update actividades set actividad=?, tipo=?, cobrable=?, observ=?" + "where id=?";
             int fila = t_datos.getSelectedRow();
             String dao = (String) t_datos.getValueAt(fila, 0);
             PreparedStatement ps = cn.prepareStatement(sql);
-            ps.setString(1, txtProducto.getText());
-            ps.setString(2, txtFabricante.getText());
-            ps.setString(3, txtEnvase.getText());
-            ps.setString(4, txtContenido.getText());
-            ps.setString(5, txtPrecio.getText());
-            ps.setString(6, dao);
+            ps.setString(1, txtActividad.getText());
+            ps.setString(2, txtTipo.getText());
+            ps.setString(3, txtCobrable.getText());
+            ps.setString(4, txtObserv.getText());
+            
+            ps.setString(5, dao);
 
             int n = ps.executeUpdate();
             if (n > 0) {
                 limpiar();
-                mostrarAditivos();
+                mostrarActividades();
                 JOptionPane.showMessageDialog(null, "Datos Modificados");
                 bloquear();
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
-        }*/
+        }
+
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         // TODO add your handling code here:
-        //mostrarAditivos();
+        mostrarActividades();
     }//GEN-LAST:event_btnMostrarActionPerformed
 
-    private void txtContenidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContenidoActionPerformed
+    private void txtObservActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtObservActionPerformed
         // TODO add your handling code here:
-        txtContenido.transferFocus();
-    }//GEN-LAST:event_txtContenidoActionPerformed
+        txtObserv.transferFocus();
+    }//GEN-LAST:event_txtObservActionPerformed
 
     /**
      * @param args the command line arguments
@@ -451,10 +563,10 @@ public class BDActividades extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable t_datos;
+    private javax.swing.JTextField txtActividad;
     private javax.swing.JTextField txtBusqueda;
-    private javax.swing.JTextField txtContenido;
-    private javax.swing.JTextField txtEnvase;
-    private javax.swing.JTextField txtFabricante;
-    private javax.swing.JTextField txtProducto;
+    private javax.swing.JTextField txtCobrable;
+    private javax.swing.JTextField txtObserv;
+    private javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
 }

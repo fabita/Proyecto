@@ -158,7 +158,7 @@ public class Principal extends javax.swing.JFrame implements Runnable {
 
         jScrollPane1.setViewportView(jPanel1);
 
-        jMenuBar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jMenuBar1.setBorder(new javax.swing.border.SoftBevelBorder(0));
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/archivo2.png"))); // NOI18N
         jMenu1.setToolTipText("Archivo");
