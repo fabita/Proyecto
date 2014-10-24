@@ -229,7 +229,7 @@ public class BDAccesorios extends javax.swing.JFrame {
 
         jLabel1.setText("Base de Datos Accesorios");
 
-        btnMostrar.setText("Mostrar Aditivos");
+        btnMostrar.setText("Mostrar Accesorios");
         btnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMostrarActionPerformed(evt);
@@ -282,7 +282,7 @@ public class BDAccesorios extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(2, 2, 2)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

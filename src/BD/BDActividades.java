@@ -96,7 +96,7 @@ public class BDActividades extends javax.swing.JFrame {
             void limpiar(){
             txtActividad.setText ("");
             txtTipo.setText ("");
-            txtCobrable.setText ("");
+            //cmbCob.setText ("");
             txtObserv.setText ("");
 
             }
@@ -104,7 +104,7 @@ public class BDActividades extends javax.swing.JFrame {
             void bloquear(){
             txtActividad.setEnabled(false);
             txtTipo.setEnabled(false);
-            txtCobrable.setEnabled(false);
+            cmbCob.setEnabled(false);
             txtObserv.setEnabled(false);
 
 
@@ -116,7 +116,7 @@ public class BDActividades extends javax.swing.JFrame {
             void desbloquear(){
             txtActividad.setEnabled(true);
             txtTipo.setEnabled(true);
-            txtCobrable.setEnabled(true);
+            cmbCob.setEnabled(true);
             txtObserv.setEnabled(true);
 
 
@@ -135,7 +135,6 @@ public class BDActividades extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel5 = new javax.swing.JLabel();
-        txtCobrable = new javax.swing.JTextField();
         txtTipo = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -153,16 +152,11 @@ public class BDActividades extends javax.swing.JFrame {
         btnMostrar = new javax.swing.JButton();
         txtObserv = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        cmbCob = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel5.setText("Cobrable :");
-
-        txtCobrable.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCobrableActionPerformed(evt);
-            }
-        });
 
         txtTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -261,6 +255,8 @@ public class BDActividades extends javax.swing.JFrame {
 
         jLabel2.setText("Actividad :");
 
+        cmbCob.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cobrable", "No Cobrable" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -293,21 +289,21 @@ public class BDActividades extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtCobrable, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtActividad)
                                     .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtObserv, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtObserv, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                    .addComponent(cmbCob, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(274, 274, 274)))
                 .addGap(34, 34, 34))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -331,7 +327,7 @@ public class BDActividades extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtCobrable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbCob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -356,11 +352,6 @@ public class BDActividades extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtCobrableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCobrableActionPerformed
-        // TODO add your handling code here:
-        txtCobrable.transferFocus();
-    }//GEN-LAST:event_txtCobrableActionPerformed
 
     private void txtTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoActionPerformed
         // TODO add your handling code here:
@@ -419,10 +410,10 @@ public class BDActividades extends javax.swing.JFrame {
                 sent = cn.createStatement();
                 ResultSet rs = sent.executeQuery(sql);
                 rs.next();
-                txtActividad.setText(rs.getString("producto"));
-                txtTipo.setText(rs.getString("fabricante"));
-                txtCobrable.setText(rs.getString("envase"));
-                txtObserv.setText(rs.getString("contenido"));
+                txtActividad.setText(rs.getString("actividad"));
+                txtTipo.setText(rs.getString("tipo"));
+                cmbCob.setSelectedItem(rs.getString("cobrable"));
+                txtObserv.setText(rs.getString("observ"));
                 
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -440,7 +431,7 @@ public class BDActividades extends javax.swing.JFrame {
         String sql = "";
         actividad = txtActividad.getText();
         tipo = txtTipo.getText();
-        cobrable = txtCobrable.getText();
+        cobrable = cmbCob.getSelectedItem().toString();
         observ = txtObserv.getText();
         
 
@@ -479,7 +470,7 @@ public class BDActividades extends javax.swing.JFrame {
             PreparedStatement ps = cn.prepareStatement(sql);
             ps.setString(1, txtActividad.getText());
             ps.setString(2, txtTipo.getText());
-            ps.setString(3, txtCobrable.getText());
+            ps.setString(3, cmbCob.getSelectedItem().toString());
             ps.setString(4, txtObserv.getText());
             
             ps.setString(5, dao);
@@ -555,6 +546,7 @@ public class BDActividades extends javax.swing.JFrame {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnMostrar;
     private javax.swing.JButton btnNuevo;
+    private javax.swing.JComboBox cmbCob;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -565,7 +557,6 @@ public class BDActividades extends javax.swing.JFrame {
     private javax.swing.JTable t_datos;
     private javax.swing.JTextField txtActividad;
     private javax.swing.JTextField txtBusqueda;
-    private javax.swing.JTextField txtCobrable;
     private javax.swing.JTextField txtObserv;
     private javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables

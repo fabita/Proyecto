@@ -100,7 +100,9 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         jmuHerramientas = new javax.swing.JMenuItem();
         jmnuSondajes = new javax.swing.JMenuItem();
         jmnuCombustibles = new javax.swing.JMenuItem();
-        jSeparator6 = new javax.swing.JPopupMenu.Separator();
+        jmnuAccesorios = new javax.swing.JMenuItem();
+        jmnuActividades = new javax.swing.JMenuItem();
+        jSeparator9 = new javax.swing.JPopupMenu.Separator();
         jMenu3 = new javax.swing.JMenu();
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
         jmnuAvances = new javax.swing.JMenuItem();
@@ -257,7 +259,23 @@ public class Principal extends javax.swing.JFrame implements Runnable {
             }
         });
         jMenu2.add(jmnuCombustibles);
-        jMenu2.add(jSeparator6);
+
+        jmnuAccesorios.setText("BD Accesorios");
+        jmnuAccesorios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmnuAccesoriosActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmnuAccesorios);
+
+        jmnuActividades.setText("BD Actividades");
+        jmnuActividades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmnuActividadesActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmnuActividades);
+        jMenu2.add(jSeparator9);
 
         jMenuBar1.add(jMenu2);
         jMenu2.getAccessibleContext().setAccessibleName("mnuBD");
@@ -370,6 +388,18 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         combustibles.show();
     }//GEN-LAST:event_jmnuCombustiblesActionPerformed
 
+    private void jmnuAccesoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnuAccesoriosActionPerformed
+        // TODO add your handling code here:
+        BDAccesorios accesorios = new BDAccesorios();
+        accesorios.show();
+    }//GEN-LAST:event_jmnuAccesoriosActionPerformed
+
+    private void jmnuActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnuActividadesActionPerformed
+        // TODO add your handling code here:
+        BDActividades actividades = new BDActividades();
+        actividades.show();
+    }//GEN-LAST:event_jmnuActividadesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -425,9 +455,11 @@ public class Principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
-    private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JPopupMenu.Separator jSeparator8;
+    private javax.swing.JPopupMenu.Separator jSeparator9;
+    private javax.swing.JMenuItem jmnuAccesorios;
+    private javax.swing.JMenuItem jmnuActividades;
     private javax.swing.JMenuItem jmnuAditivos;
     private javax.swing.JMenuItem jmnuAvances;
     private javax.swing.JMenuItem jmnuCDA;
