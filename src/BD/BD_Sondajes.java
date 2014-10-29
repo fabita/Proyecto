@@ -207,41 +207,14 @@ public class BD_Sondajes extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnCancelar)
-                .addGap(21, 21, 21))
             .addGroup(layout.createSequentialGroup()
-                .addGap(251, 251, 251)
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnNuevo)
-                                .addGap(48, 48, 48)
-                                .addComponent(btnGuardar)
-                                .addGap(43, 43, 43)
-                                .addComponent(btnModificar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(btnEliminar))
-                            .addComponent(btnMostrar)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel9)
@@ -252,24 +225,46 @@ public class BD_Sondajes extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(jLabel5)
                             .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 103, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtFabricante1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtProducto1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPrecio2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtFabricante)
+                                .addComponent(txtProducto)
+                                .addComponent(txtEnvase)
+                                .addComponent(txtContenido)
+                                .addComponent(txtPrecio)
+                                .addComponent(txtPrecio1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(96, 96, 96))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtFabricante1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtProducto1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPrecio2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(399, 399, 399))
+                                .addComponent(btnNuevo)
+                                .addGap(48, 48, 48)
+                                .addComponent(btnGuardar)
+                                .addGap(43, 43, 43)
+                                .addComponent(btnModificar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnEliminar))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtFabricante)
-                                    .addComponent(txtProducto)
-                                    .addComponent(txtEnvase)
-                                    .addComponent(txtContenido)
-                                    .addComponent(txtPrecio)
-                                    .addComponent(txtPrecio1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(382, 382, 382)))))
-                .addGap(130, 130, 130))
+                                .addGap(241, 241, 241)
+                                .addComponent(jLabel1)))
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnMostrar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCancelar)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,16 +313,14 @@ public class BD_Sondajes extends javax.swing.JFrame {
                     .addComponent(btnGuardar)
                     .addComponent(btnModificar)
                     .addComponent(btnEliminar))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnMostrar)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnMostrar)
+                    .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                .addGap(11, 11, 11)
                 .addComponent(btnCancelar)
                 .addContainerGap())
         );
@@ -335,93 +328,28 @@ public class BD_Sondajes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+    private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
         // TODO add your handling code here:
-        /*
-         * try { int fila = t_datos.getSelectedRow(); String sql = "delete from
-         * aditivos where id=" + t_datos.getValueAt(fila, 0); sent =
-         * cn.createStatement(); int n = sent.executeUpdate(sql); if (n > 0) {
-         * mostrarAditivos(); JOptionPane.showMessageDialog(null, "Datos
-         * Eliminados"); } } catch (Exception e) {
-         * JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
-        }
-         */
-    }//GEN-LAST:event_btnEliminarActionPerformed
+        txtPrecio.transferFocus();
+    }//GEN-LAST:event_txtPrecioActionPerformed
 
-    private void txtFabricanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFabricanteActionPerformed
+    private void txtEnvaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnvaseActionPerformed
         // TODO add your handling code here:
-        txtFabricante.transferFocus();
-    }//GEN-LAST:event_txtFabricanteActionPerformed
+        txtEnvase.transferFocus();
+    }//GEN-LAST:event_txtEnvaseActionPerformed
 
-    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
+    private void txtProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductoActionPerformed
         // TODO add your handling code here:
-        //mostrarAditivos();
-    }//GEN-LAST:event_btnMostrarActionPerformed
+        txtProducto.transferFocus();
+    }//GEN-LAST:event_txtProductoActionPerformed
 
-    private void txtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaActionPerformed
+    private void txtProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProducto1ActionPerformed
         // TODO add your handling code here:
-        //cargar(txtBusqueda.getText());
-    }//GEN-LAST:event_txtBusquedaActionPerformed
+    }//GEN-LAST:event_txtProducto1ActionPerformed
 
-    private void txtBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyReleased
+    private void txtFabricante1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFabricante1ActionPerformed
         // TODO add your handling code here:
-        //cargar(txtBusqueda.getText());
-    }//GEN-LAST:event_txtBusquedaKeyReleased
-
-    private void txtPrecio2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecio2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecio2ActionPerformed
-
-    private void txtPrecio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecio1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecio1ActionPerformed
-
-    private void txtContenidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContenidoActionPerformed
-        // TODO add your handling code here:
-        txtContenido.transferFocus();
-    }//GEN-LAST:event_txtContenidoActionPerformed
-
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        // TODO add your handling code here:
-        /*
-         * try { desbloquear(); String sql = "Update aditivos set producto=?,
-         * fabricante=?, envase=?, contenido=?, precio=?" + "where id=?"; int
-         * fila = t_datos.getSelectedRow(); String dao = (String)
-         * t_datos.getValueAt(fila, 0); PreparedStatement ps =
-         * cn.prepareStatement(sql); ps.setString(1, txtProducto.getText());
-         * ps.setString(2, txtFabricante.getText()); ps.setString(3,
-         * txtEnvase.getText()); ps.setString(4, txtContenido.getText());
-         * ps.setString(5, txtPrecio.getText()); ps.setString(6, dao);
-         *
-         * int n = ps.executeUpdate(); if (n > 0) { limpiar();
-         * mostrarAditivos(); JOptionPane.showMessageDialog(null, "Datos
-         * Modificados"); bloquear(); } } catch (Exception e) {
-         * JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
-        }
-         */
-    }//GEN-LAST:event_btnModificarActionPerformed
-
-    private void t_datosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_datosMouseClicked
-        // TODO add your handling code here:
-        /*
-         * if (evt.getButton() == 1) { int fila = t_datos.getSelectedRow(); try
-         * { desbloquear(); String sql = "select * from aditivos where id=" +
-         * t_datos.getValueAt(fila, 0); sent = cn.createStatement(); ResultSet
-         * rs = sent.executeQuery(sql); rs.next();
-         * txtProducto.setText(rs.getString("producto"));
-         * txtFabricante.setText(rs.getString("fabricante"));
-         * txtEnvase.setText(rs.getString("envase"));
-         * txtContenido.setText(rs.getString("contenido"));
-         * txtPrecio.setText(rs.getString("precio")); } catch (Exception ex) {
-         * ex.printStackTrace(); }
-        }*
-         */
-    }//GEN-LAST:event_t_datosMouseClicked
+    }//GEN-LAST:event_txtFabricante1ActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
@@ -452,33 +380,94 @@ public class BD_Sondajes extends javax.swing.JFrame {
          * cargar("");
          *
          * }
-         * } catch (SQLException ex) { System.out.print(ex.getMessage());
-        }
+         * } catch (SQLException ex) { System.out.print(ex.getMessage()); }
          */
    }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void txtProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProducto1ActionPerformed
+    private void t_datosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_datosMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtProducto1ActionPerformed
+        /*
+         * if (evt.getButton() == 1) { int fila = t_datos.getSelectedRow(); try
+         * { desbloquear(); String sql = "select * from aditivos where id=" +
+         * t_datos.getValueAt(fila, 0); sent = cn.createStatement(); ResultSet
+         * rs = sent.executeQuery(sql); rs.next();
+         * txtProducto.setText(rs.getString("producto"));
+         * txtFabricante.setText(rs.getString("fabricante"));
+         * txtEnvase.setText(rs.getString("envase"));
+         * txtContenido.setText(rs.getString("contenido"));
+         * txtPrecio.setText(rs.getString("precio")); } catch (Exception ex) {
+         * ex.printStackTrace(); } }*
+         */
+    }//GEN-LAST:event_t_datosMouseClicked
 
-    private void txtFabricante1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFabricante1ActionPerformed
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFabricante1ActionPerformed
+        /*
+         * try { desbloquear(); String sql = "Update aditivos set producto=?,
+         * fabricante=?, envase=?, contenido=?, precio=?" + "where id=?"; int
+         * fila = t_datos.getSelectedRow(); String dao = (String)
+         * t_datos.getValueAt(fila, 0); PreparedStatement ps =
+         * cn.prepareStatement(sql); ps.setString(1, txtProducto.getText());
+         * ps.setString(2, txtFabricante.getText()); ps.setString(3,
+         * txtEnvase.getText()); ps.setString(4, txtContenido.getText());
+         * ps.setString(5, txtPrecio.getText()); ps.setString(6, dao);
+         *
+         * int n = ps.executeUpdate(); if (n > 0) { limpiar();
+         * mostrarAditivos(); JOptionPane.showMessageDialog(null, "Datos
+         * Modificados"); bloquear(); } } catch (Exception e) {
+         * JOptionPane.showMessageDialog(null, "Error " + e.getMessage()); }
+         */
+    }//GEN-LAST:event_btnModificarActionPerformed
 
-    private void txtProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductoActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-        txtProducto.transferFocus();
-    }//GEN-LAST:event_txtProductoActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void txtEnvaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnvaseActionPerformed
+    private void txtContenidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContenidoActionPerformed
         // TODO add your handling code here:
-        txtEnvase.transferFocus();
-    }//GEN-LAST:event_txtEnvaseActionPerformed
+        txtContenido.transferFocus();
+    }//GEN-LAST:event_txtContenidoActionPerformed
 
-    private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
+    private void txtPrecio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecio1ActionPerformed
         // TODO add your handling code here:
-        txtPrecio.transferFocus();
-    }//GEN-LAST:event_txtPrecioActionPerformed
+    }//GEN-LAST:event_txtPrecio1ActionPerformed
+
+    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
+        // TODO add your handling code here:
+        //mostrarAditivos();
+    }//GEN-LAST:event_btnMostrarActionPerformed
+
+    private void txtPrecio2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecio2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecio2ActionPerformed
+
+    private void txtBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyReleased
+        // TODO add your handling code here:
+        //cargar(txtBusqueda.getText());
+    }//GEN-LAST:event_txtBusquedaKeyReleased
+
+    private void txtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaActionPerformed
+        // TODO add your handling code here:
+        //cargar(txtBusqueda.getText());
+    }//GEN-LAST:event_txtBusquedaActionPerformed
+
+    private void txtFabricanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFabricanteActionPerformed
+        // TODO add your handling code here:
+        txtFabricante.transferFocus();
+    }//GEN-LAST:event_txtFabricanteActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        /*
+         * try { int fila = t_datos.getSelectedRow(); String sql = "delete from
+         * aditivos where id=" + t_datos.getValueAt(fila, 0); sent =
+         * cn.createStatement(); int n = sent.executeUpdate(sql); if (n > 0) {
+         * mostrarAditivos(); JOptionPane.showMessageDialog(null, "Datos
+         * Eliminados"); } } catch (Exception e) {
+         * JOptionPane.showMessageDialog(null, "Error " + e.getMessage()); }
+         */
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
