@@ -79,19 +79,17 @@
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" pref="136" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtCapacidadHq" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                          <Component id="txtCapacidadPq" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                          <Component id="txtCapacidadNq" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                          <Component id="txtRpm_Motor" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtNum_Maquina" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtModelo" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtMarca" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtFabricante" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtAño_Fabricacion" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtHp_Motor" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtCapacidadHq" alignment="0" pref="130" max="32767" attributes="0"/>
+                          <Component id="txtCapacidadPq" alignment="0" pref="130" max="32767" attributes="0"/>
+                          <Component id="txtCapacidadNq" alignment="0" pref="130" max="32767" attributes="0"/>
+                          <Component id="txtNum_Maquina" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtModelo" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtMarca" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtFabricante" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtAño_Fabricacion" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtHp_Motor" alignment="0" pref="130" max="32767" attributes="0"/>
+                          <Component id="txtRpm_Motor" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">

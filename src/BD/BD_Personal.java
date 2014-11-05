@@ -144,6 +144,7 @@ public class BD_Personal extends javax.swing.JFrame {
         txtVencFotoch.setText ("");
         txtIpss.setText ("");
         //cmbTipoSangre.setText ("");
+       
         txtFechaNac.setText ("");
         //txtDptorNac.setText ("");
         //txtDptoRes.setText ("");
@@ -521,7 +522,7 @@ public class BD_Personal extends javax.swing.JFrame {
                         .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 322, Short.MAX_VALUE)
                         .addComponent(btnMostrar))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -539,58 +540,59 @@ public class BD_Personal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 26, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtIpss, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                                    .addComponent(txtVencFotoch, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                                    .addComponent(cmbTipoSangre, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtFotocheck)
-                                    .addComponent(btnGuardar, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(93, 93, 93)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel14)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel16)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtIpss, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                            .addComponent(txtVencFotoch, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                            .addComponent(cmbTipoSangre, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtFotocheck)
+                                            .addComponent(btnGuardar, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addGap(93, 93, 93)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel12)
-                                            .addComponent(jLabel13)
-                                            .addComponent(jLabel17)
-                                            .addComponent(jLabel18)
-                                            .addComponent(jLabel19)
+                                            .addComponent(jLabel14)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(jLabel20)
+                                                .addComponent(jLabel16)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel22)
-                                                    .addComponent(jLabel21))
-                                                .addComponent(btnModificar))))))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtDni)
-                                .addComponent(txtCodEmp)
-                                .addComponent(txtNombres)
-                                .addComponent(txtApellidos)
-                                .addComponent(txtCargoProy)
-                                .addComponent(txtBrevete, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel12)
+                                                    .addComponent(jLabel13)
+                                                    .addComponent(jLabel17)
+                                                    .addComponent(jLabel18)
+                                                    .addComponent(jLabel19)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(jLabel20)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(jLabel22)
+                                                            .addComponent(jLabel21))
+                                                        .addComponent(btnModificar))))))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtDni)
+                                        .addComponent(txtCodEmp)
+                                        .addComponent(txtNombres)
+                                        .addComponent(txtApellidos)
+                                        .addComponent(txtCargoProy)
+                                        .addComponent(txtBrevete, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(93, 93, 93)
+                                        .addComponent(btnEliminar))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(53, 53, 53)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtFechaNac, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                            .addComponent(cmbDptoNac, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(cmbDptoRes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtDireccion)
+                                            .addComponent(txtTelefono)
+                                            .addComponent(txtCelular)
+                                            .addComponent(txtCorreo)
+                                            .addComponent(txtTelefEmerg)
+                                            .addComponent(txtPersCont)
+                                            .addComponent(txtRelacCont)))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(93, 93, 93)
-                                .addComponent(btnEliminar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtFechaNac, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                                    .addComponent(cmbDptoNac, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cmbDptoRes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtDireccion)
-                                    .addComponent(txtTelefono)
-                                    .addComponent(txtCelular)
-                                    .addComponent(txtCorreo)
-                                    .addComponent(txtTelefEmerg)
-                                    .addComponent(txtPersCont)
-                                    .addComponent(txtRelacCont))))))
+                                .addGap(134, 134, 134)
+                                .addComponent(jLabel1)))))
                 .addGap(130, 130, 130))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(299, 299, 299)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -803,8 +805,8 @@ public class BD_Personal extends javax.swing.JFrame {
                 cmbTipoSangre.setSelectedItem(rs.getString("tip_Sangre"));
                 
                 txtFechaNac.setText(rs.getString("fecha_nacimiento"));
-                cmbDptoNac.setSelectedItem(rs.getString("tip_Sangre"));
-                cmbDptoRes.setSelectedItem(rs.getString("tip_Sangre"));
+                cmbDptoNac.setSelectedItem(rs.getString("dpto_nacimiento"));
+                cmbDptoRes.setSelectedItem(rs.getString("dpto_residencia"));
                 txtDireccion.setText(rs.getString("direccion"));
                 txtTelefono.setText(rs.getString("tel_fijo"));
                 
@@ -879,15 +881,9 @@ public class BD_Personal extends javax.swing.JFrame {
             String sql = "Update personal set codigo_empresa=?, DNI=?, nombres=?, apellidos=?, "
                     + "Cargo_Proyecto=?,brevete=?, fotocheck_minero=?, vencimiento_fotocheck=?, "
                     + "IPSS=?, tip_Sangre=?, fecha_nacimiento=?,dpto_nacimiento=?,dpto_residencia=?,direccion=?,"
-                    + "tel_fijo=?,celular=?,email=?,tel_emergencia=?,tip_Sangre=?,tip_Sangre=?"+ "where id=?";
+                    + "tel_fijo=?,celular=?,email=?,tel_emergencia=?,persona_contact=?,relacion_contact=?"+ "where id=?";
             
-            /*int codigo_empresa, DNI,tel_fijo, celular,tel_emergencia;
-            
-               String  nombres, apellidos, Cargo_Proyecto, brevete, fotocheck_minero, 
-                vencimiento_fotocheck, IPSS, tip_Sangre,fecha_nacimiento,dpto_nacimiento,
-                dpto_residencia, direccion, email,persona_contact,relacion_contact;
-        */
-
+          
             int fila = t_datos.getSelectedRow();
             String dao = (String) t_datos.getValueAt(fila, 0);
             PreparedStatement ps = cn.prepareStatement(sql);

@@ -81,6 +81,31 @@ CREATE TABLE `personal` (
   PRIMARY KEY (`id`)
 );
 
+CREATE TABLE `herramientas` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `fecha_ingreso` varchar(45),
+  `gr_ingreso` varchar(45),
+  `descripcion` varchar(45),
+  `diametro` double,
+  `numero` int(45),
+  `tipo` varchar(20) NOT NULL,
+  `matriz` varchar(45),
+  `marca` varchar(45),
+  `precio` double,
+  `estado_llegada` varchar(45) NOT NULL,
+  `fecha_nacimiento` varchar(45),
+  `dpto_nacimiento` varchar(45),
+  `dpto_residencia` varchar(45),
+  `direccion` varchar(45),
+  `tel_fijo` int(45),
+  `celular` int(45),
+  `email` varchar(45),
+  `tel_emergencia` int(45),
+  `persona_contact` varchar(45),
+  `relacion_contact` varchar(45),
+  PRIMARY KEY (`id`)
+);
+
 CREATE TABLE `tiempo` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `Tiempo` varchar(5) NOT NULL,
