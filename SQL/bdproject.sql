@@ -106,6 +106,26 @@ CREATE TABLE `herramientas` (
   PRIMARY KEY (`id`)
 );
 
+CREATE TABLE `maquinaria` (
+`id` int(10) NOT NULL AUTO_INCREMENT,
+`modelo` varchar(45),
+`num_maquina` varchar(45),
+`marca` varchar(45),
+`fabricante` varchar(45),
+`año_fabricacion` varchar(45) NOT NULL,
+`hp_motor` varchar(45) NOT NULL,
+`rpm_motor` varchar(45) NOT NULL,
+`capacidad_pq` varchar(45) NOT NULL,
+`capacidad_hq` varchar(45) NOT NULL,
+`capacidad_nq` varchar(45) NOT NULL,
+`capacidad_bq` varchar(45) NOT NULL,
+`montado_sobre` varchar(45) NOT NULL,
+`peso_maquina` varchar(45) NOT NULL,
+`largo_maquina` varchar(45) NOT NULL,
+`ancho_maquina` varchar(45) NOT NULL,
+`altura_maquina` varchar(45) NOT NULL,
+PRIMARY KEY (`id`));
+
 CREATE TABLE `tiempo` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `Tiempo` varchar(5) NOT NULL,

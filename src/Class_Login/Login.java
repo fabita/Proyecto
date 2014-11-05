@@ -151,7 +151,18 @@ public class Login extends javax.swing.JFrame {
                 btnIngresarActionPerformed(evt);
             }
         });
+        btnIngresar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnIngresarKeyPressed(evt);
+            }
+        });
         getContentPane().add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 80, 60));
+
+        txtcontra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcontraActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtcontra, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 170, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ángel-de-tristeza-negro-31000.gif"))); // NOI18N
@@ -162,12 +173,14 @@ public class Login extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
+      
         this.hide();
        // Principal prin = new Principal();
        // prin.show();
        String usu=txtusuario.getText();
        String pas=new String(txtcontra.getPassword());
        acceder(usu, pas);
+      
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -180,8 +193,27 @@ public class Login extends javax.swing.JFrame {
 
     private void txtusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusuarioActionPerformed
         // TODO add your handling code here:
-        txtusuario.requestFocus();
+        //.requestFocus();
+        txtusuario.transferFocus();
     }//GEN-LAST:event_txtusuarioActionPerformed
+
+    private void btnIngresarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnIngresarKeyPressed
+        // TODO add your handling code here:
+        char car = (char) evt.getKeyCode();
+        if(car==evt.VK_ENTER){
+              this.hide();
+       // Principal prin = new Principal();
+       // prin.show();
+       String usu=txtusuario.getText();
+       String pas=new String(txtcontra.getPassword());
+       acceder(usu, pas);        
+        }
+    }//GEN-LAST:event_btnIngresarKeyPressed
+
+    private void txtcontraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontraActionPerformed
+        // TODO add your handling code here:
+        txtcontra.transferFocus();
+    }//GEN-LAST:event_txtcontraActionPerformed
 
     /**
      * @param args the command line arguments

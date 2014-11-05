@@ -6,7 +6,7 @@ package pro_min;
 
 import BD.*;
 import Class_Login.*;
-import ControlAvance.*;
+import Operaciones.*;
 import Reporte.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -92,6 +92,18 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jmnuReport = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        jMenu3 = new javax.swing.JMenu();
+        jSeparator7 = new javax.swing.JPopupMenu.Separator();
+        jmnuAvances = new javax.swing.JMenuItem();
+        jmnuCDA = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jSeparator8 = new javax.swing.JPopupMenu.Separator();
         jMenu2 = new javax.swing.JMenu();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
         jmnuAditivos = new javax.swing.JMenuItem();
@@ -103,11 +115,6 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         jmnuAccesorios = new javax.swing.JMenuItem();
         jmnuActividades = new javax.swing.JMenuItem();
         jSeparator9 = new javax.swing.JPopupMenu.Separator();
-        jMenu3 = new javax.swing.JMenu();
-        jSeparator7 = new javax.swing.JPopupMenu.Separator();
-        jmnuAvances = new javax.swing.JMenuItem();
-        jmnuCDA = new javax.swing.JMenuItem();
-        jSeparator8 = new javax.swing.JPopupMenu.Separator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -160,13 +167,15 @@ public class Principal extends javax.swing.JFrame implements Runnable {
 
         jScrollPane1.setViewportView(jPanel1);
 
-        jMenuBar1.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        jMenuBar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/archivo2.png"))); // NOI18N
         jMenu1.setToolTipText("Archivo");
         jMenu1.add(jSeparator2);
 
-        jmnuModificar.setText("Modificar - Crear Nuevo Usuario");
+        jmnuModificar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        jmnuModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/nuevoUsuario.png"))); // NOI18N
+        jmnuModificar.setText("Crear Nuevo Usuario");
         jmnuModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmnuModificarActionPerformed(evt);
@@ -175,7 +184,9 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         jMenu1.add(jmnuModificar);
         jmnuModificar.getAccessibleContext().setAccessibleName("jmnuModificar");
 
-        jmnuSalir.setLabel("Salir");
+        jmnuSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        jmnuSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit.png"))); // NOI18N
+        jmnuSalir.setText("Exit");
         jmnuSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmnuSalirActionPerformed(evt);
@@ -194,6 +205,8 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         mnuReport.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         mnuReport.add(jSeparator1);
 
+        jmnuReport.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        jmnuReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/report.png"))); // NOI18N
         jmnuReport.setText("Reporte");
         jmnuReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,6 +218,86 @@ public class Principal extends javax.swing.JFrame implements Runnable {
 
         jMenuBar1.add(mnuReport);
         mnuReport.getAccessibleContext().setAccessibleName("mnuReporte");
+
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ControlAvances.png"))); // NOI18N
+        jMenu3.setToolTipText("Operaciones");
+        jMenu3.add(jSeparator7);
+
+        jmnuAvances.setText("Avances");
+        jmnuAvances.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmnuAvancesActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jmnuAvances);
+
+        jmnuCDA.setText("Accesorios");
+        jmnuCDA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmnuCDAActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jmnuCDA);
+
+        jMenuItem1.setText("Combustible");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem1);
+
+        jMenuItem2.setText("Fluidos");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem2);
+
+        jMenuItem3.setText("Tiempos");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem3);
+
+        jMenuItem4.setText("Unidad");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem4);
+
+        jMenuItem5.setText("Valorizaciones");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem5);
+
+        jMenuItem6.setText("Consumo de Agua");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem6);
+
+        jMenuItem7.setText("Corridas de Perforación ");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem7);
+        jMenu3.add(jSeparator8);
+
+        jMenuBar1.add(jMenu3);
+        jMenu3.getAccessibleContext().setAccessibleName("mnuAvancesControl");
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/baseDatos2.png"))); // NOI18N
         jMenu2.setToolTipText("Base de Datos");
@@ -280,30 +373,6 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         jMenuBar1.add(jMenu2);
         jMenu2.getAccessibleContext().setAccessibleName("mnuBD");
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ControlAvances.png"))); // NOI18N
-        jMenu3.setToolTipText("Control de Avances");
-        jMenu3.add(jSeparator7);
-
-        jmnuAvances.setText("Avances");
-        jmnuAvances.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmnuAvancesActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jmnuAvances);
-
-        jmnuCDA.setText("CDA");
-        jmnuCDA.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmnuCDAActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jmnuCDA);
-        jMenu3.add(jSeparator8);
-
-        jMenuBar1.add(jMenu3);
-        jMenu3.getAccessibleContext().setAccessibleName("mnuAvancesControl");
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -348,8 +417,8 @@ public class Principal extends javax.swing.JFrame implements Runnable {
 
     private void jmnuCDAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnuCDAActionPerformed
         // TODO add your handling code here:
-        CDA cda = new CDA();
-        cda.show();
+        Accesorios acc = new Accesorios();
+        acc.show();
     }//GEN-LAST:event_jmnuCDAActionPerformed
 
     private void jmnuAditivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnuAditivosActionPerformed
@@ -400,6 +469,48 @@ public class Principal extends javax.swing.JFrame implements Runnable {
         actividades.show();
     }//GEN-LAST:event_jmnuActividadesActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+         Combustible com = new Combustible();
+         com.show();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+         Fluidos flu = new Fluidos();
+         flu.show();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+         Tiempos tim = new Tiempos();
+         tim.show();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+         Unidad un = new Unidad();
+         un.show();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+         Valorizaciones val = new Valorizaciones();
+         val.show();
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+         ConsumoAgua con = new ConsumoAgua();
+         con.show();
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+         CorridasPerforaciones corr = new CorridasPerforaciones();
+         corr.show();
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -448,6 +559,13 @@ public class Principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
