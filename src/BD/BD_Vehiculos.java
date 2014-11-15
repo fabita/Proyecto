@@ -153,7 +153,7 @@ public class BD_Vehiculos extends javax.swing.JFrame {
         btnMostrar = new javax.swing.JButton();
         txtAño_Fabricacion = new com.toedter.calendar.JYearChooser();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         txtMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -74,7 +74,7 @@ public class Herramientas extends javax.swing.JFrame {
         jTextField18 = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTextField3.setText("jTextField1");
 

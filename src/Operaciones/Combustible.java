@@ -58,7 +58,7 @@ public class Combustible extends javax.swing.JFrame {
         t_datos = new javax.swing.JTable();
         jLabel19 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTextField3.setText("jTextField1");
 

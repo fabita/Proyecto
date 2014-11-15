@@ -72,7 +72,7 @@ public class CorridasPerforaciones extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         jTextField15 = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel19.setText("Buscar :");
 

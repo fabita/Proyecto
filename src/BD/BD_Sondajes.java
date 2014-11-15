@@ -56,7 +56,7 @@ public class BD_Sondajes extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel15.setText("Fecha Termino :");
 

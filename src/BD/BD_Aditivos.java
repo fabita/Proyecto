@@ -4,10 +4,13 @@
  */
 package BD;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import pro_min.BDConexion;
 
@@ -35,6 +38,31 @@ public class BD_Aditivos extends javax.swing.JFrame {
         bloquear();
         cargar("");
         mostrarAditivos();
+        //sNumeros(txtPrecio);
+        sLetras(txtEnvase);
+    }
+    
+    public void sNumeros(JTextField a){
+        a.addKeyListener(new KeyAdapter() {
+        public void keyTyped(KeyEvent e){
+            char c = e.getKeyChar();
+            //().matches("[1-9]{1}(\\.[0-9]{1,2})?");
+            if(c<'0'||c>'9'||c=='.'||c<'0'||c>'9')
+                e.consume();    
+            //getToolkit().beep();  
+        }
+        });
+    }
+    
+    public void sLetras(JTextField a){
+        a.addKeyListener(new KeyAdapter() {
+        public void keyTyped(KeyEvent e){
+            char c = e.getKeyChar();
+            if(Character.isDigit(c))
+                //getToolkit().beep();
+                e.consume();    
+        }
+        });
     }
     
     void cargar(String valor){
@@ -179,6 +207,7 @@ public class BD_Aditivos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(t_datos);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Base de Datos Aditivos");
 
         jLabel2.setText("Producto :");
@@ -210,6 +239,11 @@ public class BD_Aditivos extends javax.swing.JFrame {
         txtPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrecioActionPerformed(evt);
+            }
+        });
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyTyped(evt);
             }
         });
 
@@ -273,11 +307,34 @@ public class BD_Aditivos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnMostrar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnNuevo)
+                                .addGap(48, 48, 48)
+                                .addComponent(btnGuardar)
+                                .addGap(43, 43, 43)
+                                .addComponent(btnModificar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnEliminar)
+                                .addGap(20, 20, 20))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 26, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCancelar))))
+                .addGap(21, 21, 21))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(171, 171, 171)
-                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -303,33 +360,11 @@ public class BD_Aditivos extends javax.swing.JFrame {
                                         .addGap(56, 56, 56)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtContenido, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnNuevo)
-                                .addGap(48, 48, 48)
-                                .addComponent(btnGuardar)
-                                .addGap(43, 43, 43)
-                                .addComponent(btnModificar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnEliminar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnMostrar))))
+                                    .addComponent(txtContenido, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 26, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancelar))))
-                .addGap(21, 21, 21))
+                        .addGap(173, 173, 173)
+                        .addComponent(jLabel1)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -367,9 +402,9 @@ public class BD_Aditivos extends javax.swing.JFrame {
                     .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
                     .addComponent(btnMostrar))
-                .addGap(2, 2, 2)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCancelar)
                 .addContainerGap())
         );
@@ -534,6 +569,18 @@ public class BD_Aditivos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+        // TODO add your handling code here:
+        if(!Character.isDigit(evt.getKeyChar())&&evt.getKeyChar()!='.'){
+            evt.consume();
+        
+        }
+        /*char c = evt.getKeyChar();
+            //().matches("[1-9]{1}(\\.[0-9]{1,2})?");
+            if((c<'0'||c>'9')&&(c!=(char) KeyEvent.VK_CLEAR))
+                evt.consume(); */
+    }//GEN-LAST:event_txtPrecioKeyTyped
 
     /**
      * @param args the command line arguments
