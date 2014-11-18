@@ -41,9 +41,7 @@ public class CorridasPerforaciones extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jTextField10 = new javax.swing.JTextField();
         txtBusqueda = new javax.swing.JTextField();
-        btnNuevo = new javax.swing.JButton();
         btnMostrar = new javax.swing.JButton();
-        btnGuardar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         t_datos = new javax.swing.JTable();
         btnEliminar = new javax.swing.JButton();
@@ -76,29 +74,29 @@ public class CorridasPerforaciones extends javax.swing.JFrame {
 
         jLabel19.setText("Buscar :");
 
-        jLabel18.setText("jLabel1");
+        jLabel18.setText("Corridas de Perforaciones");
 
-        jLabel17.setText("jLabel1");
+        jLabel17.setText("Vacios");
 
-        jLabel7.setText("jLabel1");
+        jLabel7.setText("Prof. Inicial");
 
         jTextField8.setText("jTextField1");
 
-        jLabel6.setText("jLabel1");
+        jLabel6.setText("Sondaje");
 
         jTextField7.setText("jTextField1");
 
-        jLabel9.setText("jLabel1");
+        jLabel9.setText("Long Perf");
 
-        jLabel8.setText("jLabel1");
+        jLabel8.setText("Prof. Final");
 
         jTextField9.setText("jTextField1");
 
-        jLabel11.setText("jLabel1");
+        jLabel11.setText("% Recup.");
 
         jTextField11.setText("jTextField1");
 
-        jLabel10.setText("jLabel1");
+        jLabel10.setText("Long Recup.");
 
         jTextField10.setText("jTextField1");
 
@@ -113,25 +111,11 @@ public class CorridasPerforaciones extends javax.swing.JFrame {
             }
         });
 
-        btnNuevo.setText("Nuevo");
-        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoActionPerformed(evt);
-            }
-        });
-
         btnMostrar.setText("Mostrar Combustibles");
         btnMostrar.setActionCommand("");
         btnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMostrarActionPerformed(evt);
-            }
-        });
-
-        btnGuardar.setText("Guardar");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
             }
         });
 
@@ -165,45 +149,45 @@ public class CorridasPerforaciones extends javax.swing.JFrame {
             }
         });
 
-        jLabel14.setText("jLabel1");
+        jLabel14.setText("Semi - Compacto");
 
         jTextField14.setText("jTextField1");
 
-        jLabel12.setText("jLabel1");
+        jLabel12.setText("% Retorno");
 
         jTextField12.setText("jTextField1");
 
-        jLabel13.setText("jLabel1");
+        jLabel13.setText("Compacto");
 
         jTextField13.setText("jTextField1");
 
         jTextField2.setText("jTextField1");
 
-        jLabel2.setText("jLabel1");
+        jLabel2.setText("Proyecto");
 
         jTextField3.setText("jTextField1");
 
-        jLabel3.setText("jLabel1");
+        jLabel3.setText("Zona");
 
         jTextField4.setText("jTextField1");
 
-        jLabel4.setText("jLabel1");
+        jLabel4.setText("Maquina");
 
         jTextField1.setText("jTextField1");
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("Fecha");
 
         jTextField5.setText("jTextField1");
 
         jTextField6.setText("jTextField1");
 
-        jLabel5.setText("jLabel1");
+        jLabel5.setText("Turno");
 
-        jLabel15.setText("jLabel1");
+        jLabel15.setText("Fracturado");
 
         jTextField16.setText("jTextField1");
 
-        jLabel16.setText("jLabel1");
+        jLabel16.setText("Muy Fracturado");
 
         jTextField17.setText("jTextField1");
 
@@ -310,15 +294,9 @@ public class CorridasPerforaciones extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(btnNuevo)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btnGuardar))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel19)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel19)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -407,8 +385,6 @@ public class CorridasPerforaciones extends javax.swing.JFrame {
                             .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNuevo)
-                    .addComponent(btnGuardar)
                     .addComponent(btnModificar)
                     .addComponent(btnEliminar))
                 .addGap(18, 18, 18)
@@ -436,22 +412,10 @@ public class CorridasPerforaciones extends javax.swing.JFrame {
         
     }//GEN-LAST:event_txtBusquedaKeyReleased
 
-    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnNuevoActionPerformed
-
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         // TODO add your handling code here:
         
     }//GEN-LAST:event_btnMostrarActionPerformed
-
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-
-        // TODO add your handling code here:
-
-        
-    }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void t_datosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_datosMouseClicked
         // TODO add your handling code here:
@@ -517,10 +481,8 @@ public class CorridasPerforaciones extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnMostrar;
-    private javax.swing.JButton btnNuevo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
