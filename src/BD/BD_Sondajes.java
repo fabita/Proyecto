@@ -4,6 +4,16 @@
  */
 package BD;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import pro_min.BDConexion;
+
 /**
  *
  * @author Usuario
@@ -13,6 +23,11 @@ public class BD_Sondajes extends javax.swing.JFrame {
     /**
      * Creates new form BD_Sondajes
      */
+    DefaultTableModel model;
+    BDConexion bd = new BDConexion();
+    Connection cn = bd.conexion();
+    Statement sent;
+    DateFormat VariableFecha = DateFormat.getDateInstance();
     public BD_Sondajes() {
         initComponents();
     }
@@ -28,17 +43,16 @@ public class BD_Sondajes extends javax.swing.JFrame {
 
         jLabel15 = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
-        txtFabricante = new javax.swing.JTextField();
+        txtID = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btnMostrar = new javax.swing.JButton();
         txtBusqueda = new javax.swing.JTextField();
-        txtPrecio2 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txtPrecio1 = new javax.swing.JTextField();
+        txtProfProgr = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtContenido = new javax.swing.JTextField();
+        txtInclinacion = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         btnModificar = new javax.swing.JButton();
@@ -47,14 +61,15 @@ public class BD_Sondajes extends javax.swing.JFrame {
         btnNuevo = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
-        txtProducto1 = new javax.swing.JTextField();
         txtFabricante1 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        txtProducto = new javax.swing.JTextField();
-        txtEnvase = new javax.swing.JTextField();
+        txtProyecto = new javax.swing.JTextField();
+        txtZona = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtPrecio = new javax.swing.JTextField();
+        txtAzimut = new javax.swing.JTextField();
+        dcFechaIni = new com.toedter.calendar.JDateChooser();
+        dcFechaFin = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -67,9 +82,9 @@ public class BD_Sondajes extends javax.swing.JFrame {
             }
         });
 
-        txtFabricante.addActionListener(new java.awt.event.ActionListener() {
+        txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFabricanteActionPerformed(evt);
+                txtIDActionPerformed(evt);
             }
         });
 
@@ -93,17 +108,11 @@ public class BD_Sondajes extends javax.swing.JFrame {
             }
         });
 
-        txtPrecio2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPrecio2ActionPerformed(evt);
-            }
-        });
-
         jLabel9.setText("Fecha Inicio :");
 
-        txtPrecio1.addActionListener(new java.awt.event.ActionListener() {
+        txtProfProgr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPrecio1ActionPerformed(evt);
+                txtProfProgrActionPerformed(evt);
             }
         });
 
@@ -113,9 +122,9 @@ public class BD_Sondajes extends javax.swing.JFrame {
 
         jLabel7.setText("Buscar :");
 
-        txtContenido.addActionListener(new java.awt.event.ActionListener() {
+        txtInclinacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContenidoActionPerformed(evt);
+                txtInclinacionActionPerformed(evt);
             }
         });
 
@@ -158,18 +167,12 @@ public class BD_Sondajes extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("ID :");
+        jLabel3.setText("ID Sondaje :");
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
-            }
-        });
-
-        txtProducto1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProducto1ActionPerformed(evt);
             }
         });
 
@@ -181,25 +184,26 @@ public class BD_Sondajes extends javax.swing.JFrame {
 
         jLabel11.setText("Tipo de Perforacion :");
 
-        txtProducto.addActionListener(new java.awt.event.ActionListener() {
+        txtProyecto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProductoActionPerformed(evt);
+                txtProyectoActionPerformed(evt);
             }
         });
 
-        txtEnvase.addActionListener(new java.awt.event.ActionListener() {
+        txtZona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEnvaseActionPerformed(evt);
+                txtZonaActionPerformed(evt);
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Base de Datos Sondajes");
 
         jLabel2.setText("Proyecto :");
 
-        txtPrecio.addActionListener(new java.awt.event.ActionListener() {
+        txtAzimut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPrecioActionPerformed(evt);
+                txtAzimutActionPerformed(evt);
             }
         });
 
@@ -226,31 +230,25 @@ public class BD_Sondajes extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 103, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtFabricante1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtProducto1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPrecio2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtFabricante)
-                                .addComponent(txtProducto)
-                                .addComponent(txtEnvase)
-                                .addComponent(txtContenido)
-                                .addComponent(txtPrecio)
-                                .addComponent(txtPrecio1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtFabricante1, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                            .addComponent(txtID)
+                            .addComponent(txtProyecto)
+                            .addComponent(txtZona)
+                            .addComponent(txtInclinacion)
+                            .addComponent(txtAzimut)
+                            .addComponent(txtProfProgr, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                            .addComponent(dcFechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dcFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(96, 96, 96))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnNuevo)
-                                .addGap(48, 48, 48)
-                                .addComponent(btnGuardar)
-                                .addGap(43, 43, 43)
-                                .addComponent(btnModificar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnEliminar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(241, 241, 241)
-                                .addComponent(jLabel1)))
+                        .addComponent(btnNuevo)
+                        .addGap(48, 48, 48)
+                        .addComponent(btnGuardar)
+                        .addGap(43, 43, 43)
+                        .addComponent(btnModificar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                        .addComponent(btnEliminar)
                         .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,6 +263,10 @@ public class BD_Sondajes extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCancelar)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(132, 132, 132)
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,36 +275,36 @@ public class BD_Sondajes extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEnvase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtZona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtContenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtInclinacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAzimut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPrecio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtProfProgr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPrecio2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(dcFechaIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtProducto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15)
+                    .addComponent(dcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtFabricante1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -319,7 +321,7 @@ public class BD_Sondajes extends javax.swing.JFrame {
                     .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
                 .addGap(11, 11, 11)
                 .addComponent(btnCancelar)
                 .addContainerGap())
@@ -328,24 +330,20 @@ public class BD_Sondajes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
+    private void txtAzimutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAzimutActionPerformed
         // TODO add your handling code here:
-        txtPrecio.transferFocus();
-    }//GEN-LAST:event_txtPrecioActionPerformed
+        txtAzimut.transferFocus();
+    }//GEN-LAST:event_txtAzimutActionPerformed
 
-    private void txtEnvaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnvaseActionPerformed
+    private void txtZonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtZonaActionPerformed
         // TODO add your handling code here:
-        txtEnvase.transferFocus();
-    }//GEN-LAST:event_txtEnvaseActionPerformed
+        txtZona.transferFocus();
+    }//GEN-LAST:event_txtZonaActionPerformed
 
-    private void txtProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductoActionPerformed
+    private void txtProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProyectoActionPerformed
         // TODO add your handling code here:
-        txtProducto.transferFocus();
-    }//GEN-LAST:event_txtProductoActionPerformed
-
-    private void txtProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProducto1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtProducto1ActionPerformed
+        txtProyecto.transferFocus();
+    }//GEN-LAST:event_txtProyectoActionPerformed
 
     private void txtFabricante1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFabricante1ActionPerformed
         // TODO add your handling code here:
@@ -359,29 +357,45 @@ public class BD_Sondajes extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
         // TODO add your handling code here:
-        //ConexionBD con = new ConexionBD();
-        //Connection cn = con.Conexion();
-        /*
-         * String producto, fabricante, envase, contenido, precio; String sql =
-         * ""; producto = txtProducto.getText(); fabricante =
-         * txtFabricante.getText(); envase = txtEnvase.getText(); contenido =
-         * txtContenido.getText(); precio = txtPrecio.getText();
-         *
-         *
-         * sql = "INSERT INTO aditivos (producto, fabricante, envase, contenido,
-         * precio) VALUES (?,?,?,?,?)"; try { PreparedStatement pst =
-         * cn.prepareStatement(sql); pst.setString(1, producto);
-         * pst.setString(2, fabricante); pst.setString(3, envase);
-         * pst.setString(4, contenido); pst.setString(5, precio);
-         *
-         * int n = pst.executeUpdate(); if (n > 0) {
-         * JOptionPane.showMessageDialog(null, "Registro Guardado con exito");
-         * bloquear(); btnNuevo.setEnabled(true); btnGuardar.setEnabled(false);
-         * cargar("");
-         *
-         * }
-         * } catch (SQLException ex) { System.out.print(ex.getMessage()); }
-         */
+        String proyecto,id, zona, inclinacion, azimut, prof_proy, tipo;
+        String sql = "";
+        proyecto = txtProyecto.getText(); 
+        id = txtID.getText();
+        zona = txtZona.getText();
+        inclinacion = txtInclinacion.getText ();
+        azimut = txtAzimut.getText ();
+        prof_proy = txtProfProgr.getText ();
+        String inicio = VariableFecha.format(dcFechaIni.getDate());
+        //String inicio=new SimpleDateFormat("dd/MM/yyyy").format(dcFechaIni.getDate());
+        //String inicio = dcFechaIni.getDateFormatString();
+        //String fin=new SimpleDateFormat("dd/MM/yyyy").format(dcFechaFin.getDate());
+        String fin = dcFechaFin.getDateFormatString ();
+        tipo = txtFabricante1.getText ();
+        sql = "INSERT INTO sondaje (proyecto,codigoSondaje,zona,inclinacion,azimuth,profProgr,fechaInicio,fechaTermino,tipoPerforacion) VALUES (?,?,?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement pst = cn.prepareStatement(sql);
+
+            pst.setString(1, proyecto);
+            pst.setString(2, id);
+            pst.setString(3, zona);
+            pst.setString(4, inclinacion);
+            pst.setString(5, azimut); 
+            pst.setString(6, prof_proy); 
+            pst.setString(7, inicio); 
+            pst.setString(8, fin); 
+            pst.setString(9, tipo);
+            int n = pst.executeUpdate();
+            if (n > 0) {
+                JOptionPane.showMessageDialog(null, "Registro Guardado con exito");
+                //bloquear();
+                //cargar("");
+
+            }
+        } catch (SQLException ex) {
+            System.out.print(ex.getMessage());
+
+            //Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
    }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void t_datosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_datosMouseClicked
@@ -424,23 +438,19 @@ public class BD_Sondajes extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void txtContenidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContenidoActionPerformed
+    private void txtInclinacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInclinacionActionPerformed
         // TODO add your handling code here:
-        txtContenido.transferFocus();
-    }//GEN-LAST:event_txtContenidoActionPerformed
+        txtInclinacion.transferFocus();
+    }//GEN-LAST:event_txtInclinacionActionPerformed
 
-    private void txtPrecio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecio1ActionPerformed
+    private void txtProfProgrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProfProgrActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecio1ActionPerformed
+    }//GEN-LAST:event_txtProfProgrActionPerformed
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         // TODO add your handling code here:
         //mostrarAditivos();
     }//GEN-LAST:event_btnMostrarActionPerformed
-
-    private void txtPrecio2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecio2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecio2ActionPerformed
 
     private void txtBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyReleased
         // TODO add your handling code here:
@@ -452,10 +462,10 @@ public class BD_Sondajes extends javax.swing.JFrame {
         //cargar(txtBusqueda.getText());
     }//GEN-LAST:event_txtBusquedaActionPerformed
 
-    private void txtFabricanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFabricanteActionPerformed
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         // TODO add your handling code here:
-        txtFabricante.transferFocus();
-    }//GEN-LAST:event_txtFabricanteActionPerformed
+        txtID.transferFocus();
+    }//GEN-LAST:event_txtIDActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
@@ -517,6 +527,8 @@ public class BD_Sondajes extends javax.swing.JFrame {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnMostrar;
     private javax.swing.JButton btnNuevo;
+    private com.toedter.calendar.JDateChooser dcFechaFin;
+    private com.toedter.calendar.JDateChooser dcFechaIni;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel15;
@@ -530,15 +542,13 @@ public class BD_Sondajes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable t_datos;
+    private javax.swing.JTextField txtAzimut;
     private javax.swing.JTextField txtBusqueda;
-    private javax.swing.JTextField txtContenido;
-    private javax.swing.JTextField txtEnvase;
-    private javax.swing.JTextField txtFabricante;
     private javax.swing.JTextField txtFabricante1;
-    private javax.swing.JTextField txtPrecio;
-    private javax.swing.JTextField txtPrecio1;
-    private javax.swing.JTextField txtPrecio2;
-    private javax.swing.JTextField txtProducto;
-    private javax.swing.JTextField txtProducto1;
+    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtInclinacion;
+    private javax.swing.JTextField txtProfProgr;
+    private javax.swing.JTextField txtProyecto;
+    private javax.swing.JTextField txtZona;
     // End of variables declaration//GEN-END:variables
 }

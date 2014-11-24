@@ -423,25 +423,25 @@ public class Principal extends javax.swing.JFrame implements Runnable {
 
     private void jmnuAditivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnuAditivosActionPerformed
         // TODO add your handling code here:
-        BD_Aditivos aditivos = new BD_Aditivos();
+        BDAditivos aditivos = new BDAditivos();
         aditivos.show();        
     }//GEN-LAST:event_jmnuAditivosActionPerformed
 
     private void jmnuPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnuPersonalActionPerformed
         // TODO add your handling code here:
-        BD_Personal personal = new BD_Personal();
+        BDPersonal personal = new BDPersonal();
         personal.show();
     }//GEN-LAST:event_jmnuPersonalActionPerformed
 
     private void jmnuMaquinariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnuMaquinariaActionPerformed
         // TODO add your handling code here:
-        BD_Maquinaria maquinaria = new BD_Maquinaria();
+        BDMaquinaria maquinaria = new BDMaquinaria();
         maquinaria.show();
     }//GEN-LAST:event_jmnuMaquinariaActionPerformed
 
     private void jmuHerramientasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmuHerramientasActionPerformed
         // TODO add your handling code here:
-        BD_Herramientas herramientas = new BD_Herramientas();
+        BDHerramientas herramientas = new BDHerramientas();
         herramientas.show();
     }//GEN-LAST:event_jmuHerramientasActionPerformed
 
@@ -453,7 +453,7 @@ public class Principal extends javax.swing.JFrame implements Runnable {
 
     private void jmnuCombustiblesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnuCombustiblesActionPerformed
         // TODO add your handling code here:
-        BD_Combustibles combustibles = new BD_Combustibles();
+        BDCombustibles combustibles = new BDCombustibles();
         combustibles.show();
     }//GEN-LAST:event_jmnuCombustiblesActionPerformed
 

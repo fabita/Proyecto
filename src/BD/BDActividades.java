@@ -45,7 +45,7 @@ public class BDActividades extends javax.swing.JFrame {
         String []titulos={"ID", "Actividad","Tipo","Cobrable","Observaciones"};  
         String []Registros= new String[5];
         
-        String sql="SELECT * FROM actividades WHERE CONCAT(id, actividad, tipo, cobrable, observ) LIKE '%"+valor+"%'";
+        String sql="SELECT * FROM actividades WHERE CONCAT(id, actividad, tipo, cobrable, observaciones) LIKE '%"+valor+"%'";
         model=new DefaultTableModel(null,titulos);
         
         try {
@@ -57,7 +57,7 @@ public class BDActividades extends javax.swing.JFrame {
                    Registros[1]= rs.getString("actividad");
                    Registros[2]= rs.getString("tipo");
                    Registros[3]= rs.getString("cobrable");
-                   Registros[4]= rs.getString("observ");
+                   Registros[4]= rs.getString("observaciones");
                   
                    model.addRow(Registros);
              } 
@@ -84,7 +84,7 @@ public class BDActividades extends javax.swing.JFrame {
                     Registros[1]= rs.getString("actividad");
                    Registros[2]= rs.getString("tipo");
                    Registros[3]= rs.getString("cobrable");
-                   Registros[4]= rs.getString("observ");
+                   Registros[4]= rs.getString("observaciones");
                    model.addRow(Registros);
              } 
              t_datos.setModel(model);
@@ -96,7 +96,7 @@ public class BDActividades extends javax.swing.JFrame {
             void limpiar(){
             txtActividad.setText ("");
             txtTipo.setText ("");
-            //cmbCob.setText ("");
+            //cmbCob.setSelectedItem("select item");
             txtObserv.setText ("");
 
             }
@@ -236,6 +236,7 @@ public class BDActividades extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Base de Datos Actividades");
 
         jLabel6.setText("Observaciones :");
@@ -255,68 +256,66 @@ public class BDActividades extends javax.swing.JFrame {
 
         jLabel2.setText("Actividad :");
 
-        cmbCob.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cobrable", "No Cobrable" }));
+        cmbCob.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<<Eliga una opcion>>", "Cobrable", "No Cobrable" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtObserv, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                            .addComponent(txtTipo, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtActividad)
+                            .addComponent(cmbCob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnNuevo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnGuardar)
-                                .addGap(55, 55, 55)
-                                .addComponent(btnModificar)
-                                .addGap(61, 61, 61)
-                                .addComponent(btnEliminar))
+                                .addComponent(btnGuardar))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnMostrar))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancelar)))
+                                .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnMostrar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnModificar)
+                                .addGap(48, 48, 48)
+                                .addComponent(btnEliminar)))
+                        .addGap(17, 17, 17))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtActividad)
-                                    .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel5))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtObserv, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                                    .addComponent(cmbCob, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(274, 274, 274)))
-                .addGap(34, 34, 34))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(195, 195, 195))
+                        .addGap(48, 48, 48)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnCancelar)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(164, 164, 164)
+                        .addComponent(jLabel1)))
+                .addGap(0, 17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -413,7 +412,7 @@ public class BDActividades extends javax.swing.JFrame {
                 txtActividad.setText(rs.getString("actividad"));
                 txtTipo.setText(rs.getString("tipo"));
                 cmbCob.setSelectedItem(rs.getString("cobrable"));
-                txtObserv.setText(rs.getString("observ"));
+                txtObserv.setText(rs.getString("observaciones"));
                 
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -427,22 +426,20 @@ public class BDActividades extends javax.swing.JFrame {
         // TODO add your handling code here:
         //ConexionBD con = new ConexionBD();
         //Connection cn = con.Conexion();
-             String actividad, tipo, cobrable, observ;
-        String sql = "";
+        String actividad, tipo, cobrable;//;, observ;
+        //String sql = "";
         actividad = txtActividad.getText();
         tipo = txtTipo.getText();
         cobrable = cmbCob.getSelectedItem().toString();
-        observ = txtObserv.getText();
+        //observ = ;
         
-
-
-        sql = "INSERT INTO actividades (actividad, tipo, cobrable, observ) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO actividades(actividad, tipo, cobrable, observaciones) VALUES (?,?,?,?)";
         try {
             PreparedStatement pst = cn.prepareStatement(sql);
             pst.setString(1, actividad);
             pst.setString(2, tipo);
             pst.setString(3, cobrable);
-            pst.setString(4, observ);
+            pst.setString(4, txtObserv.getText());
            
 
             int n = pst.executeUpdate();
@@ -452,6 +449,7 @@ public class BDActividades extends javax.swing.JFrame {
                 btnNuevo.setEnabled(true);
                 btnGuardar.setEnabled(false);
                 cargar("");
+                limpiar();
 
             }
         } catch (SQLException ex) {
@@ -464,7 +462,7 @@ public class BDActividades extends javax.swing.JFrame {
         // TODO add your handling code here:
              try {
             desbloquear();
-            String sql = "Update actividades set actividad=?, tipo=?, cobrable=?, observ=?" + "where id=?";
+            String sql = "Update actividades set actividad=?, tipo=?, cobrable=?, observaciones=?" + "where id=?";
             int fila = t_datos.getSelectedRow();
             String dao = (String) t_datos.getValueAt(fila, 0);
             PreparedStatement ps = cn.prepareStatement(sql);

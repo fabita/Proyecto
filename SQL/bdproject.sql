@@ -126,10 +126,22 @@ CREATE TABLE `maquinaria` (
 `altura_maquina` varchar(45) NOT NULL,
 PRIMARY KEY (`id`));
 
+CREATE TABLE `sondaje` (
+`id` int(10) NOT NULL AUTO_INCREMENT,
+`proyecto` varchar(45),
+`codigoSondaje` varchar(45),
+`zona` varchar(45),
+`inclinacion` varchar(45),
+`azimuth` int(6),
+`profProgr` int(10),
+`fechaInicio` datetime,
+`fechaTermino` datetime,
+`tipoPerforacion` varchar(45) NOT NULL,
+PRIMARY KEY (`id`));
+
 CREATE TABLE `tiempo` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `Tiempo` varchar(5) NOT NULL,
-  `Fecha`
+  `tiempo` varchar(5) NOT NULL,
   PRIMARY KEY (`id`)
 );
 

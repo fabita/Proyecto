@@ -3,71 +3,101 @@
  * and open the template in the editor.
  */
 package BD;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import pro_min.BDConexion;
+
 /**
  *
  * @author Usuario
  */
-public class BD_Combustibles extends javax.swing.JFrame {
+public class BDAditivos extends javax.swing.JFrame {
 
     /**
-     * Creates new form BD_Combustibles
+     * Creates new form BDAditivos
      */
-        DefaultTableModel model;
-        BDConexion bd = new BDConexion();
-        Connection cn = bd.conexion();
-        Statement sent;
-        public BD_Combustibles() {
+    
+    DefaultTableModel model;
+    BDConexion bd = new BDConexion();
+    Connection cn = bd.conexion();
+    Statement sent;
+    
+         public BDAditivos() {
         initComponents();
+        
         setLocationRelativeTo(null);
+        
         limpiar();
         bloquear();
         cargar("");
-        mostrarCombustibles();
-       }
-            void cargar(String valor){
-        
-        String []titulos={"ID", "Producto","Fabricante","Envase","Contenido","Precio"};  
-        String []Registros= new String[7];
-        
-        String sql="SELECT * FROM combustibles WHERE CONCAT(id, producto, fabricante, envase, contenido, precio) LIKE '%"+valor+"%'";
-        model=new DefaultTableModel(null,titulos);
-        
-        try {
-             Statement st = cn.createStatement();
-             ResultSet rs = st.executeQuery(sql);
-             while(rs.next())
-             {
-                   Registros[0]= rs.getString("id");
-                   Registros[1]= rs.getString("producto");
-                   Registros[2]= rs.getString("fabricante");
-                   Registros[3]= rs.getString("envase");
-                   Registros[4]= rs.getString("contenido");
-                   Registros[5]= rs.getString("precio");
-                  
-                   model.addRow(Registros);
-             } 
-             t_datos.setModel(model);
-        } catch (SQLException ex) {
-             Logger.getLogger(BD_Combustibles.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        mostrarAditivos();
+        //sNumeros(txtPrecio);
+        sLetras(txtEnvase);
     }
     
-    void mostrarCombustibles(){
+    public void sNumeros(JTextField a){
+        a.addKeyListener(new KeyAdapter() {
+        public void keyTyped(KeyEvent e){
+            char c = e.getKeyChar();
+            //().matches("[1-9]{1}(\\.[0-9]{1,2})?");
+            if(c<'0'||c>'9'||c=='.'||c<'0'||c>'9')
+                e.consume();    
+            //getToolkit().beep();  
+        }
+        });
+    }
+    
+    public void sLetras(JTextField a){
+        a.addKeyListener(new KeyAdapter() {
+        public void keyTyped(KeyEvent e){
+            char c = e.getKeyChar();
+            if(Character.isDigit(c))
+                //getToolkit().beep();
+                e.consume();    
+        }
+        });
+    }
+    
+    void cargar(String valor){
         
         String []titulos={"ID", "Producto","Fabricante","Envase","Contenido","Precio"};  
         String []Registros= new String[6];
         
-        String sql="SELECT * FROM combustibles";
+        String sql="SELECT * FROM aditivos WHERE CONCAT(id, producto, fabricante, envase, contenido, precio) LIKE '%"+valor+"%'";
+        model=new DefaultTableModel(null,titulos);
+        
+        try {
+             Statement st = cn.createStatement();
+             ResultSet rs = st.executeQuery(sql);
+             while(rs.next())
+             {
+                 Registros[0]= rs.getString("id");
+                  Registros[1]= rs.getString("producto");
+                   Registros[2]= rs.getString("fabricante");
+                   Registros[3]= rs.getString("envase");
+                   Registros[4]= rs.getString("contenido");
+                   Registros[5]= rs.getString("precio");
+                   model.addRow(Registros);
+             } 
+             t_datos.setModel(model);
+        } catch (SQLException ex) {
+             Logger.getLogger(BDAditivos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    void mostrarAditivos(){
+        
+        String []titulos={"ID", "Producto","Fabricante","Envase","Contenido","Precio"};  
+        String []Registros= new String[6];
+        
+        String sql="SELECT * FROM aditivos";
         model=new DefaultTableModel(null,titulos);
         
         try {
@@ -81,51 +111,46 @@ public class BD_Combustibles extends javax.swing.JFrame {
                    Registros[3]= rs.getString("envase");
                    Registros[4]= rs.getString("contenido");
                    Registros[5]= rs.getString("precio");
-                   
                    model.addRow(Registros);
              } 
              t_datos.setModel(model);
         } catch (SQLException ex) {
-             Logger.getLogger(BD_Combustibles.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(BDAditivos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-        void limpiar(){
-        txtProducto.setText ("");
-        txtFabricante.setText ("");
-        txtEnvase.setText ("");
-        txtContenido.setText ("");
-        txtPrecio.setText ("");
-        
-        }
+    void limpiar(){
+    txtProducto.setText ("");
+    txtFabricante.setText ("");
+    txtEnvase.setText ("");
+    txtContenido.setText ("");
+    txtPrecio.setText ("");
+    }
+    
+    void bloquear(){
+    txtProducto.setEnabled(false);
+    txtFabricante.setEnabled(false);
+    txtEnvase.setEnabled(false);
+    txtContenido.setEnabled(false);
+    txtPrecio.setEnabled(false);
+    
+    btnNuevo.setEnabled(true);
+    btnGuardar.setEnabled(false);
+    
+    }
+    
+    void desbloquear(){
+    txtProducto.setEnabled(true);
+    txtFabricante.setEnabled(true);
+    txtEnvase.setEnabled(true);
+    txtContenido.setEnabled(true);
+    txtPrecio.setEnabled(true);
+    
+    btnNuevo.setEnabled(false);
+    btnGuardar.setEnabled(true);
+    
+    }
 
-        void bloquear(){
-        txtProducto.setEnabled(false);
-        txtFabricante.setEnabled(false);
-        txtEnvase.setEnabled(false);
-        txtContenido.setEnabled(false);
-        txtPrecio.setEnabled(false);
-        
-
-
-        btnNuevo.setEnabled(true);
-        btnGuardar.setEnabled(false);
-
-        }
-
-        void desbloquear(){
-        txtProducto.setEnabled(true);
-        txtFabricante.setEnabled(true);
-        txtEnvase.setEnabled(true);
-        txtContenido.setEnabled(true);
-        txtPrecio.setEnabled(true);
-        
-
-
-        btnNuevo.setEnabled(false);
-        btnGuardar.setEnabled(true);
-
-        }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -135,36 +160,29 @@ public class BD_Combustibles extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnNuevo = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         t_datos = new javax.swing.JTable();
-        txtPrecio = new javax.swing.JTextField();
-        txtProducto = new javax.swing.JTextField();
-        txtEnvase = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtBusqueda = new javax.swing.JTextField();
         btnMostrar = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         txtFabricante = new javax.swing.JTextField();
-        btnEliminar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        btnModificar = new javax.swing.JButton();
-        txtContenido = new javax.swing.JTextField();
-        btnCancelar = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        btnCancelar = new javax.swing.JButton();
+        txtPrecio = new javax.swing.JTextField();
+        txtProducto = new javax.swing.JTextField();
+        btnNuevo = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        txtBusqueda = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtEnvase = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtContenido = new javax.swing.JTextField();
+        btnModificar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        btnNuevo.setText("Nuevo");
-        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoActionPerformed(evt);
-            }
-        });
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -172,8 +190,6 @@ public class BD_Combustibles extends javax.swing.JFrame {
                 btnGuardarActionPerformed(evt);
             }
         });
-
-        jLabel3.setText("Fabricante :");
 
         t_datos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -191,9 +207,43 @@ public class BD_Combustibles extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(t_datos);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setText("Base de Datos Aditivos");
+
+        jLabel2.setText("Producto :");
+
+        btnMostrar.setText("Mostrar Aditivos");
+        btnMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarActionPerformed(evt);
+            }
+        });
+
+        txtFabricante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFabricanteActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Precio :");
+
+        jLabel7.setText("Buscar :");
+
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
         txtPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrecioActionPerformed(evt);
+            }
+        });
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyTyped(evt);
             }
         });
 
@@ -203,15 +253,14 @@ public class BD_Combustibles extends javax.swing.JFrame {
             }
         });
 
-        txtEnvase.addActionListener(new java.awt.event.ActionListener() {
+        btnNuevo.setText("Nuevo");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEnvaseActionPerformed(evt);
+                btnNuevoActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Base de Datos Combustibles");
-
-        jLabel2.setText("Producto :");
+        jLabel3.setText("Fabricante :");
 
         txtBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,19 +273,26 @@ public class BD_Combustibles extends javax.swing.JFrame {
             }
         });
 
-        btnMostrar.setText("Mostrar Combustibles");
-        btnMostrar.setActionCommand("");
-        btnMostrar.addActionListener(new java.awt.event.ActionListener() {
+        jLabel5.setText("Envase :");
+
+        txtEnvase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostrarActionPerformed(evt);
+                txtEnvaseActionPerformed(evt);
             }
         });
 
-        jLabel5.setText("Envase :");
+        jLabel6.setText("Contenido :");
 
-        txtFabricante.addActionListener(new java.awt.event.ActionListener() {
+        txtContenido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFabricanteActionPerformed(evt);
+                txtContenidoActionPerformed(evt);
+            }
+        });
+
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
             }
         });
 
@@ -247,63 +303,38 @@ public class BD_Combustibles extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Precio :");
-
-        btnModificar.setText("Modificar");
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
-            }
-        });
-
-        txtContenido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContenidoActionPerformed(evt);
-            }
-        });
-
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("Contenido :");
-
-        jLabel7.setText("Buscar :");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnMostrar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnNuevo)
+                                .addGap(48, 48, 48)
+                                .addComponent(btnGuardar)
+                                .addGap(43, 43, 43)
+                                .addComponent(btnModificar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnEliminar)
+                                .addGap(20, 20, 20))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 26, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCancelar))))
+                .addGap(21, 21, 21))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnCancelar)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(btnNuevo)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btnGuardar))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel7)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btnMostrar))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(48, 48, 48)
-                                            .addComponent(btnModificar)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btnEliminar)))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -329,12 +360,11 @@ public class BD_Combustibles extends javax.swing.JFrame {
                                         .addGap(56, 56, 56)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtContenido, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(184, 184, 184))
+                                    .addComponent(txtContenido, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(176, 176, 176)
+                        .addComponent(jLabel1)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,35 +402,31 @@ public class BD_Combustibles extends javax.swing.JFrame {
                     .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
                     .addComponent(btnMostrar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCancelar)
-                .addGap(19, 19, 19))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        // TODO add your handling code here:
-        desbloquear();
-    }//GEN-LAST:event_btnNuevoActionPerformed
-
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
         // TODO add your handling code here:
-        
+        //ConexionBD con = new ConexionBD();
+        //Connection cn = con.Conexion();
         String producto, fabricante, envase, contenido, precio;
-        int dni;
         String sql = "";
         producto = txtProducto.getText();
         fabricante = txtFabricante.getText();
         envase = txtEnvase.getText();
         contenido = txtContenido.getText();
         precio = txtPrecio.getText();
-       
-        sql = "INSERT INTO combustibles (producto, fabricante, envase, contenido, precio) VALUES (?,?,?,?,?)";
+
+
+        sql = "INSERT INTO aditivos (producto, fabricante, envase, contenido, precio) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement pst = cn.prepareStatement(sql);
             pst.setString(1, producto);
@@ -408,7 +434,7 @@ public class BD_Combustibles extends javax.swing.JFrame {
             pst.setString(3, envase);
             pst.setString(4, contenido);
             pst.setString(5, precio);
-            
+
             int n = pst.executeUpdate();
             if (n > 0) {
                 JOptionPane.showMessageDialog(null, "Registro Guardado con exito");
@@ -416,6 +442,7 @@ public class BD_Combustibles extends javax.swing.JFrame {
                 btnNuevo.setEnabled(true);
                 btnGuardar.setEnabled(false);
                 cargar("");
+                limpiar();
 
             }
         } catch (SQLException ex) {
@@ -423,30 +450,20 @@ public class BD_Combustibles extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void t_datosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_datosMouseClicked
+    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         // TODO add your handling code here:
-       if (evt.getButton() == 1) {
-            int fila = t_datos.getSelectedRow();
-            try {
-                desbloquear();
-                String sql = "select * from combustibles where id=" + t_datos.getValueAt(fila, 0);
-                sent = cn.createStatement();
-                ResultSet rs = sent.executeQuery(sql);
-                rs.next();
-                txtProducto.setText(rs.getString("producto"));
-                txtFabricante.setText(rs.getString("fabricante"));
-                txtEnvase.setText(rs.getString("envase"));
-                txtContenido.setText(rs.getString("contenido"));
-                txtPrecio.setText(rs.getString("precio"));
-                
-                
-               ;
-                
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }
-    }//GEN-LAST:event_t_datosMouseClicked
+        mostrarAditivos();   
+    }//GEN-LAST:event_btnMostrarActionPerformed
+
+    private void txtFabricanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFabricanteActionPerformed
+        // TODO add your handling code here:
+        txtFabricante.transferFocus();
+    }//GEN-LAST:event_txtFabricanteActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+       this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
         // TODO add your handling code here:
@@ -458,10 +475,10 @@ public class BD_Combustibles extends javax.swing.JFrame {
         txtProducto.transferFocus();
     }//GEN-LAST:event_txtProductoActionPerformed
 
-    private void txtEnvaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnvaseActionPerformed
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
-        txtEnvase.transferFocus();
-    }//GEN-LAST:event_txtEnvaseActionPerformed
+        desbloquear();
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void txtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaActionPerformed
         // TODO add your handling code here:
@@ -471,41 +488,26 @@ public class BD_Combustibles extends javax.swing.JFrame {
     private void txtBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyReleased
         // TODO add your handling code here:
         cargar(txtBusqueda.getText());
+
     }//GEN-LAST:event_txtBusquedaKeyReleased
 
-    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
+    private void txtEnvaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnvaseActionPerformed
         // TODO add your handling code here:
-        mostrarCombustibles();
-    }//GEN-LAST:event_btnMostrarActionPerformed
+        txtEnvase.transferFocus();
+    }//GEN-LAST:event_txtEnvaseActionPerformed
 
-    private void txtFabricanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFabricanteActionPerformed
+    private void txtContenidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContenidoActionPerformed
         // TODO add your handling code here:
-        txtFabricante.transferFocus();
-    }//GEN-LAST:event_txtFabricanteActionPerformed
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
-        try {
-            int fila = t_datos.getSelectedRow();
-            String sql = "delete from combustibles where id=" + t_datos.getValueAt(fila, 0);
-            sent = cn.createStatement();
-            int n = sent.executeUpdate(sql);
-            if (n > 0) {
-                mostrarCombustibles();
-                JOptionPane.showMessageDialog(null, "Datos Eliminados");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
-        }
-    }//GEN-LAST:event_btnEliminarActionPerformed
+        txtContenido.transferFocus();
+    }//GEN-LAST:event_txtContenidoActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
-       try {
+        try{
             desbloquear();
-            String sql = "Update combustibles set producto=?, fabricante=?, envase=?, contenido=?, precio=?" + "where id=?";
+            String sql = "Update aditivos set producto=?, fabricante=?, envase=?, contenido=?, precio=?" + "where id=?";
             int fila = t_datos.getSelectedRow();
-            String dao = (String) t_datos.getValueAt(fila, 0);
+            String dao = (String)t_datos.getValueAt(fila, 0);
             PreparedStatement ps = cn.prepareStatement(sql);
             ps.setString(1, txtProducto.getText());
             ps.setString(2, txtFabricante.getText());
@@ -513,28 +515,73 @@ public class BD_Combustibles extends javax.swing.JFrame {
             ps.setString(4, txtContenido.getText());
             ps.setString(5, txtPrecio.getText());
             ps.setString(6, dao);
-
+            
             int n = ps.executeUpdate();
-            if (n > 0) {
-                limpiar();
-                mostrarCombustibles();
-                JOptionPane.showMessageDialog(null, "Datos Modificados");
-                bloquear();
+            if(n>0){
+               limpiar();
+               mostrarAditivos();
+               JOptionPane.showMessageDialog(null, "Datos Modificados");
+               bloquear();
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
-    private void txtContenidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContenidoActionPerformed
+    private void t_datosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_datosMouseClicked
         // TODO add your handling code here:
-        txtContenido.transferFocus();
-    }//GEN-LAST:event_txtContenidoActionPerformed
+        if (evt.getButton()==1)
+        {
+            int fila = t_datos.getSelectedRow();
+            try{
+                desbloquear();
+                String sql = "select * from aditivos where id="+ t_datos.getValueAt(fila, 0);
+                sent=cn.createStatement();
+                ResultSet rs = sent.executeQuery(sql);
+                rs.next();
+                txtProducto.setText(rs.getString("producto"));
+                txtFabricante.setText(rs.getString("fabricante"));
+                txtEnvase.setText(rs.getString("envase"));
+                txtContenido.setText(rs.getString("contenido"));
+                txtPrecio.setText(rs.getString("precio"));
+            } catch (Exception ex)
+            {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_t_datosMouseClicked
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_btnCancelarActionPerformed
+        try{
+            int fila = t_datos.getSelectedRow();
+            String sql = "delete from aditivos where id=" + t_datos.getValueAt(fila, 0);
+            sent = cn.createStatement();
+            int n = sent.executeUpdate(sql);
+            if(n>0){
+                mostrarAditivos();
+                JOptionPane.showMessageDialog(null, "Datos Eliminados");
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+        // TODO add your handling code here:
+        if(!Character.isDigit(evt.getKeyChar())&&evt.getKeyChar()!='.'){
+            evt.consume();
+        
+        }
+        /*char c = evt.getKeyChar();
+            //().matches("[1-9]{1}(\\.[0-9]{1,2})?");
+            if((c<'0'||c>'9')&&(c!=(char) KeyEvent.VK_CLEAR))
+                evt.consume(); */
+    }//GEN-LAST:event_txtPrecioKeyTyped
 
     /**
      * @param args the command line arguments
@@ -557,13 +604,13 @@ public class BD_Combustibles extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BD_Combustibles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BDAditivos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BD_Combustibles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BDAditivos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BD_Combustibles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BDAditivos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BD_Combustibles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BDAditivos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -573,7 +620,7 @@ public class BD_Combustibles extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new BD_Combustibles().setVisible(true);
+                new BDAditivos().setVisible(true);
             }
         });
     }

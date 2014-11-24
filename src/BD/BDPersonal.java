@@ -14,17 +14,17 @@ import pro_min.BDConexion;
  *
  * @author Usuario
  */
-public class BD_Personal extends javax.swing.JFrame {
+public class BDPersonal extends javax.swing.JFrame {
 
     /**
-     * Creates new form BD_Personal
+     * Creates new form BDPersonal
      */
     DefaultTableModel model;
     BDConexion bd = new BDConexion();
     Connection cn = bd.conexion();
     Statement sent;
     
-    public BD_Personal() {
+    public BDPersonal() {
         initComponents();
       
         
@@ -83,7 +83,7 @@ public class BD_Personal extends javax.swing.JFrame {
              } 
              t_datos.setModel(model);
         } catch (SQLException ex) {
-             Logger.getLogger(BD_Personal.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(BDPersonal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -129,7 +129,7 @@ public class BD_Personal extends javax.swing.JFrame {
                  } 
                  t_datos.setModel(model);
             } catch (SQLException ex) {
-                 Logger.getLogger(BD_Personal.class.getName()).log(Level.SEVERE, null, ex);
+                 Logger.getLogger(BDPersonal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -1014,13 +1014,13 @@ public class BD_Personal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BD_Personal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BDPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BD_Personal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BDPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BD_Personal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BDPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BD_Personal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BDPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -1030,7 +1030,7 @@ public class BD_Personal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new BD_Personal().setVisible(true);
+                new BDPersonal().setVisible(true);
             }
         });
     }

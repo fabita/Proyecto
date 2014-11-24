@@ -58,7 +58,7 @@ public class BD_Vehiculos extends javax.swing.JFrame {
              } 
              t_datos.setModel(model);
         } catch (SQLException ex) {
-             Logger.getLogger(BD_Aditivos.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(BDAditivos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -85,7 +85,7 @@ public class BD_Vehiculos extends javax.swing.JFrame {
              } 
              t_datos.setModel(model);
         } catch (SQLException ex) {
-             Logger.getLogger(BD_Aditivos.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(BDAditivos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

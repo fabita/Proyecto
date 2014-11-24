@@ -15,10 +15,10 @@ import pro_min.BDConexion;
  *
  * @author Usuario
  */
-public class BD_Maquinaria extends javax.swing.JFrame {
+public class BDMaquinaria extends javax.swing.JFrame {
 
     /**
-     * Creates new form BD_Maquinaria
+     * Creates new form BDMaquinaria
      */
     DefaultTableModel model;
     BDConexion bd = new BDConexion();
@@ -26,7 +26,7 @@ public class BD_Maquinaria extends javax.swing.JFrame {
     Statement sent;
     
     
-    public BD_Maquinaria() {
+    public BDMaquinaria() {
         initComponents();
     limpiar();
         bloquear();
@@ -69,7 +69,7 @@ public class BD_Maquinaria extends javax.swing.JFrame {
              } 
              t_datos.setModel(model);
         } catch (SQLException ex) {
-             Logger.getLogger(BD_Maquinaria.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(BDMaquinaria.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -107,7 +107,7 @@ public class BD_Maquinaria extends javax.swing.JFrame {
              } 
              t_datos.setModel(model);
         } catch (SQLException ex) {
-             Logger.getLogger(BD_Maquinaria.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(BDMaquinaria.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -116,7 +116,7 @@ public class BD_Maquinaria extends javax.swing.JFrame {
     txtNum_Maquina.setText ("");
     txtMarca.setText ("");
     txtFabricante.setText ("");
-    txtAño_Fabricacion.setText ("");
+    cAñoFabri.setYear(2014);
     txtHp_Motor.setText ("");
     txtRpm_Motor.setText ("");
     txtCapacidadPq.setText ("");
@@ -136,7 +136,7 @@ public class BD_Maquinaria extends javax.swing.JFrame {
     txtNum_Maquina.setEnabled(false);
     txtMarca.setEnabled(false);
     txtFabricante.setEnabled(false);
-    txtAño_Fabricacion.setEnabled(false);
+    cAñoFabri.setEnabled(false);
     txtHp_Motor.setEnabled(false);
     txtRpm_Motor.setEnabled(false);
     txtCapacidadPq.setEnabled(false);
@@ -160,7 +160,7 @@ public class BD_Maquinaria extends javax.swing.JFrame {
     txtNum_Maquina.setEnabled(true);
     txtMarca.setEnabled(true);
     txtFabricante.setEnabled(true);
-    txtAño_Fabricacion.setEnabled(true);
+    cAñoFabri.setEnabled(true);
     txtHp_Motor.setEnabled(true);
     txtRpm_Motor.setEnabled(true);
     txtCapacidadPq.setEnabled(true);
@@ -225,10 +225,10 @@ public class BD_Maquinaria extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         txtCapacidadPq = new javax.swing.JTextField();
-        txtAño_Fabricacion = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         txtCapacidadNq = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
+        cAñoFabri = new com.toedter.calendar.JYearChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -302,7 +302,7 @@ public class BD_Maquinaria extends javax.swing.JFrame {
 
         jLabel6.setText("Fabricante :");
 
-        jLabel1.setText("Base de Datos Personal");
+        jLabel1.setText("Base de Datos Maquinaria");
 
         jLabel9.setText("RPM Motor");
 
@@ -417,12 +417,6 @@ public class BD_Maquinaria extends javax.swing.JFrame {
             }
         });
 
-        txtAño_Fabricacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAño_FabricacionActionPerformed(evt);
-            }
-        });
-
         jLabel14.setText("Capacidad BQ :");
 
         txtCapacidadNq.addActionListener(new java.awt.event.ActionListener() {
@@ -484,17 +478,18 @@ public class BD_Maquinaria extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 136, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCapacidadHq, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                            .addComponent(txtCapacidadPq, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                            .addComponent(txtCapacidadNq, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                            .addComponent(txtNum_Maquina)
-                            .addComponent(txtModelo)
-                            .addComponent(txtMarca)
-                            .addComponent(txtFabricante)
-                            .addComponent(txtAño_Fabricacion)
-                            .addComponent(txtHp_Motor, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                            .addComponent(txtRpm_Motor))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtCapacidadHq, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                .addComponent(txtCapacidadPq, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                .addComponent(txtCapacidadNq, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                .addComponent(txtNum_Maquina)
+                                .addComponent(txtModelo)
+                                .addComponent(txtMarca)
+                                .addComponent(txtFabricante)
+                                .addComponent(txtHp_Motor, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                .addComponent(txtRpm_Motor))
+                            .addComponent(cAñoFabri, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(93, 93, 93)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel16)
@@ -539,12 +534,13 @@ public class BD_Maquinaria extends javax.swing.JFrame {
                             .addComponent(txtFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6)
                             .addComponent(jLabel12))
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtAño_Fabricacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel17))
-                        .addGap(7, 7, 7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel17))
+                            .addComponent(cAñoFabri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtHp_Motor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8)
@@ -593,7 +589,7 @@ public class BD_Maquinaria extends javax.swing.JFrame {
                             .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCancelar)
                 .addContainerGap())
@@ -683,7 +679,7 @@ public class BD_Maquinaria extends javax.swing.JFrame {
                 txtNum_Maquina.setText(rs.getString("num_maquina"));
                 txtMarca.setText(rs.getString("marca"));
                 txtFabricante.setText(rs.getString("fabricante"));
-                txtAño_Fabricacion.setText(rs.getString("año_fabricacion"));
+                cAñoFabri.setYear(rs.getInt("año_fabricacion"));
                 txtHp_Motor.setText(rs.getString("hp_motor"));
                 txtRpm_Motor.setText(rs.getString("rpm_motor"));
                 txtCapacidadPq.setText(rs.getString("capacidad_pq"));
@@ -713,7 +709,7 @@ public class BD_Maquinaria extends javax.swing.JFrame {
               ps.setString(2, txtNum_Maquina.getText()); 
               ps.setString(3, txtMarca.getText()); 
               ps.setString(4, txtFabricante.getText());
-              ps.setString(5, txtAño_Fabricacion.getText()); 
+              ps.setInt(5, cAñoFabri.getYear()); 
               ps.setString(6, txtHp_Motor.getText());
               ps.setString(7, txtRpm_Motor.getText());
               ps.setString(8, txtCapacidadPq.getText());
@@ -777,7 +773,8 @@ public class BD_Maquinaria extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
-          String modelo, num_maquina, marca, fabricante, año_fabricacion, hp_motor, rpm_motor, capacidad_pq, capacidad_hq, capacidad_nq, capacidad_bq, montado_sobre, peso_maquina, largo_maquina, ancho_maquina, altura_maquina;
+          String modelo, num_maquina, marca, fabricante, hp_motor, rpm_motor, capacidad_pq, capacidad_hq, capacidad_nq, capacidad_bq, montado_sobre, peso_maquina, largo_maquina, ancho_maquina, altura_maquina;
+          int año_fabricacion;
           String sql = "";
           //producto = txtProducto.getText(); 
          
@@ -785,7 +782,7 @@ public class BD_Maquinaria extends javax.swing.JFrame {
           num_maquina = txtNum_Maquina.getText(); 
           marca = txtMarca.getText(); 
           fabricante = txtFabricante.getText();
-          año_fabricacion = txtAño_Fabricacion.getText();
+          año_fabricacion = cAñoFabri.getYear();
           hp_motor = txtHp_Motor.getText();
           rpm_motor = txtRpm_Motor.getText();
           capacidad_pq = txtCapacidadPq.getText();
@@ -805,7 +802,7 @@ public class BD_Maquinaria extends javax.swing.JFrame {
               pst.setString(2, num_maquina); 
               pst.setString(3, marca);
               pst.setString(4, fabricante); 
-              pst.setString(5, año_fabricacion);
+              pst.setInt(5, año_fabricacion);
               pst.setString(6, hp_motor);
               pst.setString(7, rpm_motor);
               pst.setString(8, capacidad_pq);
@@ -825,6 +822,7 @@ public class BD_Maquinaria extends javax.swing.JFrame {
                   btnNuevo.setEnabled(true); 
                   btnGuardar.setEnabled(false);
                   cargarMaquinaria("");
+                  limpiar();
          
           }
           } catch (SQLException ex) { System.out.print(ex.getMessage());
@@ -834,11 +832,6 @@ public class BD_Maquinaria extends javax.swing.JFrame {
     private void txtCapacidadPqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCapacidadPqActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCapacidadPqActionPerformed
-
-    private void txtAño_FabricacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAño_FabricacionActionPerformed
-        // TODO add your handling code here:
-        txtAño_Fabricacion.transferFocus();
-    }//GEN-LAST:event_txtAño_FabricacionActionPerformed
 
     private void txtCapacidadNqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCapacidadNqActionPerformed
         // TODO add your handling code here:
@@ -865,13 +858,13 @@ public class BD_Maquinaria extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BD_Maquinaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BDMaquinaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BD_Maquinaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BDMaquinaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BD_Maquinaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BDMaquinaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BD_Maquinaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BDMaquinaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -881,7 +874,7 @@ public class BD_Maquinaria extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new BD_Maquinaria().setVisible(true);
+                new BDMaquinaria().setVisible(true);
             }
         });
     }
@@ -892,6 +885,7 @@ public class BD_Maquinaria extends javax.swing.JFrame {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnMostrar;
     private javax.swing.JButton btnNuevo;
+    private com.toedter.calendar.JYearChooser cAñoFabri;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -914,7 +908,6 @@ public class BD_Maquinaria extends javax.swing.JFrame {
     private javax.swing.JTable t_datos;
     private javax.swing.JTextField txtAltura_Maquina;
     private javax.swing.JTextField txtAncho_Maquina;
-    private javax.swing.JTextField txtAño_Fabricacion;
     private javax.swing.JTextField txtBusqueda;
     private javax.swing.JTextField txtCapacidadBq;
     private javax.swing.JTextField txtCapacidadHq;
