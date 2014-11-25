@@ -18,17 +18,17 @@ import pro_min.BDConexion;
  *
  * @author Usuario
  */
-public class BD_Sondajes extends javax.swing.JFrame {
+public class BDSondajes extends javax.swing.JFrame {
 
     /**
-     * Creates new form BD_Sondajes
+     * Creates new form BDSondajes
      */
     DefaultTableModel model;
     BDConexion bd = new BDConexion();
     Connection cn = bd.conexion();
     Statement sent;
     DateFormat VariableFecha = DateFormat.getDateInstance();
-    public BD_Sondajes() {
+    public BDSondajes() {
         initComponents();
     }
 
@@ -500,13 +500,13 @@ public class BD_Sondajes extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BD_Sondajes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BDSondajes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BD_Sondajes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BDSondajes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BD_Sondajes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BDSondajes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BD_Sondajes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BDSondajes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -516,7 +516,7 @@ public class BD_Sondajes extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new BD_Sondajes().setVisible(true);
+                new BDSondajes().setVisible(true);
             }
         });
     }

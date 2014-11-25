@@ -9,14 +9,40 @@ CREATE TABLE `login` (
   PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `vehiculos` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `tipo_equipo` varchar(45) NOT NULL,
-  `numero_placa` varchar(20) NOT NULL,
-  `marca` varchar(35) NOT NULL,
-  `fabricante` varchar(35) NOT NULL,
-  `ano_fabricacion` int(4) NOT NULL,
+CREATE TABLE `tiempo` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `tiempo` varchar(5) NOT NULL,
   PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `accesorios` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(45) NOT NULL,
+  `fabricante` varchar(25),
+  `precio` double,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `ope_accesorios` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `fecha` varchar(10),
+  `proyecto` varchar(25),
+  `zona` varchar(25),
+  `maquina` varchar(25),
+  `turno` varchar(25),
+  `sondaje` varchar(25),
+  `accesorios` varchar(25),
+  `cantidad` double,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `actividades` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `actividad` varchar(45) NOT NULL,
+  `tipo` varchar(45) not null,
+  `cobrable` varchar(15) NOT NULL,
+  `observaciones` varchar(35),
+   PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `aditivos` (
@@ -29,32 +55,158 @@ CREATE TABLE `aditivos` (
   PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `actividades` (
+CREATE TABLE `vehiculos` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `actividad` varchar(45) NOT NULL,
-  `tipo` varchar(20) NOT NULL,
-  `cobrable` varchar(35) NOT NULL,
-  `observ` varchar(35) NOT NULL,
-   PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `combustibles` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `producto` varchar(45) NOT NULL,
-  `fabricante` varchar(25) NOT NULL,  
-  `envase` varchar(20) NOT NULL,  
-  `contenido` varchar(15) NOT NULL,
-  `precio` double,
-   PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `accesorios` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `descripcion` varchar(45) NOT NULL,
-  `fabricante` varchar(25),
-  `precio` double,
+  `tipo_equipo` varchar(45),
+  `numero_placa` varchar(20),
+  `marca` varchar(35),
+  `fabricante` varchar(35),
+  `añoFabricacion` varchar(5),
   PRIMARY KEY (`id`)
 );
+
+CREATE TABLE `cliente` (
+`id` int(10) NOT NULL AUTO_INCREMENT,
+`nomCliente` varchar(45) not null,
+PRIMARY KEY (`id`));
+
+CREATE TABLE `herramientas` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `fecha_ingreso` varchar(10),
+  `gr_ingreso` double,
+  `descripcion` varchar(25),
+  `diametro` varchar(10),
+  `numero` int(45),
+  `tipo` varchar(20),
+  `matriz` varchar(25),
+  `marca` varchar(25),
+  `precio` double,
+  `estadoLlegada` varchar(25),
+  `condicionRetorno` varchar(25),
+  `fechaRetorno` varchar(10),
+  `GR_retorno` double,
+  `tipDesgaste` varchar(25),
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `ope_herramientas` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `fecha` varchar(10),
+  `proyecto` varchar(25),
+  `zona` varchar(10),
+  `maquina` varchar(25),
+  `turno` varchar(6),
+  `sondaje` varchar(25),
+  `descripcion` varchar(45),
+  `diam` varchar(5),
+  `numBroca_Tricono` double,
+  `tipo` varchar(25),
+  `serie` varchar(10),
+  `marca` varchar(25),
+  `de` double,
+  `hasta` double,
+  `avance` double,
+  `acumBroca` double,
+  `estadoBroca` varchar(25),
+  `perforista` varchar(45),
+    PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `ope_combustibles` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `tipoEquipo` varchar(30),
+  `codigo` varchar(45) NOT NULL,
+  `tipCombustible` varchar(25) NOT NULL,
+  `proveedor` varchar(20) NOT NULL,
+  `docIngreso` varchar(15) NOT NULL,
+  `cantidadIngreso` double,
+  `HorKilIni` double,
+  `HorKilFin` double,
+  `consumo` varchar(20),
+  `observaciones` varchar(45),
+   PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `ope_avances` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `fecha` varchar(10),
+  `proyecto` varchar(25),
+  `zona` varchar(10),
+  `maquina` varchar(25),
+  `turno` varchar(6),
+  `sondaje` varchar(25),
+  `diametro` varchar(5),
+  `perforista` varchar(25),
+  `perfBroca` double,
+  `perfTricono` double,
+  `avanceTotal` double,
+  `recuperacion` double,
+  `preCollar` double,
+  `profundidad` double,
+  `casing` double,
+  `hPerf` double,
+  `estado` varchar(25),
+    PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `ope_fluidos` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `fecha` varchar(10),
+  `proyecto` varchar(25),
+  `zona` varchar(10),
+  `maquina` varchar(25),
+  `turno` varchar(6),
+  `sondaje` varchar(25),
+  `aditivo` varchar(5),
+  `cantidad` double,
+    PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `ope_tiempos` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `fecha` varchar(10),
+  `proyecto` varchar(25),
+  `zona` varchar(10),
+  `maquina` varchar(25),
+  `turno` varchar(6),
+  `sondaje` varchar(25),
+  `actividad` varchar(45),
+  `horas` double,
+    PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `ope_ConsumoAgua` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `fecha` varchar(10),
+  `proyecto` varchar(25),
+  `zona` varchar(10),
+  `maquina` varchar(25),
+  `turno` varchar(6),
+  `sondaje` varchar(25),
+  `puntoCarguioBombeo` varchar(45),
+  `volumenGls` double,
+    PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `maquinaria` (
+`id` int(10) NOT NULL AUTO_INCREMENT,
+`modelo` varchar(45),
+`num_maquina` varchar(45),
+`marca` varchar(45),
+`fabricante` varchar(45),
+`año_fabricacion` varchar(45) NOT NULL,
+`hp_motor` double,
+`rpm_motor` double,
+`capacidad_pq` double,
+`capacidad_hq` double,
+`capacidad_nq` double,
+`capacidad_bq` double,
+`montado_sobre` varchar(45) NOT NULL,
+`peso_maquina` double,
+`largo_maquina` double,
+`ancho_maquina` double,
+`altura_maquina` double,
+PRIMARY KEY (`id`));
 
 CREATE TABLE `personal` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
@@ -68,7 +220,7 @@ CREATE TABLE `personal` (
   `vencimiento_fotocheck` varchar(45),
   `IPSS` varchar(45) NOT NULL,
   `tip_Sangre` varchar(45),
-  `fecha_nacimiento` varchar(45),
+  `fecha_nacimiento` varchar(10),
   `dpto_nacimiento` varchar(45),
   `dpto_residencia` varchar(45),
   `direccion` varchar(45),
@@ -81,69 +233,26 @@ CREATE TABLE `personal` (
   PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `herramientas` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `fecha_ingreso` varchar(45),
-  `gr_ingreso` varchar(45),
-  `descripcion` varchar(45),
-  `diametro` double,
-  `numero` int(45),
-  `tipo` varchar(20) NOT NULL,
-  `matriz` varchar(45),
-  `marca` varchar(45),
-  `precio` double,
-  `estado_llegada` varchar(45) NOT NULL,
-  `fecha_nacimiento` varchar(45),
-  `dpto_nacimiento` varchar(45),
-  `dpto_residencia` varchar(45),
-  `direccion` varchar(45),
-  `tel_fijo` int(45),
-  `celular` int(45),
-  `email` varchar(45),
-  `tel_emergencia` int(45),
-  `persona_contact` varchar(45),
-  `relacion_contact` varchar(45),
-  PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `maquinaria` (
+CREATE TABLE `proyectos` (
 `id` int(10) NOT NULL AUTO_INCREMENT,
-`modelo` varchar(45),
-`num_maquina` varchar(45),
-`marca` varchar(45),
-`fabricante` varchar(45),
-`año_fabricacion` varchar(45) NOT NULL,
-`hp_motor` varchar(45) NOT NULL,
-`rpm_motor` varchar(45) NOT NULL,
-`capacidad_pq` varchar(45) NOT NULL,
-`capacidad_hq` varchar(45) NOT NULL,
-`capacidad_nq` varchar(45) NOT NULL,
-`capacidad_bq` varchar(45) NOT NULL,
-`montado_sobre` varchar(45) NOT NULL,
-`peso_maquina` varchar(45) NOT NULL,
-`largo_maquina` varchar(45) NOT NULL,
-`ancho_maquina` varchar(45) NOT NULL,
-`altura_maquina` varchar(45) NOT NULL,
+`nomProyecto` varchar(35),
+`areaPerforacion` varchar(35),
+`zonaPerforacion` varchar(35),
 PRIMARY KEY (`id`));
 
-CREATE TABLE `sondaje` (
+CREATE TABLE `sondajes` (
 `id` int(10) NOT NULL AUTO_INCREMENT,
 `proyecto` varchar(45),
 `codigoSondaje` varchar(45),
 `zona` varchar(45),
 `inclinacion` varchar(45),
-`azimuth` int(6),
-`profProgr` int(10),
-`fechaInicio` datetime,
-`fechaTermino` datetime,
-`tipoPerforacion` varchar(45) NOT NULL,
+`azimuth` double,
+`profProgr` double,
+`fechaInicio` varchar(10),
+`fechaTermino` varchar(10),
+`tipoPerforacion` varchar(35) NOT NULL,
 PRIMARY KEY (`id`));
 
-CREATE TABLE `tiempo` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `tiempo` varchar(5) NOT NULL,
-  PRIMARY KEY (`id`)
-);
 
 INSERT INTO `tiempo`(`Tiempo`) values ('Dia');
 INSERT INTO `tiempo`(`Tiempo`) values ('Tarde');
@@ -237,4 +346,3 @@ INSERT INTO `aditivos` (`producto`, `envase`, `contenido`, `precio`, `fabricante
 INSERT INTO `aditivos` (`producto`, `envase`, `contenido`, `precio`, `fabricante`) VALUES ('Super Seal 3/8"           ', 'BOLSA', '50 lbs.', '18.28',	'MDF     ');
 INSERT INTO `aditivos` (`producto`, `envase`, `contenido`, `precio`, `fabricante`) VALUES ('Threadtex                 ', 'BALDE', '40 lbs.', '265.45',	'TEXACO  ');
 INSERT INTO `aditivos` (`producto`, `envase`, `contenido`, `precio`, `fabricante`) VALUES ('Tricaliper II             ', 'SACO ', '50 lbs.', '95.5',	'Baroid  ');
-

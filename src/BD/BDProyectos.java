@@ -17,17 +17,17 @@ import pro_min.BDConexion;
  *
  * @author Usuario
  */
-public class BDCombustibles extends javax.swing.JFrame {
+public class BDProyectos extends javax.swing.JFrame {
 
     /**
-     * Creates new form BDCombustibles
+     * Creates new form BDProyectos
      */
         DefaultTableModel model;
         BDConexion bd = new BDConexion();
         Connection cn = bd.conexion();
         Statement sent;
         
-        public BDCombustibles() {
+        public BDProyectos() {
             initComponents();
             setLocationRelativeTo(null);
             limpiar();
@@ -63,7 +63,7 @@ public class BDCombustibles extends javax.swing.JFrame {
                 } 
                 t_datos.setModel(model);
             } catch (SQLException ex) {
-                Logger.getLogger(BDCombustibles.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(BDProyectos.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     
@@ -95,34 +95,20 @@ public class BDCombustibles extends javax.swing.JFrame {
              } 
              t_datos.setModel(model);
         } catch (SQLException ex) {
-             Logger.getLogger(BDCombustibles.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(BDProyectos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
         void limpiar(){
         txtCodigo.setText ("");
         txtTipCombustible.setText ("");
-        txtProveedor.setText ("");
-        txtDocIngreso.setText ("");
-        txtCantIngreso.setText ("");
-        txtHorIni.setText ("");
-        txtHorFin.setText ("");
-        txtConsumo.setText ("");
-        txtObservaciones.setText ("");
-        
+        txtProveedor.setText ("");        
         }
 
         void bloquear(){
         txtCodigo.setEnabled(false);
         txtTipCombustible.setEnabled(false);
         txtProveedor.setEnabled(false);
-        txtDocIngreso.setEnabled(false);
-        txtCantIngreso.setEnabled(false);
-        txtHorIni.setEnabled(false);
-        txtHorFin.setEnabled(false);
-        txtConsumo.setEnabled(false);
-        txtObservaciones.setEnabled(false);
-
 
         btnNuevo.setEnabled(true);
         btnGuardar.setEnabled(false);
@@ -133,12 +119,6 @@ public class BDCombustibles extends javax.swing.JFrame {
         txtCodigo.setEnabled(true);
         txtTipCombustible.setEnabled(true);
         txtProveedor.setEnabled(true);
-        txtDocIngreso.setEnabled(true);
-        txtCantIngreso.setEnabled(true);
-        txtHorIni.setEnabled(true);
-        txtHorFin.setEnabled(true);
-        txtConsumo.setEnabled(true);
-        txtObservaciones.setEnabled(true);
 
         btnNuevo.setEnabled(false);
         btnGuardar.setEnabled(true);
@@ -158,7 +138,6 @@ public class BDCombustibles extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         t_datos = new javax.swing.JTable();
-        txtCantIngreso = new javax.swing.JTextField();
         txtCodigo = new javax.swing.JTextField();
         txtProveedor = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -168,20 +147,9 @@ public class BDCombustibles extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtTipCombustible = new javax.swing.JTextField();
         btnEliminar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
         btnModificar = new javax.swing.JButton();
-        txtDocIngreso = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtConsumo = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        txtHorFin = new javax.swing.JTextField();
-        txtHorIni = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        txtObservaciones = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -199,7 +167,7 @@ public class BDCombustibles extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Tipo Combustible");
+        jLabel3.setText("Area de Perforacion");
 
         t_datos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -217,12 +185,6 @@ public class BDCombustibles extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(t_datos);
 
-        txtCantIngreso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantIngresoActionPerformed(evt);
-            }
-        });
-
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoActionPerformed(evt);
@@ -236,9 +198,9 @@ public class BDCombustibles extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel1.setText("Base de Datos Combustibles");
+        jLabel1.setText("Base de Datos Proyectos");
 
-        jLabel2.setText("Codigo");
+        jLabel2.setText("Nombre del Proyecto");
 
         txtBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -259,7 +221,7 @@ public class BDCombustibles extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Proveedor");
+        jLabel5.setText("Zona de Perforacion");
 
         txtTipCombustible.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -274,18 +236,10 @@ public class BDCombustibles extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Cantidad de Ingreso");
-
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarActionPerformed(evt);
-            }
-        });
-
-        txtDocIngreso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDocIngresoActionPerformed(evt);
             }
         });
 
@@ -296,41 +250,7 @@ public class BDCombustibles extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Doc. Ingreso");
-
         jLabel7.setText("Buscar :");
-
-        txtConsumo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtConsumoActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setText("Consumo");
-
-        txtHorFin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtHorFinActionPerformed(evt);
-            }
-        });
-
-        txtHorIni.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtHorIniActionPerformed(evt);
-            }
-        });
-
-        jLabel9.setText("Hor. / Kil. Fin.");
-
-        jLabel10.setText("Hor. / Kil. Ini.");
-
-        txtObservaciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtObservacionesActionPerformed(evt);
-            }
-        });
-
-        jLabel11.setText("Observaciones");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -342,68 +262,40 @@ public class BDCombustibles extends javax.swing.JFrame {
                 .addGap(184, 184, 184))
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnCancelar)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnNuevo)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnGuardar))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnMostrar))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(48, 48, 48)
-                                        .addComponent(btnModificar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnEliminar))))))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnCancelar)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel2))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtCodigo)
-                                .addComponent(txtTipCombustible, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnNuevo)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnGuardar))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addGap(56, 56, 56)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtCantIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtDocIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel10)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtHorIni, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnMostrar))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(48, 48, 48)
+                                    .addComponent(btnModificar)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnEliminar))))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel9)
-                                .addComponent(jLabel8)
-                                .addComponent(jLabel11))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtHorFin, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel2))
+                            .addGap(36, 36, 36)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTipCombustible, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -411,7 +303,7 @@ public class BDCombustibles extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -423,31 +315,7 @@ public class BDCombustibles extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtDocIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtCantIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(txtHorIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(txtHorFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel11)
-                    .addComponent(txtObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(196, 196, 196)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevo)
                     .addComponent(btnGuardar)
@@ -483,12 +351,6 @@ public class BDCombustibles extends javax.swing.JFrame {
         codigo = txtCodigo.getText();
         tipCombustible = txtTipCombustible.getText();
         proveedor = txtProveedor.getText();
-        docIngreso = txtDocIngreso.getText();
-        cantIngreso = txtCantIngreso.getText();
-        HorIni = txtHorIni.getText();
-        HorFin = txtHorFin.getText();
-        consumo = txtConsumo.getText();
-        observaciones = txtObservaciones.getText();
        
         sql = "INSERT INTO combustibles (codigo, tipCombustible, proveedor, docIngreso, cantidadIngreso,HorKilIni,HorKilFin,consumo,observaciones) VALUES (?,?,?,?,?,?,?,?,?)";
         try {
@@ -496,13 +358,6 @@ public class BDCombustibles extends javax.swing.JFrame {
             pst.setString(1, codigo);
             pst.setString(2, tipCombustible);
             pst.setString(3, proveedor);
-            pst.setString(4, docIngreso);
-            pst.setString(5, cantIngreso);
-            pst.setString(6, HorIni);
-            pst.setString(7, HorFin);
-            pst.setString(8, consumo);
-            pst.setString(9, observaciones);
-            
             int n = pst.executeUpdate();
             if (n > 0) {
                 JOptionPane.showMessageDialog(null, "Registro Guardado con exito");
@@ -530,23 +385,12 @@ public class BDCombustibles extends javax.swing.JFrame {
                 rs.next();
                 txtCodigo.setText(rs.getString("codigo"));
                 txtTipCombustible.setText(rs.getString("tipCombustible"));
-                txtProveedor.setText(rs.getString("proveedor"));
-                txtDocIngreso.setText(rs.getString("docIngreso"));
-                txtCantIngreso.setText(rs.getString("cantidadIngreso"));
-                txtHorIni.setText(rs.getString("HorKilIni"));
-                txtHorFin.setText(rs.getString("HorKilFin"));
-                txtConsumo.setText(rs.getString("consumo"));
-                txtObservaciones.setText(rs.getString("observaciones"));                
+                txtProveedor.setText(rs.getString("proveedor"));               
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
     }//GEN-LAST:event_t_datosMouseClicked
-
-    private void txtCantIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantIngresoActionPerformed
-        // TODO add your handling code here:
-        txtCantIngreso.transferFocus();
-    }//GEN-LAST:event_txtCantIngresoActionPerformed
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here:
@@ -605,13 +449,7 @@ public class BDCombustibles extends javax.swing.JFrame {
             ps.setString(1, txtCodigo.getText());
             ps.setString(2, txtTipCombustible.getText());
             ps.setString(3, txtProveedor.getText());
-            ps.setString(4, txtDocIngreso.getText());
-            ps.setString(5, txtCantIngreso.getText());
-            ps.setString(6, txtHorIni.getText());
-            ps.setString(7, txtHorFin.getText());
-            ps.setString(8, txtConsumo.getText());
-            ps.setString(9, txtObservaciones.getText());
-            ps.setString(10, dao);
+            ps.setString(4, dao);
 
             int n = ps.executeUpdate();
             if (n > 0) {
@@ -625,31 +463,10 @@ public class BDCombustibles extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
-    private void txtDocIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDocIngresoActionPerformed
-        // TODO add your handling code here:
-        txtDocIngreso.transferFocus();
-    }//GEN-LAST:event_txtDocIngresoActionPerformed
-
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void txtConsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConsumoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtConsumoActionPerformed
-
-    private void txtHorFinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHorFinActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtHorFinActionPerformed
-
-    private void txtHorIniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHorIniActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtHorIniActionPerformed
-
-    private void txtObservacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtObservacionesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtObservacionesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -672,13 +489,13 @@ public class BDCombustibles extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BDCombustibles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BDProyectos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BDCombustibles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BDProyectos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BDCombustibles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BDProyectos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BDCombustibles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BDProyectos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -688,7 +505,7 @@ public class BDCombustibles extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new BDCombustibles().setVisible(true);
+                new BDProyectos().setVisible(true);
             }
         });
     }
@@ -700,26 +517,14 @@ public class BDCombustibles extends javax.swing.JFrame {
     private javax.swing.JButton btnMostrar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable t_datos;
     private javax.swing.JTextField txtBusqueda;
-    private javax.swing.JTextField txtCantIngreso;
     private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtConsumo;
-    private javax.swing.JTextField txtDocIngreso;
-    private javax.swing.JTextField txtHorFin;
-    private javax.swing.JTextField txtHorIni;
-    private javax.swing.JTextField txtObservaciones;
     private javax.swing.JTextField txtProveedor;
     private javax.swing.JTextField txtTipCombustible;
     // End of variables declaration//GEN-END:variables

@@ -145,7 +145,7 @@ public class BDPersonal extends javax.swing.JFrame {
         txtIpss.setText ("");
         //cmbTipoSangre.setText ("");
        
-        txtFechaNac.setText ("");
+        //txtFechaNac.setText ("");
         //txtDptorNac.setText ("");
         //txtDptoRes.setText ("");
         txtDireccion.setText ("");
@@ -259,7 +259,6 @@ public class BDPersonal extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         txtVencFotoch = new javax.swing.JTextField();
-        txtFechaNac = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         txtTelefono = new javax.swing.JTextField();
@@ -277,6 +276,7 @@ public class BDPersonal extends javax.swing.JFrame {
         cmbTipoSangre = new javax.swing.JComboBox();
         cmbDptoNac = new javax.swing.JComboBox();
         cmbDptoRes = new javax.swing.JComboBox();
+        txtFechaNac = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -437,12 +437,6 @@ public class BDPersonal extends javax.swing.JFrame {
             }
         });
 
-        txtFechaNac.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFechaNacActionPerformed(evt);
-            }
-        });
-
         jLabel15.setText("Vencimiento Fotocheck :");
 
         jLabel16.setText("Lugar de Nacimiento :");
@@ -579,8 +573,7 @@ public class BDPersonal extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(53, 53, 53)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtFechaNac, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                                            .addComponent(cmbDptoNac, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(cmbDptoNac, 0, 130, Short.MAX_VALUE)
                                             .addComponent(cmbDptoRes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(txtDireccion)
                                             .addComponent(txtTelefono)
@@ -588,7 +581,8 @@ public class BDPersonal extends javax.swing.JFrame {
                                             .addComponent(txtCorreo)
                                             .addComponent(txtTelefEmerg)
                                             .addComponent(txtPersCont)
-                                            .addComponent(txtRelacCont)))))
+                                            .addComponent(txtRelacCont)
+                                            .addComponent(txtFechaNac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(134, 134, 134)
                                 .addComponent(jLabel1)))))
@@ -600,10 +594,11 @@ public class BDPersonal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCodEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtCodEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel14))
                     .addComponent(txtFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -709,9 +704,9 @@ public class BDPersonal extends javax.swing.JFrame {
         //Connection cn = con.Conexion();
         
         String  nombres, apellidos, Cargo_Proyecto, brevete, fotocheck_minero, 
-                vencimiento_fotocheck, IPSS, tip_Sangre,fecha_nacimiento,dpto_nacimiento,
+                vencimiento_fotocheck, IPSS, tip_Sangre,dpto_nacimiento,
                 dpto_residencia, direccion, email,persona_contact,relacion_contact;
-        
+        //Date fecha_nacimiento = new Date();
         int codigo_empresa, DNI,tel_fijo, celular,tel_emergencia;
         
         String sql = "";
@@ -726,7 +721,7 @@ public class BDPersonal extends javax.swing.JFrame {
         IPSS = txtIpss.getText();
         tip_Sangre = cmbTipoSangre.getSelectedItem().toString();
         
-        fecha_nacimiento = txtFechaNac.getText();
+        Date fecha_nacimiento = (Date) txtFechaNac.getDate();
         dpto_nacimiento = cmbDptoNac.getSelectedItem().toString();
         dpto_residencia = cmbDptoRes.getSelectedItem().toString();
         direccion = txtDireccion.getText();
@@ -757,7 +752,7 @@ public class BDPersonal extends javax.swing.JFrame {
             pst.setString(9, IPSS);
             pst.setString(10, tip_Sangre);
             
-            pst.setString(11, fecha_nacimiento);
+            pst.setDate(11, new java.sql.Date(fecha_nacimiento.getTime()));
             pst.setString(12, dpto_nacimiento);
             pst.setString(13, dpto_residencia);
             pst.setString(14, direccion);
@@ -804,7 +799,7 @@ public class BDPersonal extends javax.swing.JFrame {
                 txtIpss.setText(rs.getString("IPSS"));
                 cmbTipoSangre.setSelectedItem(rs.getString("tip_Sangre"));
                 
-                txtFechaNac.setText(rs.getString("fecha_nacimiento"));
+                txtFechaNac.setDate(rs.getDate("fecha_nacimiento"));
                 cmbDptoNac.setSelectedItem(rs.getString("dpto_nacimiento"));
                 cmbDptoRes.setSelectedItem(rs.getString("dpto_residencia"));
                 txtDireccion.setText(rs.getString("direccion"));
@@ -899,7 +894,7 @@ public class BDPersonal extends javax.swing.JFrame {
             ps.setString(9, txtIpss.getText());
             ps.setString(10, cmbTipoSangre.getSelectedItem().toString());
              
-            ps.setString(11, txtFechaNac.getText());
+            ps.setString(11, txtFechaNac.getDate().toString());
             ps.setString(12, cmbDptoNac.getSelectedItem().toString());
             ps.setString(13, cmbDptoRes.getSelectedItem().toString());
             ps.setString(14, txtDireccion.getText());
@@ -988,11 +983,6 @@ public class BDPersonal extends javax.swing.JFrame {
         txtRelacCont.transferFocus();
     }//GEN-LAST:event_txtRelacContActionPerformed
 
-    private void txtFechaNacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaNacActionPerformed
-        // TODO add your handling code here:
-        txtFechaNac.transferFocus();
-    }//GEN-LAST:event_txtFechaNacActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -1077,7 +1067,7 @@ public class BDPersonal extends javax.swing.JFrame {
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtDni;
-    private javax.swing.JTextField txtFechaNac;
+    private com.toedter.calendar.JDateChooser txtFechaNac;
     private javax.swing.JTextField txtFotocheck;
     private javax.swing.JTextField txtIpss;
     private javax.swing.JTextField txtNombres;

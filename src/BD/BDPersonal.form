@@ -111,8 +111,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtFechaNac" pref="130" max="32767" attributes="0"/>
-                                          <Component id="cmbDptoNac" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="cmbDptoNac" alignment="0" pref="130" max="32767" attributes="0"/>
                                           <Component id="cmbDptoRes" alignment="0" max="32767" attributes="0"/>
                                           <Component id="txtDireccion" alignment="0" max="32767" attributes="0"/>
                                           <Component id="txtTelefono" alignment="0" max="32767" attributes="0"/>
@@ -121,6 +120,7 @@
                                           <Component id="txtTelefEmerg" alignment="0" max="32767" attributes="0"/>
                                           <Component id="txtPersCont" alignment="0" max="32767" attributes="0"/>
                                           <Component id="txtRelacCont" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtFechaNac" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -142,11 +142,13 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtCodEmp" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtFechaNac" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtCodEmp" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="txtFechaNac" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -456,11 +458,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtVencFotochActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtFechaNac">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFechaNacActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel15">
       <Properties>
         <Property name="text" type="java.lang.String" value="Vencimiento Fotocheck :"/>
@@ -612,6 +609,8 @@
           </StringArray>
         </Property>
       </Properties>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="txtFechaNac">
     </Component>
   </SubComponents>
 </Form>
