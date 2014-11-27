@@ -3,6 +3,19 @@
  * and open the template in the editor.
  */
 package Operaciones;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+//import java.text.DateFormat;
+//import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import pro_min.BDConexion;
+
 
 /**
  *
@@ -13,9 +26,118 @@ public class ConsumoAgua extends javax.swing.JFrame {
     /**
      * Creates new form ConsumoAgua
      */
-    public ConsumoAgua() {
+       DefaultTableModel model;
+       BDConexion bd = new BDConexion();
+       Connection cn = bd.conexion();
+       Statement sent;
+       
+        public ConsumoAgua() {
         initComponents();
+        setLocationRelativeTo(null);
+        
+        limpiar();
+        bloquear();
+        cargarConsumoAgua("");
+        mostrarConsumoAgua();
+        }
+    
+    
+        void cargarConsumoAgua(String valor){
+        
+            String []titulos={"Id", "Fecha", "Proyecto", "Zona", "Maquina", "Turno","Sondaje", "Pto Carguio/Bombeo", "Volumen"};  
+            String []Registros= new String[9];
+        
+            String sql="SELECT * FROM ope_ConsumoAgua WHERE CONCAT(id, fecha, proyecto, zona, maquina, turno, sondaje, puntoCarguioBombeo, volumenGls) LIKE '%"+valor+"%'";
+            model=new DefaultTableModel(null,titulos);
+
+            try {
+                Statement st = cn.createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                while(rs.next())
+                {
+                    Registros[0]= rs.getString("id");
+                    Registros[1]= rs.getString("fecha");
+                    Registros[2]= rs.getString("proyecto");
+                    Registros[3]= rs.getString("zona");
+                    Registros[4]= rs.getString("maquina");
+                    Registros[5]= rs.getString("turno");
+                    Registros[6]= rs.getString("sondaje");
+                    Registros[7]= rs.getString("puntoCarguioBombeo");
+                    Registros[8]= rs.getString("volumenGls");
+                    
+
+                    model.addRow(Registros);
+                } 
+                t_datos.setModel(model);
+            } catch (SQLException ex) {
+                Logger.getLogger(ConsumoAgua.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    
+    void mostrarConsumoAgua(){
+        
+            String []titulos={"Id", "Fecha", "Proyecto", "Zona", "Maquina", "Turno","Sondaje", "Pto Carguio/Bombeo", "Volumen"};  
+            String []Registros= new String[9];
+        
+        String sql="SELECT * FROM ope_ConsumoAgua";
+        model=new DefaultTableModel(null,titulos);
+        
+        try {
+             Statement st = cn.createStatement();
+             ResultSet rs = st.executeQuery(sql);
+             while(rs.next())
+             {
+                   Registros[0]= rs.getString("id");
+                   Registros[1]= rs.getString("fecha");
+                   Registros[2]= rs.getString("proyecto");
+                   Registros[3]= rs.getString("zona");
+                   Registros[4]= rs.getString("maquina");
+                   Registros[5]= rs.getString("turno");
+                   Registros[6]= rs.getString("sondaje");
+                   Registros[7]= rs.getString("puntoCarguioBombeo");
+                   Registros[8]= rs.getString("volumenGls");
+                  
+                   
+                   model.addRow(Registros);
+             } 
+             t_datos.setModel(model);
+        } catch (SQLException ex) {
+             Logger.getLogger(ConsumoAgua.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+    
+        void limpiar(){
+        txtFecha.setText ("");
+        txtProyecto.setText ("");
+        txtZona.setText ("");
+        txtMaquina.setText ("");
+        txtTurno.setText ("");
+        txtSondaje.setText ("");
+        txtPto_Carg_Bomb.setText ("");
+        txtVolumen.setText ("");
+        }
+
+        void bloquear(){
+        txtFecha.setEnabled(false);
+        txtProyecto.setEnabled(false);
+        txtZona.setEnabled(false);
+        txtMaquina.setEnabled(false);
+        txtTurno.setEnabled(false);
+        txtSondaje.setEnabled(false);
+        txtPto_Carg_Bomb.setEnabled(false);
+        txtVolumen.setEnabled(false);
+        }
+
+        void desbloquear(){
+        txtFecha.setEnabled(true);
+        txtProyecto.setEnabled(true);
+        txtZona.setEnabled(true);
+        txtMaquina.setEnabled(true);
+        txtTurno.setEnabled(true);
+        txtSondaje.setEnabled(true);
+        txtPto_Carg_Bomb.setEnabled(true);
+        txtVolumen.setEnabled(true);
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,26 +152,26 @@ public class ConsumoAgua extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        txtPto_Carg_Bomb = new javax.swing.JTextField();
         txtBusqueda = new javax.swing.JTextField();
         btnMostrar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         t_datos = new javax.swing.JTable();
         btnEliminar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        txtProyecto = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtZona = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtMaquina = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtFecha = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        txtTurno = new javax.swing.JTextField();
+        txtSondaje = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
-        jTextField8 = new javax.swing.JTextField();
+        txtVolumen = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -73,7 +195,7 @@ public class ConsumoAgua extends javax.swing.JFrame {
             }
         });
 
-        btnMostrar.setText("Mostrar Combustibles");
+        btnMostrar.setText("Mostrar Consumo Agua");
         btnMostrar.setActionCommand("");
         btnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,16 +265,17 @@ public class ConsumoAgua extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel19)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel19)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(btnModificar))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(btnMostrar))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(48, 48, 48)
-                                            .addComponent(btnModificar)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(btnEliminar))))))
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -172,20 +295,20 @@ public class ConsumoAgua extends javax.swing.JFrame {
                                         .addComponent(jLabel4))
                                     .addGap(131, 131, 131)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                                        .addComponent(jTextField2)
-                                        .addComponent(jTextField3)
-                                        .addComponent(jTextField4)
-                                        .addComponent(jTextField5)
-                                        .addComponent(jTextField6)))
+                                        .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                                        .addComponent(txtProyecto)
+                                        .addComponent(txtZona)
+                                        .addComponent(txtMaquina)
+                                        .addComponent(txtTurno)
+                                        .addComponent(txtSondaje)))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel7)
                                         .addComponent(jLabel8))
                                     .addGap(31, 31, 31)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextField8)
-                                        .addComponent(jTextField7)))))
+                                        .addComponent(txtVolumen)
+                                        .addComponent(txtPto_Carg_Bomb)))))
                         .addGap(430, 501, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -196,35 +319,35 @@ public class ConsumoAgua extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtZona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMaquina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTurno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSondaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPto_Carg_Bomb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModificar)
@@ -235,10 +358,10 @@ public class ConsumoAgua extends javax.swing.JFrame {
                     .addComponent(jLabel19)
                     .addComponent(btnMostrar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnCancelar)
-                .addGap(176, 176, 176))
+                .addGap(87, 87, 87))
         );
 
         pack();
@@ -246,30 +369,89 @@ public class ConsumoAgua extends javax.swing.JFrame {
 
     private void txtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaActionPerformed
         // TODO add your handling code here:
-        
+        cargarConsumoAgua(txtBusqueda.getText());
     }//GEN-LAST:event_txtBusquedaActionPerformed
 
     private void txtBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyReleased
         // TODO add your handling code here:
-        
+        cargarConsumoAgua(txtBusqueda.getText());
     }//GEN-LAST:event_txtBusquedaKeyReleased
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         // TODO add your handling code here:
-        
+          mostrarConsumoAgua();
     }//GEN-LAST:event_btnMostrarActionPerformed
 
     private void t_datosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_datosMouseClicked
         // TODO add your handling code here:
-        
+         if (evt.getButton() == 1) {
+            int fila = t_datos.getSelectedRow();
+            try {
+                desbloquear();
+                String sql = "select * from ope_ConsumoAgua where id=" + t_datos.getValueAt(fila, 0);
+                sent = cn.createStatement();
+                ResultSet rs = sent.executeQuery(sql);
+                rs.next();
+                txtFecha.setText(rs.getString("fecha"));
+                txtProyecto.setText(rs.getString("proyecto"));
+                txtZona.setText(rs.getString("zona"));
+                txtMaquina.setText(rs.getString("maquina"));
+                txtTurno.setText(rs.getString("turno"));
+                txtSondaje.setText(rs.getString("sondaje"));
+                txtPto_Carg_Bomb.setText(rs.getString("puntoCarguioBombeo"));
+                txtVolumen.setText(rs.getString("volumenGls"));
+                           
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_t_datosMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
+          try {
+            int fila = t_datos.getSelectedRow();
+            String sql = "delete from ope_ConsumoAgua where id=" + t_datos.getValueAt(fila, 0);
+            sent = cn.createStatement();
+            int n = sent.executeUpdate(sql);
+            if (n > 0) {
+                mostrarConsumoAgua();
+                JOptionPane.showMessageDialog(null, "Datos Eliminados");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
+         try {
+            desbloquear();
+            String sql = "Update ope_ConsumoAgua set fecha=?, proyecto=?, zona=?, maquina=?, turno=?, sondaje=?, puntoCarguioBombeo=?, volumenGls=?" + "where id=?";
+            int fila = t_datos.getSelectedRow();
+            String dao = (String) t_datos.getValueAt(fila, 0);
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, txtFecha.getText());
+            ps.setString(2, txtProyecto.getText());
+            ps.setString(3, txtZona.getText());
+            ps.setString(4, txtMaquina.getText());
+            ps.setString(5, txtTurno.getText());
+            ps.setString(6, txtSondaje.getText());
+            ps.setString(7, txtPto_Carg_Bomb.getText());
+            ps.setString(8, txtVolumen.getText());
+           
+            ps.setString(9, dao);
+
+            int n = ps.executeUpdate();
+            if (n > 0) {
+                limpiar();
+                mostrarConsumoAgua();
+                JOptionPane.showMessageDialog(null, "Datos Modificados");
+                bloquear();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
+        }
 
     }//GEN-LAST:event_btnModificarActionPerformed
 
@@ -335,15 +517,15 @@ public class ConsumoAgua extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JTable t_datos;
     private javax.swing.JTextField txtBusqueda;
+    private javax.swing.JTextField txtFecha;
+    private javax.swing.JTextField txtMaquina;
+    private javax.swing.JTextField txtProyecto;
+    private javax.swing.JTextField txtPto_Carg_Bomb;
+    private javax.swing.JTextField txtSondaje;
+    private javax.swing.JTextField txtTurno;
+    private javax.swing.JTextField txtVolumen;
+    private javax.swing.JTextField txtZona;
     // End of variables declaration//GEN-END:variables
 }

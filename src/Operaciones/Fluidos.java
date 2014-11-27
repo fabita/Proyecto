@@ -3,7 +3,16 @@
  * and open the template in the editor.
  */
 package Operaciones;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import pro_min.BDConexion;
 /**
  *
  * @author Home
@@ -13,9 +22,115 @@ public class Fluidos extends javax.swing.JFrame {
     /**
      * Creates new form Fluidos
      */
-    public Fluidos() {
+       DefaultTableModel model;
+       BDConexion bd = new BDConexion();
+       Connection cn = bd.conexion();
+       Statement sent;
+       
+        public Fluidos() {
         initComponents();
+        setLocationRelativeTo(null);
+        limpiar();
+        bloquear();
+        cargarFluidos("");
+        mostrarFluidos();
+        }
+    
+        void cargarFluidos(String valor){
+        
+            String []titulos={"Id", "Fecha", "Proyecto", "Zona", "Maquina", "Turno","Sondaje", "Aditivo", "Cantidad"};  
+            String []Registros= new String[9];
+        
+            String sql="SELECT * FROM ope_fluidos WHERE CONCAT(id, fecha, proyecto, zona, maquina, turno, sondaje, aditivo, cantidad) LIKE '%"+valor+"%'";
+            model=new DefaultTableModel(null,titulos);
+
+            try {
+                Statement st = cn.createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                while(rs.next())
+                {
+                    Registros[0]= rs.getString("id");
+                    Registros[1]= rs.getString("fecha");
+                    Registros[2]= rs.getString("proyecto");
+                    Registros[3]= rs.getString("zona");
+                    Registros[4]= rs.getString("maquina");
+                    Registros[5]= rs.getString("turno");
+                    Registros[6]= rs.getString("sondaje");
+                    Registros[7]= rs.getString("aditivo");
+                    Registros[8]= rs.getString("cantidad");
+                    
+
+                    model.addRow(Registros);
+                } 
+                t_datos.setModel(model);
+            } catch (SQLException ex) {
+                Logger.getLogger(Fluidos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    
+    void mostrarFluidos(){
+        
+            String []titulos={"Id", "Fecha", "Proyecto", "Zona", "Maquina", "Turno","Sondaje", "Aditivo", "Cantidad"};  
+            String []Registros= new String[9];
+        
+        String sql="SELECT * FROM ope_fluidos";
+        model=new DefaultTableModel(null,titulos);
+        
+        try {
+             Statement st = cn.createStatement();
+             ResultSet rs = st.executeQuery(sql);
+             while(rs.next())
+             {
+                   Registros[0]= rs.getString("id");
+                   Registros[1]= rs.getString("fecha");
+                   Registros[2]= rs.getString("proyecto");
+                   Registros[3]= rs.getString("zona");
+                   Registros[4]= rs.getString("maquina");
+                   Registros[5]= rs.getString("turno");
+                   Registros[6]= rs.getString("sondaje");
+                   Registros[7]= rs.getString("aditivo");
+                   Registros[8]= rs.getString("cantidad");
+                  
+                   
+                   model.addRow(Registros);
+             } 
+             t_datos.setModel(model);
+        } catch (SQLException ex) {
+             Logger.getLogger(Fluidos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+    
+        void limpiar(){
+        txtFecha.setText ("");
+        txtProyecto.setText ("");
+        txtZona.setText ("");
+        txtMaquina.setText ("");
+        txtTurno.setText ("");
+        txtSondaje.setText ("");
+        txtAditivo.setText ("");
+        txtCantidad.setText ("");
+        }
+
+        void bloquear(){
+        txtFecha.setEnabled(false);
+        txtProyecto.setEnabled(false);
+        txtZona.setEnabled(false);
+        txtMaquina.setEnabled(false);
+        txtTurno.setEnabled(false);
+        txtSondaje.setEnabled(false);
+        txtAditivo.setEnabled(false);
+        txtCantidad.setEnabled(false);
+        }
+        void desbloquear(){
+        txtFecha.setEnabled(true);
+        txtProyecto.setEnabled(true);
+        txtZona.setEnabled(true);
+        txtMaquina.setEnabled(true);
+        txtTurno.setEnabled(true);
+        txtSondaje.setEnabled(true);
+        txtAditivo.setEnabled(true);
+        txtCantidad.setEnabled(true);
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,12 +158,14 @@ public class Fluidos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         t_datos = new javax.swing.JTable();
         jLabel19 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField20 = new javax.swing.JTextField();
-        jTextField21 = new javax.swing.JTextField();
-        jTextField18 = new javax.swing.JTextField();
-        jTextField19 = new javax.swing.JTextField();
-        jTextField22 = new javax.swing.JTextField();
+        txtFecha = new javax.swing.JTextField();
+        txtMaquina = new javax.swing.JTextField();
+        txtTurno = new javax.swing.JTextField();
+        txtZona = new javax.swing.JTextField();
+        txtProyecto = new javax.swing.JTextField();
+        txtSondaje = new javax.swing.JTextField();
+        txtAditivo = new javax.swing.JTextField();
+        txtCantidad = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -96,7 +213,7 @@ public class Fluidos extends javax.swing.JFrame {
             }
         });
 
-        btnMostrar.setText("Mostrar Combustibles");
+        btnMostrar.setText("Mostrar Fluidos");
         btnMostrar.setActionCommand("");
         btnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,34 +252,6 @@ public class Fluidos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel1))
-                                    .addGap(108, 108, 108)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel4))
-                                .addGap(18, 18, 18)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(181, 181, 181)
-                        .addComponent(jLabel18))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnCancelar)
@@ -176,11 +265,37 @@ public class Fluidos extends javax.swing.JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(btnMostrar))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(48, 48, 48)
-                                            .addComponent(btnModificar)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btnEliminar))))))))
+                                            .addComponent(btnEliminar)))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addGap(122, 122, 122)))
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2)
+                            .addComponent(btnModificar))
+                        .addGap(0, 0, 0)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtZona, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMaquina, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSondaje, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAditivo, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(231, 231, 231)
+                        .addComponent(jLabel18)))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -188,47 +303,52 @@ public class Fluidos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel18)
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2)
+                        .addComponent(txtProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
+                        .addComponent(txtZona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4)
+                        .addComponent(txtMaquina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)
+                        .addComponent(txtTurno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel8)
-                        .addGap(60, 60, 60)
+                        .addComponent(txtSondaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtAditivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnModificar)
                             .addComponent(btnEliminar)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5)
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(21, 21, 21)
+                        .addComponent(jLabel8)))
+                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19)
                     .addComponent(btnMostrar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancelar)
                 .addGap(113, 113, 113))
@@ -239,17 +359,28 @@ public class Fluidos extends javax.swing.JFrame {
 
     private void txtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaActionPerformed
         // TODO add your handling code here:
-
+          cargarFluidos(txtBusqueda.getText());
    }//GEN-LAST:event_txtBusquedaActionPerformed
 
     private void txtBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyReleased
         // TODO add your handling code here:
-
+          cargarFluidos(txtBusqueda.getText());
    }//GEN-LAST:event_txtBusquedaKeyReleased
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-
+        try {
+            int fila = t_datos.getSelectedRow();
+            String sql = "delete from ope_fluidos where id=" + t_datos.getValueAt(fila, 0);
+            sent = cn.createStatement();
+            int n = sent.executeUpdate(sql);
+            if (n > 0) {
+                mostrarFluidos();
+                JOptionPane.showMessageDialog(null, "Datos Eliminados");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
+        }
    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -259,17 +390,63 @@ public class Fluidos extends javax.swing.JFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
+          try {
+            desbloquear();
+            String sql = "Update ope_fluidos set fecha=?, proyecto=?, zona=?, maquina=?, turno=?, sondaje=?, aditivo=?, cantidad=?" + "where id=?";
+            int fila = t_datos.getSelectedRow();
+            String dao = (String) t_datos.getValueAt(fila, 0);
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, txtFecha.getText());
+            ps.setString(2, txtProyecto.getText());
+            ps.setString(3, txtZona.getText());
+            ps.setString(4, txtMaquina.getText());
+            ps.setString(5, txtTurno.getText());
+            ps.setString(6, txtSondaje.getText());
+            ps.setString(7, txtAditivo.getText());
+            ps.setString(8, txtCantidad.getText());
+           
+            ps.setString(9, dao);
 
+            int n = ps.executeUpdate();
+            if (n > 0) {
+                limpiar();
+                mostrarFluidos();
+                JOptionPane.showMessageDialog(null, "Datos Modificados");
+                bloquear();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
+        }
    }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         // TODO add your handling code here:
-
+        mostrarFluidos();
    }//GEN-LAST:event_btnMostrarActionPerformed
 
     private void t_datosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_datosMouseClicked
         // TODO add your handling code here:
-
+         if (evt.getButton() == 1) {
+            int fila = t_datos.getSelectedRow();
+            try {
+                desbloquear();
+                String sql = "select * from ope_fluidos where id=" + t_datos.getValueAt(fila, 0);
+                sent = cn.createStatement();
+                ResultSet rs = sent.executeQuery(sql);
+                rs.next();
+                txtFecha.setText(rs.getString("fecha"));
+                txtProyecto.setText(rs.getString("proyecto"));
+                txtZona.setText(rs.getString("zona"));
+                txtMaquina.setText(rs.getString("maquina"));
+                txtTurno.setText(rs.getString("turno"));
+                txtSondaje.setText(rs.getString("sondaje"));
+                txtAditivo.setText(rs.getString("aditivo"));
+                txtCantidad.setText(rs.getString("cantidad"));
+                           
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
    }//GEN-LAST:event_t_datosMouseClicked
 
     /**
@@ -329,13 +506,15 @@ public class Fluidos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField21;
-    private javax.swing.JTextField jTextField22;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JTable t_datos;
+    private javax.swing.JTextField txtAditivo;
     private javax.swing.JTextField txtBusqueda;
+    private javax.swing.JTextField txtCantidad;
+    private javax.swing.JTextField txtFecha;
+    private javax.swing.JTextField txtMaquina;
+    private javax.swing.JTextField txtProyecto;
+    private javax.swing.JTextField txtSondaje;
+    private javax.swing.JTextField txtTurno;
+    private javax.swing.JTextField txtZona;
     // End of variables declaration//GEN-END:variables
 }

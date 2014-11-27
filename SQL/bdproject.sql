@@ -114,6 +114,7 @@ CREATE TABLE `ope_herramientas` (
 
 CREATE TABLE `ope_combustibles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `fecha` varchar(10),
   `tipoEquipo` varchar(30),
   `codigo` varchar(45) NOT NULL,
   `tipCombustible` varchar(25) NOT NULL,

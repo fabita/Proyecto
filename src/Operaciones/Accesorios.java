@@ -3,6 +3,19 @@
  * and open the template in the editor.
  */
 package Operaciones;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+//import java.text.DateFormat;
+//import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import pro_min.BDConexion;
+
 
 /**
  *
@@ -13,9 +26,115 @@ public class Accesorios extends javax.swing.JFrame {
     /**
      * Creates new form Accesorios
      */
-    public Accesorios() {
+        DefaultTableModel model;
+        BDConexion bd = new BDConexion();
+        Connection cn = bd.conexion();
+        Statement sent;
+        
+        public Accesorios() {
         initComponents();
+        setLocationRelativeTo(null);
+        
+        limpiar();
+        bloquear();
+        cargarAccesorios("");
+        mostrarAccesorios();
+        }
+    
+    
+        void cargarAccesorios(String valor){
+        
+            String []titulos={"Id", "Fecha", "Proyecto", "Zona", "Maquina", "Turno","Sondaje", "Accesorios", "Cantidad"};  
+            String []Registros= new String[9];
+        
+            String sql="SELECT * FROM ope_accesorios WHERE CONCAT(id, fecha, proyecto, zona, maquina, turno,sondaje,accesorios,cantidad) LIKE '%"+valor+"%'";
+            model=new DefaultTableModel(null,titulos);
+
+            try {
+                Statement st = cn.createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                while(rs.next())
+                {
+                    Registros[0]= rs.getString("id");
+                    Registros[1]= rs.getString("fecha");
+                    Registros[2]= rs.getString("proyecto");
+                    Registros[3]= rs.getString("zona");
+                    Registros[4]= rs.getString("maquina");
+                    Registros[5]= rs.getString("turno");
+                    Registros[6]= rs.getString("sondaje");
+                    Registros[7]= rs.getString("accesorios");
+                    Registros[8]= rs.getString("cantidad");
+                    
+                    model.addRow(Registros);
+                } 
+                t_datos.setModel(model);
+            } catch (SQLException ex) {
+                Logger.getLogger(Accesorios.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    
+    void mostrarAccesorios(){
+        
+            String []titulos={"Id", "Fecha", "Proyecto", "Zona", "Maquina", "Turno","Sondaje", "Accesorios", "Cantidad"};  
+            String []Registros= new String[9];
+        
+        String sql="SELECT * FROM ope_accesorios";
+        model=new DefaultTableModel(null,titulos);
+        
+        try {
+             Statement st = cn.createStatement();
+             ResultSet rs = st.executeQuery(sql);
+             while(rs.next())
+             {
+                   Registros[0]= rs.getString("id");
+                   Registros[1]= rs.getString("fecha");
+                   Registros[2]= rs.getString("proyecto");
+                   Registros[3]= rs.getString("zona");
+                   Registros[4]= rs.getString("maquina");
+                   Registros[5]= rs.getString("turno");
+                   Registros[6]= rs.getString("sondaje");
+                   Registros[7]= rs.getString("accesorios");
+                   Registros[8]= rs.getString("cantidad");
+                  
+                   
+                   model.addRow(Registros);
+             } 
+             t_datos.setModel(model);
+        } catch (SQLException ex) {
+             Logger.getLogger(Accesorios.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+        void limpiar(){
+        txtFecha.setText ("");
+        txtProyecto.setText ("");
+        txtZona.setText ("");
+        txtMaquina.setText ("");
+        txtTurno.setText ("");
+        txtSondaje.setText ("");
+        txtAccesorios.setText ("");
+        txtCantidad.setText ("");
+        }
+        void bloquear(){
+        txtFecha.setEnabled(false);
+        txtProyecto.setEnabled(false);
+        txtZona.setEnabled(false);
+        txtMaquina.setEnabled(false);
+        txtTurno.setEnabled(false);
+        txtSondaje.setEnabled(false);
+        txtAccesorios.setEnabled(false);
+        txtCantidad.setEnabled(false);
+        }
+        void desbloquear(){
+        txtFecha.setEnabled(true);
+        txtProyecto.setEnabled(true);
+        txtZona.setEnabled(true);
+        txtMaquina.setEnabled(true);
+        txtTurno.setEnabled(true);
+        txtSondaje.setEnabled(true);
+        txtAccesorios.setEnabled(true);
+        txtCantidad.setEnabled(true);
+        }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,11 +169,23 @@ public class Accesorios extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         t_datos = new javax.swing.JTable();
         jLabel19 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        txtFecha = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        txtZona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtZonaActionPerformed(evt);
+            }
+        });
+
         jLabel4.setText("Maquina");
+
+        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantidadActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Accesorios");
 
@@ -66,6 +197,12 @@ public class Accesorios extends javax.swing.JFrame {
         txtBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBusquedaKeyReleased(evt);
+            }
+        });
+
+        txtSondaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSondajeActionPerformed(evt);
             }
         });
 
@@ -89,6 +226,12 @@ public class Accesorios extends javax.swing.JFrame {
 
         jLabel2.setText("Proyecto");
 
+        txtAccesorios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAccesoriosActionPerformed(evt);
+            }
+        });
+
         jLabel18.setText("Accesorios");
 
         btnModificar.setText("Modificar");
@@ -98,7 +241,13 @@ public class Accesorios extends javax.swing.JFrame {
             }
         });
 
-        btnMostrar.setText("Mostrar Combustibles");
+        txtProyecto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtProyectoActionPerformed(evt);
+            }
+        });
+
+        btnMostrar.setText("Mostrar Accesorios");
         btnMostrar.setActionCommand("");
         btnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,7 +255,19 @@ public class Accesorios extends javax.swing.JFrame {
             }
         });
 
+        txtTurno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTurnoActionPerformed(evt);
+            }
+        });
+
         jLabel1.setText("Fecha");
+
+        txtMaquina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaquinaActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Turno");
 
@@ -130,69 +291,74 @@ public class Accesorios extends javax.swing.JFrame {
 
         jLabel19.setText("Buscar :");
 
+        txtFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFechaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnCancelar)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel19)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(btnModificar)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel3)
-                                                .addComponent(jLabel8)
-                                                .addComponent(jLabel7)
-                                                .addComponent(jLabel6)
-                                                .addComponent(jLabel4)
-                                                .addComponent(jLabel5))
-                                            .addGap(23, 23, 23)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(txtZona, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
-                                                .addComponent(txtMaquina, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtTurno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtSondaje, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtAccesorios)
-                                                .addComponent(txtCantidad))))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(btnMostrar, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addComponent(btnEliminar)
-                                            .addGap(116, 116, 116))))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnCancelar)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel19)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnModificar)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel1))
-                                    .addGap(31, 31, 31)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(181, 181, 181)
-                        .addComponent(jLabel18)))
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel8)
+                                        .addComponent(jLabel7)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel5))
+                                    .addGap(23, 23, 23)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtZona, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+                                        .addComponent(txtSondaje, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtAccesorios)
+                                        .addComponent(txtCantidad)
+                                        .addComponent(txtMaquina, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(txtTurno, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnMostrar, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(btnEliminar)
+                                    .addGap(116, 116, 116))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel1))
+                            .addGap(31, 31, 31)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtProyecto, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+                                .addComponent(txtFecha)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel18)
+                .addGap(216, 216, 216))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel18)
-                .addGap(33, 33, 33)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -242,16 +408,28 @@ public class Accesorios extends javax.swing.JFrame {
 
     private void txtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaActionPerformed
         // TODO add your handling code here:
-
+         cargarAccesorios(txtBusqueda.getText());
    }//GEN-LAST:event_txtBusquedaActionPerformed
 
     private void txtBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyReleased
         // TODO add your handling code here:
-
+          cargarAccesorios(txtBusqueda.getText());
    }//GEN-LAST:event_txtBusquedaKeyReleased
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
+         try {
+            int fila = t_datos.getSelectedRow();
+            String sql = "delete from ope_accesorios where id=" + t_datos.getValueAt(fila, 0);
+            sent = cn.createStatement();
+            int n = sent.executeUpdate(sql);
+            if (n > 0) {
+                mostrarAccesorios();
+                JOptionPane.showMessageDialog(null, "Datos Eliminados");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
+        }
 
    }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -262,18 +440,106 @@ public class Accesorios extends javax.swing.JFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
+         try {
+            desbloquear();
+            String sql = "Update ope_accesorios set fecha=?, proyecto=?, zona=?, maquina=?, turno=?, sondaje=?, accesorios=?, cantidad=?" + "where id=?";
+            int fila = t_datos.getSelectedRow();
+            String dao = (String) t_datos.getValueAt(fila, 0);
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, txtFecha.getText());
+            ps.setString(2, txtProyecto.getText());
+            ps.setString(3, txtZona.getText());
+            ps.setString(4, txtMaquina.getText());
+            ps.setString(5, txtTurno.getText());
+            ps.setString(6, txtSondaje.getText());
+            ps.setString(7, txtAccesorios.getText());
+            ps.setString(8, txtCantidad.getText());
+           
+            ps.setString(9, dao);
+
+            int n = ps.executeUpdate();
+            if (n > 0) {
+                limpiar();
+                mostrarAccesorios();
+                JOptionPane.showMessageDialog(null, "Datos Modificados");
+                bloquear();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
+        }
 
    }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         // TODO add your handling code here:
+         mostrarAccesorios();
 
    }//GEN-LAST:event_btnMostrarActionPerformed
 
     private void t_datosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_datosMouseClicked
         // TODO add your handling code here:
-
+        if (evt.getButton() == 1) {
+            int fila = t_datos.getSelectedRow();
+            try {
+                desbloquear();
+                String sql = "select * from ope_accesorios where id=" + t_datos.getValueAt(fila, 0);
+                sent = cn.createStatement();
+                ResultSet rs = sent.executeQuery(sql);
+                rs.next();
+                txtFecha.setText(rs.getString("fecha"));
+                txtProyecto.setText(rs.getString("proyecto"));
+                txtZona.setText(rs.getString("zona"));
+                txtMaquina.setText(rs.getString("maquina"));
+                txtTurno.setText(rs.getString("turno"));
+                txtSondaje.setText(rs.getString("sondaje"));
+                txtAccesorios.setText(rs.getString("accesorios"));
+                txtCantidad.setText(rs.getString("cantidad"));
+                           
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
    }//GEN-LAST:event_t_datosMouseClicked
+
+    private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
+        // TODO add your handling code here:
+         txtFecha.transferFocus();
+    }//GEN-LAST:event_txtFechaActionPerformed
+
+    private void txtProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProyectoActionPerformed
+        // TODO add your handling code here:
+         txtProyecto.transferFocus();
+    }//GEN-LAST:event_txtProyectoActionPerformed
+
+    private void txtZonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtZonaActionPerformed
+        // TODO add your handling code here:
+         txtZona.transferFocus();
+    }//GEN-LAST:event_txtZonaActionPerformed
+
+    private void txtMaquinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaquinaActionPerformed
+        // TODO add your handling code here:
+         txtMaquina.transferFocus();
+    }//GEN-LAST:event_txtMaquinaActionPerformed
+
+    private void txtTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTurnoActionPerformed
+        // TODO add your handling code here:
+         txtTurno.transferFocus();
+    }//GEN-LAST:event_txtTurnoActionPerformed
+
+    private void txtSondajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSondajeActionPerformed
+        // TODO add your handling code here:
+         txtSondaje.transferFocus();
+    }//GEN-LAST:event_txtSondajeActionPerformed
+
+    private void txtAccesoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAccesoriosActionPerformed
+        // TODO add your handling code here:
+         txtAccesorios.transferFocus();
+    }//GEN-LAST:event_txtAccesoriosActionPerformed
+
+    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
+        // TODO add your handling code here:
+         txtCantidad.transferFocus();
+    }//GEN-LAST:event_txtCantidadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -321,7 +587,6 @@ public class Accesorios extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnMostrar;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -337,6 +602,7 @@ public class Accesorios extends javax.swing.JFrame {
     private javax.swing.JTextField txtAccesorios;
     private javax.swing.JTextField txtBusqueda;
     private javax.swing.JTextField txtCantidad;
+    private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtMaquina;
     private javax.swing.JTextField txtProyecto;
     private javax.swing.JTextField txtSondaje;

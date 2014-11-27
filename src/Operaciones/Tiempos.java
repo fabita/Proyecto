@@ -3,7 +3,18 @@
  * and open the template in the editor.
  */
 package Operaciones;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+//import java.text.DateFormat;
+//import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import pro_min.BDConexion;
 /**
  *
  * @author Home
@@ -13,9 +24,114 @@ public class Tiempos extends javax.swing.JFrame {
     /**
      * Creates new form Tiempos
      */
-    public Tiempos() {
-        initComponents();
-    }
+       DefaultTableModel model;
+       BDConexion bd = new BDConexion();
+       Connection cn = bd.conexion();
+       Statement sent;
+       
+       public Tiempos() {
+           initComponents();
+           setLocationRelativeTo(null);  
+
+           limpiar();
+           bloquear();
+           cargarTiempos("");
+           mostrarTiempos();
+       }
+       void cargarTiempos(String valor){
+
+           String []titulos={"ID", "Fecha","Proyecto","Zona","Maquina","Turno","Sondaje","Actividad","Horas"};  
+           String []Registros= new String[9];
+
+           String sql="SELECT * FROM ope_tiempos WHERE CONCAT(id, fecha, proyecto, zona, maquina, turno, sondaje, actividad, horas) LIKE '%"+valor+"%'";
+           model=new DefaultTableModel(null,titulos);
+
+           try {
+                Statement st = cn.createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                while(rs.next())
+                {
+                      Registros[0]= rs.getString("id");
+                      Registros[1]= rs.getString("fecha");
+                      Registros[2]= rs.getString("proyecto");
+                      Registros[3]= rs.getString("zona");
+                      Registros[4]= rs.getString("maquina");
+                      Registros[5]= rs.getString("turno");
+                      Registros[6]= rs.getString("sondaje");
+                      Registros[7]= rs.getString("actividad");
+                      Registros[8]= rs.getString("horas");
+                      
+                      model.addRow(Registros);
+                } 
+                t_datos.setModel(model);
+           } catch (SQLException ex) {
+                Logger.getLogger(Tiempos.class.getName()).log(Level.SEVERE, null, ex);
+           }
+       }
+
+       void mostrarTiempos(){
+
+           String []titulos={"ID", "Fecha","Proyecto","Zona","Maquina","Turno","Sondaje","Actividad","Horas"};  
+           String []Registros= new String[9];
+
+           String sql="SELECT * FROM ope_tiempos";
+           model=new DefaultTableModel(null,titulos);
+
+           try {
+                Statement st = cn.createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                while(rs.next())
+                {
+                      Registros[0]= rs.getString("id");
+                      Registros[1]= rs.getString("fecha");
+                      Registros[2]= rs.getString("proyecto");
+                      Registros[3]= rs.getString("zona");
+                      Registros[4]= rs.getString("maquina");
+                      Registros[5]= rs.getString("turno");
+                      Registros[6]= rs.getString("sondaje");
+                      Registros[7]= rs.getString("actividad");
+                      Registros[8]= rs.getString("horas");
+                      
+                      model.addRow(Registros);
+                } 
+                t_datos.setModel(model);
+           } catch (SQLException ex) {
+                Logger.getLogger(Tiempos.class.getName()).log(Level.SEVERE, null, ex);
+           }
+       }
+
+       void limpiar(){
+       txtFecha.setText ("");
+       txtProyecto.setText ("");
+       txtZona.setText ("");
+       txtMaquina.setText ("");
+       txtTurno.setText ("");
+       txtSondaje.setText ("");
+       txtActividad.setText ("");
+       txtHora.setText ("");
+       
+       }
+
+       void bloquear(){
+       txtFecha.setEnabled(false);
+       txtProyecto.setEnabled(false);
+       txtZona.setEnabled(false);
+       txtMaquina.setEnabled(false);
+       txtTurno.setEnabled(false);
+       txtSondaje.setEnabled(false);
+       txtActividad.setEnabled(false);
+       txtHora.setEnabled(false);
+       }
+       void desbloquear(){
+       txtFecha.setEnabled(true);
+       txtProyecto.setEnabled(true);
+       txtZona.setEnabled(true);
+       txtMaquina.setEnabled(true);
+       txtTurno.setEnabled(true);
+       txtSondaje.setEnabled(true);
+       txtActividad.setEnabled(true);
+       txtHora.setEnabled(true);
+       }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,12 +159,14 @@ public class Tiempos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         t_datos = new javax.swing.JTable();
         jLabel19 = new javax.swing.JLabel();
-        jTextField25 = new javax.swing.JTextField();
-        jTextField26 = new javax.swing.JTextField();
-        jTextField27 = new javax.swing.JTextField();
-        jTextField28 = new javax.swing.JTextField();
-        jTextField29 = new javax.swing.JTextField();
-        jTextField30 = new javax.swing.JTextField();
+        txtFecha = new javax.swing.JTextField();
+        txtMaquina = new javax.swing.JTextField();
+        txtTurno = new javax.swing.JTextField();
+        txtZona = new javax.swing.JTextField();
+        txtProyecto = new javax.swing.JTextField();
+        txtSondaje = new javax.swing.JTextField();
+        txtActividad = new javax.swing.JTextField();
+        txtHora = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -96,7 +214,7 @@ public class Tiempos extends javax.swing.JFrame {
             }
         });
 
-        btnMostrar.setText("Mostrar Combustibles");
+        btnMostrar.setText("Mostrar Tiempos");
         btnMostrar.setActionCommand("");
         btnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,110 +246,164 @@ public class Tiempos extends javax.swing.JFrame {
 
         jLabel19.setText("Buscar :");
 
+        txtFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFechaActionPerformed(evt);
+            }
+        });
+
+        txtMaquina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaquinaActionPerformed(evt);
+            }
+        });
+
+        txtTurno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTurnoActionPerformed(evt);
+            }
+        });
+
+        txtZona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtZonaActionPerformed(evt);
+            }
+        });
+
+        txtProyecto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtProyectoActionPerformed(evt);
+            }
+        });
+
+        txtSondaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSondajeActionPerformed(evt);
+            }
+        });
+
+        txtActividad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtActividadActionPerformed(evt);
+            }
+        });
+
+        txtHora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtHoraActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addContainerGap())
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
+                            .addGap(39, 39, 39)
+                            .addComponent(btnCancelar))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel19)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnMostrar))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnEliminar)))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(33, 33, 33)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel1))
-                            .addContainerGap(487, Short.MAX_VALUE)))
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(181, 181, 181)
-                        .addComponent(jLabel18))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnCancelar)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnModificar)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jTextField29, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jTextField28, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jTextField27, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jTextField30, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGap(3, 3, 3))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel19)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btnMostrar))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(48, 48, 48)
-                                            .addComponent(btnModificar)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btnEliminar))))))))
-                .addContainerGap(66, Short.MAX_VALUE))
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel8)
+                                        .addComponent(jLabel7)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel1))
+                                    .addGap(36, 36, 36)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtProyecto)
+                                        .addComponent(txtZona)
+                                        .addComponent(txtFecha)
+                                        .addComponent(txtMaquina)
+                                        .addComponent(txtTurno)
+                                        .addComponent(txtSondaje)
+                                        .addComponent(txtActividad)
+                                        .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(243, 243, 243)
+                        .addComponent(jLabel18)))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(19, 19, 19)
                 .addComponent(jLabel18)
-                .addGap(39, 39, 39)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtZona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtMaquina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addGap(41, 41, 41)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel8)
-                        .addGap(60, 60, 60)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnModificar)
-                            .addComponent(btnEliminar)))
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel5))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTurno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtSondaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel8))
+                    .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnModificar)
+                    .addComponent(btnEliminar))
+                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19)
                     .addComponent(btnMostrar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancelar)
                 .addGap(113, 113, 113))
@@ -242,17 +414,28 @@ public class Tiempos extends javax.swing.JFrame {
 
     private void txtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaActionPerformed
         // TODO add your handling code here:
-
+        cargarTiempos(txtBusqueda.getText());
    }//GEN-LAST:event_txtBusquedaActionPerformed
 
     private void txtBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyReleased
         // TODO add your handling code here:
-
+        cargarTiempos(txtBusqueda.getText());
    }//GEN-LAST:event_txtBusquedaKeyReleased
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-
+         try {
+            int fila = t_datos.getSelectedRow();
+            String sql = "delete from ope_tiempos where id=" + t_datos.getValueAt(fila, 0);
+            sent = cn.createStatement();
+            int n = sent.executeUpdate(sql);
+            if (n > 0) {
+                mostrarTiempos();
+                JOptionPane.showMessageDialog(null, "Datos Eliminados");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
+        }
    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -262,18 +445,103 @@ public class Tiempos extends javax.swing.JFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
+        try {
+            desbloquear();
+            String sql = "Update ope_tiempos set fecha=?, proyecto=?, zona=?, maquina=?, turno=?, sondaje=?, actividad=?, horas=?" + "where id=?";
+            int fila = t_datos.getSelectedRow();
+            String dao = (String) t_datos.getValueAt(fila, 0);
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, txtFecha.getText());
+            ps.setString(2, txtProyecto.getText());
+            ps.setString(3, txtZona.getText());
+            ps.setString(4, txtMaquina.getText());
+            ps.setString(5, txtTurno.getText());
+            ps.setString(6, txtSondaje.getText());
+            ps.setString(7, txtActividad.getText());
+            ps.setString(8, txtHora.getText());
+            ps.setString(9, dao);
 
+            int n = ps.executeUpdate();
+            if (n > 0) {
+                limpiar();
+                mostrarTiempos();
+                JOptionPane.showMessageDialog(null, "Datos Modificados");
+                bloquear();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
+        }
    }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         // TODO add your handling code here:
-
+         mostrarTiempos();
    }//GEN-LAST:event_btnMostrarActionPerformed
 
     private void t_datosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_datosMouseClicked
         // TODO add your handling code here:
-
+        if (evt.getButton() == 1) {
+            int fila = t_datos.getSelectedRow();
+            try {
+                desbloquear();
+                String sql = "select * from ope_tiempos where id=" + t_datos.getValueAt(fila, 0);
+                sent = cn.createStatement();
+                ResultSet rs = sent.executeQuery(sql);
+                rs.next();
+                txtFecha.setText(rs.getString("fecha"));
+                txtProyecto.setText(rs.getString("proyecto"));
+                txtZona.setText(rs.getString("zona"));
+                txtMaquina.setText(rs.getString("maquina"));
+                txtTurno.setText(rs.getString("turno"));
+                txtSondaje.setText(rs.getString("sondaje"));
+                txtActividad.setText(rs.getString("actividad"));
+                txtHora.setText(rs.getString("horas"));
+        
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
    }//GEN-LAST:event_t_datosMouseClicked
+
+    private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
+        // TODO add your handling code here:
+           txtFecha.transferFocus();
+    }//GEN-LAST:event_txtFechaActionPerformed
+
+    private void txtProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProyectoActionPerformed
+        // TODO add your handling code here:
+           txtProyecto.transferFocus();
+    }//GEN-LAST:event_txtProyectoActionPerformed
+
+    private void txtZonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtZonaActionPerformed
+        // TODO add your handling code here:
+           txtZona.transferFocus();
+    }//GEN-LAST:event_txtZonaActionPerformed
+
+    private void txtMaquinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaquinaActionPerformed
+        // TODO add your handling code here:
+           txtMaquina.transferFocus();
+    }//GEN-LAST:event_txtMaquinaActionPerformed
+
+    private void txtTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTurnoActionPerformed
+        // TODO add your handling code here:
+           txtTurno.transferFocus();
+    }//GEN-LAST:event_txtTurnoActionPerformed
+
+    private void txtSondajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSondajeActionPerformed
+        // TODO add your handling code here:
+           txtSondaje.transferFocus();
+    }//GEN-LAST:event_txtSondajeActionPerformed
+
+    private void txtActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtActividadActionPerformed
+        // TODO add your handling code here:
+           txtActividad.transferFocus();
+    }//GEN-LAST:event_txtActividadActionPerformed
+
+    private void txtHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHoraActionPerformed
+        // TODO add your handling code here:
+           txtHora.transferFocus();
+    }//GEN-LAST:event_txtHoraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -332,13 +600,15 @@ public class Tiempos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField25;
-    private javax.swing.JTextField jTextField26;
-    private javax.swing.JTextField jTextField27;
-    private javax.swing.JTextField jTextField28;
-    private javax.swing.JTextField jTextField29;
-    private javax.swing.JTextField jTextField30;
     private javax.swing.JTable t_datos;
+    private javax.swing.JTextField txtActividad;
     private javax.swing.JTextField txtBusqueda;
+    private javax.swing.JTextField txtFecha;
+    private javax.swing.JTextField txtHora;
+    private javax.swing.JTextField txtMaquina;
+    private javax.swing.JTextField txtProyecto;
+    private javax.swing.JTextField txtSondaje;
+    private javax.swing.JTextField txtTurno;
+    private javax.swing.JTextField txtZona;
     // End of variables declaration//GEN-END:variables
 }
