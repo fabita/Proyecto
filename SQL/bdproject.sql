@@ -25,8 +25,9 @@ CREATE TABLE `accesorios` (
 
 CREATE TABLE `ope_accesorios` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `fecha` varchar(10),
+  `fecha` date,
   `proyecto` varchar(25),
+  `area` varchar(25),
   `zona` varchar(25),
   `maquina` varchar(25),
   `turno` varchar(25),
@@ -112,14 +113,58 @@ CREATE TABLE `ope_herramientas` (
     PRIMARY KEY (`id`)
 );
 
+CREATE TABLE `ope_valorizaciones`(
+`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`codigo` varchar(30),
+`sondaje` varchar(30),
+`maquina` varchar(30),
+`fin` varchar(20),
+`profundidad` double,
+`avance` double,
+`metrosCo` double,
+`horasCo` double,
+`materiales` double,
+`descuentos` double,
+`valor` double,
+`fechaEntrega` date,
+`fechaAprobacion` date,
+`inicioSondaje` date,
+`horasCo2` varchar(20),
+PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `ope_corridasPerf`(
+`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`fecha` date,
+`proyecto` varchar(30),
+`area` varchar(30),
+`zona` varchar(30),
+`maquina` varchar(30),
+`turno` varchar(30),
+`sondaje` double,
+`profInicial` double,
+`profFinal` double,
+`longPerf` double,
+`longRecup` double,
+`recup` double,
+`retorno` double,
+`compacto` varchar(2),
+`semiCompacto` varchar(2),
+`fracturado` varchar(2),
+`muyFracturado` varchar(2),
+`vacios` varchar(2),
+    PRIMARY KEY (`id`)
+);
+
+
 CREATE TABLE `ope_combustibles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `fecha` varchar(10),
+  `fecha` date,
   `tipoEquipo` varchar(30),
-  `codigo` varchar(45) NOT NULL,
-  `tipCombustible` varchar(25) NOT NULL,
-  `proveedor` varchar(20) NOT NULL,
-  `docIngreso` varchar(15) NOT NULL,
+  `codigo` varchar(45),
+  `tipCombustible` varchar(25),
+  `proveedor` varchar(20),
+  `docIngreso` varchar(15),
   `cantidadIngreso` double,
   `HorKilIni` double,
   `HorKilFin` double,
@@ -178,9 +223,10 @@ CREATE TABLE `ope_tiempos` (
 
 CREATE TABLE `ope_ConsumoAgua` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `fecha` varchar(10),
+  `fecha` date,
   `proyecto` varchar(25),
-  `zona` varchar(10),
+  `area` varchar(20),
+  `zona` varchar(20),
   `maquina` varchar(25),
   `turno` varchar(6),
   `sondaje` varchar(25),
