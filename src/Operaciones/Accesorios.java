@@ -44,10 +44,10 @@ public class Accesorios extends javax.swing.JFrame {
     
         void cargarAccesorios(String valor){
         
-            String []titulos={"Id", "Fecha", "Proyecto", "Zona", "Maquina", "Turno","Sondaje", "Accesorios", "Cantidad"};  
-            String []Registros= new String[9];
+            String []titulos={"Id", "Fecha", "Proyecto", "Zona", "Maquina", "Turno","Sondaje", "Accesorios", "Cantidad", "Area"};  
+            String []Registros= new String[10];
         
-            String sql="SELECT * FROM ope_accesorios WHERE CONCAT(id, fecha, proyecto, zona, maquina, turno,sondaje,accesorios,cantidad) LIKE '%"+valor+"%'";
+            String sql="SELECT * FROM ope_accesorios WHERE CONCAT(id, fecha, proyecto, zona, maquina, turno,sondaje,accesorios,cantidad,area) LIKE '%"+valor+"%'";
             model=new DefaultTableModel(null,titulos);
 
             try {
@@ -64,6 +64,7 @@ public class Accesorios extends javax.swing.JFrame {
                     Registros[6]= rs.getString("sondaje");
                     Registros[7]= rs.getString("accesorios");
                     Registros[8]= rs.getString("cantidad");
+                    Registros[9]= rs.getString("area");
                     
                     model.addRow(Registros);
                 } 
@@ -75,8 +76,8 @@ public class Accesorios extends javax.swing.JFrame {
     
     void mostrarAccesorios(){
         
-            String []titulos={"Id", "Fecha", "Proyecto", "Zona", "Maquina", "Turno","Sondaje", "Accesorios", "Cantidad"};  
-            String []Registros= new String[9];
+            String []titulos={"Id", "Fecha", "Proyecto", "Zona", "Maquina", "Turno","Sondaje", "Accesorios", "Cantidad", "Area"};  
+            String []Registros= new String[10];
         
         String sql="SELECT * FROM ope_accesorios";
         model=new DefaultTableModel(null,titulos);
@@ -95,6 +96,7 @@ public class Accesorios extends javax.swing.JFrame {
                    Registros[6]= rs.getString("sondaje");
                    Registros[7]= rs.getString("accesorios");
                    Registros[8]= rs.getString("cantidad");
+                   Registros[9]= rs.getString("area");
                   
                    
                    model.addRow(Registros);
@@ -113,6 +115,7 @@ public class Accesorios extends javax.swing.JFrame {
         txtSondaje.setText ("");
         txtAccesorios.setText ("");
         txtCantidad.setText ("");
+        txtArea.setText ("");
         }
         void bloquear(){
         txtFecha.setEnabled(false);
@@ -123,6 +126,7 @@ public class Accesorios extends javax.swing.JFrame {
         txtSondaje.setEnabled(false);
         txtAccesorios.setEnabled(false);
         txtCantidad.setEnabled(false);
+        txtArea.setEnabled(false);
         }
         void desbloquear(){
         txtFecha.setEnabled(true);
@@ -133,6 +137,7 @@ public class Accesorios extends javax.swing.JFrame {
         txtSondaje.setEnabled(true);
         txtAccesorios.setEnabled(true);
         txtCantidad.setEnabled(true);
+        txtArea.setEnabled(true);
         }
     
 
@@ -474,7 +479,7 @@ public class Accesorios extends javax.swing.JFrame {
         // TODO add your handling code here:
          try {
             desbloquear();
-            String sql = "Update ope_accesorios set fecha=?, proyecto=?, zona=?, maquina=?, turno=?, sondaje=?, accesorios=?, cantidad=?" + "where id=?";
+            String sql = "Update ope_accesorios set fecha=?, proyecto=?, zona=?, maquina=?, turno=?, sondaje=?, accesorios=?, cantidad=?, area=?" + "where id=?";
             int fila = t_datos.getSelectedRow();
             String dao = (String) t_datos.getValueAt(fila, 0);
             PreparedStatement ps = cn.prepareStatement(sql);
@@ -486,8 +491,9 @@ public class Accesorios extends javax.swing.JFrame {
             ps.setString(6, txtSondaje.getText());
             ps.setString(7, txtAccesorios.getText());
             ps.setString(8, txtCantidad.getText());
+            ps.setString(9, txtArea.getText());
            
-            ps.setString(9, dao);
+            ps.setString(10, dao);
 
             int n = ps.executeUpdate();
             if (n > 0) {
@@ -526,6 +532,7 @@ public class Accesorios extends javax.swing.JFrame {
                 txtSondaje.setText(rs.getString("sondaje"));
                 txtAccesorios.setText(rs.getString("accesorios"));
                 txtCantidad.setText(rs.getString("cantidad"));
+                txtArea.setText(rs.getString("area"));
                            
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -575,6 +582,7 @@ public class Accesorios extends javax.swing.JFrame {
 
     private void txtAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAreaActionPerformed
         // TODO add your handling code here:
+         txtArea.transferFocus();
     }//GEN-LAST:event_txtAreaActionPerformed
 
     /**

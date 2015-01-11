@@ -44,10 +44,10 @@ public class ConsumoAgua extends javax.swing.JFrame {
     
         void cargarConsumoAgua(String valor){
         
-            String []titulos={"Id", "Fecha", "Proyecto", "Zona", "Maquina", "Turno","Sondaje", "Pto Carguio/Bombeo", "Volumen"};  
-            String []Registros= new String[9];
+            String []titulos={"Id", "Fecha", "Proyecto", "Zona", "Maquina", "Turno","Sondaje", "Pto Carguio/Bombeo", "Volumen", "Area"};  
+            String []Registros= new String[10];
         
-            String sql="SELECT * FROM ope_ConsumoAgua WHERE CONCAT(id, fecha, proyecto, zona, maquina, turno, sondaje, puntoCarguioBombeo, volumenGls) LIKE '%"+valor+"%'";
+            String sql="SELECT * FROM ope_ConsumoAgua WHERE CONCAT(id, fecha, proyecto, zona, maquina, turno, sondaje, puntoCarguioBombeo, volumenGls, area) LIKE '%"+valor+"%'";
             model=new DefaultTableModel(null,titulos);
 
             try {
@@ -64,6 +64,7 @@ public class ConsumoAgua extends javax.swing.JFrame {
                     Registros[6]= rs.getString("sondaje");
                     Registros[7]= rs.getString("puntoCarguioBombeo");
                     Registros[8]= rs.getString("volumenGls");
+                    Registros[9]= rs.getString("area");
                     
 
                     model.addRow(Registros);
@@ -76,8 +77,8 @@ public class ConsumoAgua extends javax.swing.JFrame {
     
     void mostrarConsumoAgua(){
         
-            String []titulos={"Id", "Fecha", "Proyecto", "Zona", "Maquina", "Turno","Sondaje", "Pto Carguio/Bombeo", "Volumen"};  
-            String []Registros= new String[9];
+            String []titulos={"Id", "Fecha", "Proyecto", "Zona", "Maquina", "Turno","Sondaje", "Pto Carguio/Bombeo", "Volumen", "Area"};  
+            String []Registros= new String[10];
         
         String sql="SELECT * FROM ope_ConsumoAgua";
         model=new DefaultTableModel(null,titulos);
@@ -96,6 +97,7 @@ public class ConsumoAgua extends javax.swing.JFrame {
                    Registros[6]= rs.getString("sondaje");
                    Registros[7]= rs.getString("puntoCarguioBombeo");
                    Registros[8]= rs.getString("volumenGls");
+                   Registros[9]= rs.getString("area");
                   
                    
                    model.addRow(Registros);
@@ -115,6 +117,7 @@ public class ConsumoAgua extends javax.swing.JFrame {
         txtSondaje.setText ("");
         txtPto_Carg_Bomb.setText ("");
         txtVolumen.setText ("");
+        txtArea.setText ("");
         }
 
         void bloquear(){
@@ -126,6 +129,7 @@ public class ConsumoAgua extends javax.swing.JFrame {
         txtSondaje.setEnabled(false);
         txtPto_Carg_Bomb.setEnabled(false);
         txtVolumen.setEnabled(false);
+        txtArea.setEnabled(false);
         }
 
         void desbloquear(){
@@ -137,6 +141,7 @@ public class ConsumoAgua extends javax.swing.JFrame {
         txtSondaje.setEnabled(true);
         txtPto_Carg_Bomb.setEnabled(true);
         txtVolumen.setEnabled(true);
+        txtArea.setEnabled(true);
         }
 
     /**
@@ -174,7 +179,7 @@ public class ConsumoAgua extends javax.swing.JFrame {
         txtVolumen = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        txtProyecto1 = new javax.swing.JTextField();
+        txtArea = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -279,7 +284,7 @@ public class ConsumoAgua extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(btnMostrar, javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING)))))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 361, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -313,9 +318,9 @@ public class ConsumoAgua extends javax.swing.JFrame {
                                             .addComponent(txtPto_Carg_Bomb))))
                                 .addGap(112, 112, 112)
                                 .addComponent(jLabel9)
-                                .addGap(131, 131, 131)
-                                .addComponent(txtProyecto1, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)))
-                        .addGap(77, 77, 77))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtArea, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)))
+                        .addGap(204, 204, 204))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,12 +344,13 @@ public class ConsumoAgua extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(txtMaquina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtTurno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel9)
-                        .addComponent(txtProyecto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(txtTurno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -409,6 +415,7 @@ public class ConsumoAgua extends javax.swing.JFrame {
                 txtSondaje.setText(rs.getString("sondaje"));
                 txtPto_Carg_Bomb.setText(rs.getString("puntoCarguioBombeo"));
                 txtVolumen.setText(rs.getString("volumenGls"));
+                txtArea.setText(rs.getString("area"));
                            
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -436,7 +443,7 @@ public class ConsumoAgua extends javax.swing.JFrame {
         // TODO add your handling code here:
          try {
             desbloquear();
-            String sql = "Update ope_ConsumoAgua set fecha=?, proyecto=?, zona=?, maquina=?, turno=?, sondaje=?, puntoCarguioBombeo=?, volumenGls=?" + "where id=?";
+            String sql = "Update ope_ConsumoAgua set fecha=?, proyecto=?, zona=?, maquina=?, turno=?, sondaje=?, puntoCarguioBombeo=?, volumenGls=?,  area=?" + "where id=?";
             int fila = t_datos.getSelectedRow();
             String dao = (String) t_datos.getValueAt(fila, 0);
             PreparedStatement ps = cn.prepareStatement(sql);
@@ -448,8 +455,9 @@ public class ConsumoAgua extends javax.swing.JFrame {
             ps.setString(6, txtSondaje.getText());
             ps.setString(7, txtPto_Carg_Bomb.getText());
             ps.setString(8, txtVolumen.getText());
+            ps.setString(9, txtArea.getText());
            
-            ps.setString(9, dao);
+            ps.setString(10, dao);
 
             int n = ps.executeUpdate();
             if (n > 0) {
@@ -528,11 +536,11 @@ public class ConsumoAgua extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable t_datos;
+    private javax.swing.JTextField txtArea;
     private javax.swing.JTextField txtBusqueda;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtMaquina;
     private javax.swing.JTextField txtProyecto;
-    private javax.swing.JTextField txtProyecto1;
     private javax.swing.JTextField txtPto_Carg_Bomb;
     private javax.swing.JTextField txtSondaje;
     private javax.swing.JTextField txtTurno;

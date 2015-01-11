@@ -40,11 +40,11 @@ public class Avances extends javax.swing.JFrame {
         void cargarAvances(String valor){
         
             String []titulos={"Id", "Fecha", "Proyecto", "Zona", "Maquina", "Turno","Sondaje", "Diametro", "Perforista", 
-                "Perf Broca", "Perf Tricono", "Avance Total", "Recuperacion", "Pre-Collar", "Profundidad","Casing", "H-Perf" ,"Estado"};  
-            String []Registros= new String[18];
+                "Perf Broca", "Perf Tricono", "Avance Total", "Recuperacion", "Pre-Collar", "Profundidad","Casing", "H-Perf" ,"Estado", "Area"};  
+            String []Registros= new String[19];
         
             String sql="SELECT * FROM ope_avances WHERE CONCAT(id, fecha, proyecto, zona, maquina, turno,sondaje,"
-                    + "diametro, perforista, perfBroca, perfTricono, avanceTotal, recuperacion, preCollar, profundidad, casing, estado ) LIKE '%"+valor+"%'";
+                    + "diametro, perforista, perfBroca, perfTricono, avanceTotal, recuperacion, preCollar, profundidad, casing, estado, area ) LIKE '%"+valor+"%'";
             model=new DefaultTableModel(null,titulos);
 
             try {
@@ -70,6 +70,7 @@ public class Avances extends javax.swing.JFrame {
                     Registros[15]= rs.getString("casing");
                     Registros[16]= rs.getString("hPerf");
                     Registros[17]= rs.getString("estado");
+                    Registros[18]= rs.getString("area");
                     model.addRow(Registros);
                 } 
                 t_datos.setModel(model);
@@ -81,8 +82,8 @@ public class Avances extends javax.swing.JFrame {
     void mostrarAvances(){
         
         String []titulos={"Id", "Fecha", "Proyecto", "Zona", "Maquina", "Turno","Sondaje", "Diametro", "Perforista", 
-                "Perf Broca", "Perf Tricono", "Avance Total", "Recuperacion", "Pre-Collar", "Profundidad","Casing", "H-Perf" ,"Estado"};  
-        String []Registros= new String[18];
+                "Perf Broca", "Perf Tricono", "Avance Total", "Recuperacion", "Pre-Collar", "Profundidad","Casing", "H-Perf" ,"Estado", "Area"};  
+        String []Registros= new String[19];
         
         String sql="SELECT * FROM ope_avances";
         model=new DefaultTableModel(null,titulos);
@@ -110,6 +111,7 @@ public class Avances extends javax.swing.JFrame {
                    Registros[15]= rs.getString("casing");
                    Registros[16]= rs.getString("hPerf");
                    Registros[17]= rs.getString("estado");
+                   Registros[18]= rs.getString("area");
                    
                    model.addRow(Registros);
              } 
@@ -137,6 +139,7 @@ public class Avances extends javax.swing.JFrame {
         txtCasing.setText ("");
         txtH_Perf.setText ("");
         txtEstado.setText ("");
+        txtArea.setText ("");
         }
 
         void bloquear(){
@@ -157,6 +160,7 @@ public class Avances extends javax.swing.JFrame {
         txtCasing.setEnabled(false);
         txtH_Perf.setEnabled(false);
         txtEstado.setEnabled(false);
+        txtArea.setEnabled(false);
         }
 
         void desbloquear(){
@@ -177,6 +181,7 @@ public class Avances extends javax.swing.JFrame {
         txtCasing.setEnabled(true);
         txtH_Perf.setEnabled(true);
         txtEstado.setEnabled(true);
+        txtArea.setEnabled(true);
         }
 
     /**
@@ -244,7 +249,7 @@ public class Avances extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         txtEstado1 = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
-        txtZona1 = new javax.swing.JTextField();
+        txtArea = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -494,9 +499,9 @@ public class Avances extends javax.swing.JFrame {
 
         jLabel26.setText("Area :");
 
-        txtZona1.addActionListener(new java.awt.event.ActionListener() {
+        txtArea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtZona1ActionPerformed(evt);
+                txtAreaActionPerformed(evt);
             }
         });
 
@@ -517,8 +522,7 @@ public class Avances extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(btnModificar)
@@ -527,18 +531,61 @@ public class Avances extends javax.swing.JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                             .addGap(18, 18, 18)
                                             .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGap(275, 275, 275)
                                             .addComponent(btnMostrar))
                                         .addGroup(layout.createSequentialGroup()
+                                            .addGap(146, 146, 146)
+                                            .addComponent(btnEliminar))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(247, 247, 247)
+                                            .addComponent(jLabel18))))
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(60, 60, 60)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel26)
+                                    .addGap(91, 91, 91)
+                                    .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(155, 155, 155)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addGap(146, 146, 146)
-                                                    .addComponent(btnEliminar))
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addGap(247, 247, 247)
-                                                    .addComponent(jLabel18)))
-                                            .addGap(261, 261, 261))))
-                                .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING))
+                                                .addComponent(jLabel24)
+                                                .addComponent(jLabel11)
+                                                .addComponent(jLabel9)
+                                                .addComponent(jLabel23))
+                                            .addGap(40, 40, 40)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(txtPerf_Tricono, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtAvance_Total, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtPerf_Broca, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtPerforista5, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtPerforista4, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jLabel10)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel12)
+                                                .addComponent(jLabel15)
+                                                .addComponent(jLabel16)
+                                                .addComponent(jLabel17))
+                                            .addGap(76, 76, 76)
+                                            .addComponent(txtRecuperacion, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addComponent(jLabel13)
+                                                .addGap(90, 90, 90)
+                                                .addComponent(txtPre_Collar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel14)
+                                                .addGap(85, 85, 85)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(txtCasing, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(txtProfundidad, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(txtH_Perf, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(txtEstado1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jLabel25))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel22)
@@ -556,58 +603,7 @@ public class Avances extends javax.swing.JFrame {
                                     .addComponent(txtSondaje)
                                     .addComponent(txtDiametro)
                                     .addComponent(txtPerforista)
-                                    .addComponent(txtPerforista1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(128, 128, 128)
-                                        .addComponent(jLabel23))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(125, 125, 125)
-                                        .addComponent(jLabel9))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(58, 58, 58)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel26)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(122, 122, 122)
-                                        .addComponent(txtZona1)))
-                                .addGap(70, 70, 70)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel24)
-                                            .addComponent(jLabel11))
-                                        .addGap(75, 75, 75)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtPerf_Tricono, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtAvance_Total, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtPerf_Broca, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtPerforista5, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtPerforista4, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jLabel10)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel12)
-                                            .addComponent(jLabel15)
-                                            .addComponent(jLabel16)
-                                            .addComponent(jLabel17))
-                                        .addGap(76, 76, 76)
-                                        .addComponent(txtRecuperacion, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(jLabel13)
-                                            .addGap(90, 90, 90)
-                                            .addComponent(txtPre_Collar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel14)
-                                            .addGap(85, 85, 85)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(txtCasing, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtProfundidad, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtH_Perf, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtEstado1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(jLabel25)))))
+                                    .addComponent(txtPerforista1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(jLabel6))
                 .addContainerGap(179, Short.MAX_VALUE))
         );
@@ -716,14 +712,12 @@ public class Avances extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtPerforista3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel25)
-                            .addComponent(txtEstado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(4, 4, 4)
-                            .addComponent(jLabel26))
-                        .addComponent(txtZona1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel25)
+                                .addComponent(txtEstado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtArea, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel26))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModificar)
@@ -770,7 +764,7 @@ public class Avances extends javax.swing.JFrame {
             desbloquear();
             String sql = "Update ope_avances set fecha=?, proyecto=?, zona=?, maquina=?, turno=?, sondaje=?, "
                     + "diametro=?, perforista=?,perfBroca=?, perfTricono=?, avanceTotal=?, recuperacion=?, preCollar=?, profundidad=?, "
-                    + "casing=?, hPerf=?, estado=?" + "where id=?";
+                    + "casing=?, hPerf=?, estado=?, area=?" + "where id=?";
             int fila = t_datos.getSelectedRow();
             String dao = (String) t_datos.getValueAt(fila, 0);
             PreparedStatement ps = cn.prepareStatement(sql);
@@ -791,7 +785,8 @@ public class Avances extends javax.swing.JFrame {
             ps.setString(15, txtCasing.getText());
             ps.setString(16, txtH_Perf.getText());
             ps.setString(17, txtEstado.getText());
-            ps.setString(18, dao);
+            ps.setString(18, txtArea.getText());
+            ps.setString(19, dao);
 
             int n = ps.executeUpdate();
             if (n > 0) {
@@ -832,6 +827,7 @@ public class Avances extends javax.swing.JFrame {
                 txtCasing.setText(rs.getString("casing"));
                 txtH_Perf.setText(rs.getString("hPerf"));
                 txtEstado.setText(rs.getString("estado"));
+                txtArea.setText(rs.getString("area"));
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -962,9 +958,10 @@ public class Avances extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEstado1ActionPerformed
 
-    private void txtZona1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtZona1ActionPerformed
+    private void txtAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAreaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtZona1ActionPerformed
+         txtArea.transferFocus();
+    }//GEN-LAST:event_txtAreaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1040,6 +1037,7 @@ public class Avances extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable t_datos;
+    private javax.swing.JTextField txtArea;
     private javax.swing.JTextField txtAvance_Total;
     private javax.swing.JTextField txtBusqueda;
     private javax.swing.JTextField txtCasing;
@@ -1064,6 +1062,5 @@ public class Avances extends javax.swing.JFrame {
     private javax.swing.JTextField txtSondaje;
     private javax.swing.JTextField txtTurno;
     private javax.swing.JTextField txtZona;
-    private javax.swing.JTextField txtZona1;
     // End of variables declaration//GEN-END:variables
 }

@@ -38,10 +38,10 @@ public class Fluidos extends javax.swing.JFrame {
     
         void cargarFluidos(String valor){
         
-            String []titulos={"Id", "Fecha", "Proyecto", "Zona", "Maquina", "Turno","Sondaje", "Aditivo", "Cantidad"};  
-            String []Registros= new String[9];
+            String []titulos={"Id", "Fecha", "Proyecto", "Zona", "Maquina", "Turno","Sondaje", "Aditivo", "Cantidad", "Area"};  
+            String []Registros= new String[10];
         
-            String sql="SELECT * FROM ope_fluidos WHERE CONCAT(id, fecha, proyecto, zona, maquina, turno, sondaje, aditivo, cantidad) LIKE '%"+valor+"%'";
+            String sql="SELECT * FROM ope_fluidos WHERE CONCAT(id, fecha, proyecto, zona, maquina, turno, sondaje, aditivo, cantidad, area) LIKE '%"+valor+"%'";
             model=new DefaultTableModel(null,titulos);
 
             try {
@@ -58,6 +58,7 @@ public class Fluidos extends javax.swing.JFrame {
                     Registros[6]= rs.getString("sondaje");
                     Registros[7]= rs.getString("aditivo");
                     Registros[8]= rs.getString("cantidad");
+                    Registros[9]= rs.getString("area");
                     
 
                     model.addRow(Registros);
@@ -70,8 +71,8 @@ public class Fluidos extends javax.swing.JFrame {
     
     void mostrarFluidos(){
         
-            String []titulos={"Id", "Fecha", "Proyecto", "Zona", "Maquina", "Turno","Sondaje", "Aditivo", "Cantidad"};  
-            String []Registros= new String[9];
+            String []titulos={"Id", "Fecha", "Proyecto", "Zona", "Maquina", "Turno","Sondaje", "Aditivo", "Cantidad", "Area"};  
+            String []Registros= new String[10];
         
         String sql="SELECT * FROM ope_fluidos";
         model=new DefaultTableModel(null,titulos);
@@ -90,6 +91,7 @@ public class Fluidos extends javax.swing.JFrame {
                    Registros[6]= rs.getString("sondaje");
                    Registros[7]= rs.getString("aditivo");
                    Registros[8]= rs.getString("cantidad");
+                   Registros[9]= rs.getString("area");
                   
                    
                    model.addRow(Registros);
@@ -109,6 +111,7 @@ public class Fluidos extends javax.swing.JFrame {
         txtSondaje.setText ("");
         txtAditivo.setText ("");
         txtCantidad.setText ("");
+        txtArea.setText ("");
         }
 
         void bloquear(){
@@ -120,6 +123,7 @@ public class Fluidos extends javax.swing.JFrame {
         txtSondaje.setEnabled(false);
         txtAditivo.setEnabled(false);
         txtCantidad.setEnabled(false);
+        txtArea.setEnabled(false);
         }
         void desbloquear(){
         txtFecha.setEnabled(true);
@@ -130,6 +134,7 @@ public class Fluidos extends javax.swing.JFrame {
         txtSondaje.setEnabled(true);
         txtAditivo.setEnabled(true);
         txtCantidad.setEnabled(true);
+        txtArea.setEnabled(true);
         }
 
     /**
@@ -166,7 +171,7 @@ public class Fluidos extends javax.swing.JFrame {
         txtSondaje = new javax.swing.JTextField();
         txtAditivo = new javax.swing.JTextField();
         txtCantidad = new javax.swing.JTextField();
-        txtCantidad1 = new javax.swing.JTextField();
+        txtArea = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -287,7 +292,7 @@ public class Fluidos extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addGap(0, 0, 0)
-                                .addComponent(txtCantidad1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, 0)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -345,7 +350,7 @@ public class Fluidos extends javax.swing.JFrame {
                         .addComponent(jLabel8)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCantidad1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(jLabel9)))
@@ -403,7 +408,7 @@ public class Fluidos extends javax.swing.JFrame {
         // TODO add your handling code here:
           try {
             desbloquear();
-            String sql = "Update ope_fluidos set fecha=?, proyecto=?, zona=?, maquina=?, turno=?, sondaje=?, aditivo=?, cantidad=?" + "where id=?";
+            String sql = "Update ope_fluidos set fecha=?, proyecto=?, zona=?, maquina=?, turno=?, sondaje=?, aditivo=?, cantidad=?, area=?" + "where id=?";
             int fila = t_datos.getSelectedRow();
             String dao = (String) t_datos.getValueAt(fila, 0);
             PreparedStatement ps = cn.prepareStatement(sql);
@@ -415,8 +420,9 @@ public class Fluidos extends javax.swing.JFrame {
             ps.setString(6, txtSondaje.getText());
             ps.setString(7, txtAditivo.getText());
             ps.setString(8, txtCantidad.getText());
+            ps.setString(9, txtArea.getText());
            
-            ps.setString(9, dao);
+            ps.setString(10, dao);
 
             int n = ps.executeUpdate();
             if (n > 0) {
@@ -453,6 +459,7 @@ public class Fluidos extends javax.swing.JFrame {
                 txtSondaje.setText(rs.getString("sondaje"));
                 txtAditivo.setText(rs.getString("aditivo"));
                 txtCantidad.setText(rs.getString("cantidad"));
+                txtArea.setText(rs.getString("area"));
                            
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -520,9 +527,9 @@ public class Fluidos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable t_datos;
     private javax.swing.JTextField txtAditivo;
+    private javax.swing.JTextField txtArea;
     private javax.swing.JTextField txtBusqueda;
     private javax.swing.JTextField txtCantidad;
-    private javax.swing.JTextField txtCantidad1;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtMaquina;
     private javax.swing.JTextField txtProyecto;

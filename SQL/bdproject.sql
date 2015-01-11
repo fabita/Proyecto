@@ -27,7 +27,7 @@ CREATE TABLE `ope_accesorios` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `fecha` date,
   `proyecto` varchar(25),
-  `area` varchar(25),
+  `area` varchar(30),
   `zona` varchar(25),
   `maquina` varchar(25),
   `turno` varchar(25),
@@ -95,6 +95,7 @@ CREATE TABLE `herramientas` (
   `fechaRetorno` varchar(10),
   `GR_retorno` double,
   `tipDesgaste` varchar(25),
+  `area` varchar(30),
   PRIMARY KEY (`id`)
 );
 
@@ -185,6 +186,7 @@ CREATE TABLE `ope_avances` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `fecha` varchar(10),
   `proyecto` varchar(25),
+  `area` varchar(30),
   `zona` varchar(10),
   `maquina` varchar(25),
   `turno` varchar(6),
@@ -207,6 +209,7 @@ CREATE TABLE `ope_fluidos` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `fecha` varchar(10),
   `proyecto` varchar(25),
+  `area` varchar(30),
   `zona` varchar(10),
   `maquina` varchar(25),
   `turno` varchar(6),
@@ -220,6 +223,7 @@ CREATE TABLE `ope_tiempos` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `fecha` varchar(10),
   `proyecto` varchar(25),
+  `area` varchar(30),
   `zona` varchar(10),
   `maquina` varchar(25),
   `turno` varchar(6),

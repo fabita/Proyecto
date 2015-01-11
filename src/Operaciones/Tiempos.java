@@ -40,10 +40,10 @@ public class Tiempos extends javax.swing.JFrame {
        }
        void cargarTiempos(String valor){
 
-           String []titulos={"ID", "Fecha","Proyecto","Zona","Maquina","Turno","Sondaje","Actividad","Horas"};  
-           String []Registros= new String[9];
+           String []titulos={"ID", "Fecha","Proyecto","Zona","Maquina","Turno","Sondaje","Actividad","Horas","Area"};  
+           String []Registros= new String[10];
 
-           String sql="SELECT * FROM ope_tiempos WHERE CONCAT(id, fecha, proyecto, zona, maquina, turno, sondaje, actividad, horas) LIKE '%"+valor+"%'";
+           String sql="SELECT * FROM ope_tiempos WHERE CONCAT(id, fecha, proyecto, zona, maquina, turno, sondaje, actividad, horas, area) LIKE '%"+valor+"%'";
            model=new DefaultTableModel(null,titulos);
 
            try {
@@ -60,6 +60,7 @@ public class Tiempos extends javax.swing.JFrame {
                       Registros[6]= rs.getString("sondaje");
                       Registros[7]= rs.getString("actividad");
                       Registros[8]= rs.getString("horas");
+                      Registros[9]= rs.getString("area");
                       
                       model.addRow(Registros);
                 } 
@@ -71,8 +72,8 @@ public class Tiempos extends javax.swing.JFrame {
 
        void mostrarTiempos(){
 
-           String []titulos={"ID", "Fecha","Proyecto","Zona","Maquina","Turno","Sondaje","Actividad","Horas"};  
-           String []Registros= new String[9];
+           String []titulos={"ID", "Fecha","Proyecto","Zona","Maquina","Turno","Sondaje","Actividad","Horas","Area"};  
+           String []Registros= new String[10];
 
            String sql="SELECT * FROM ope_tiempos";
            model=new DefaultTableModel(null,titulos);
@@ -91,6 +92,7 @@ public class Tiempos extends javax.swing.JFrame {
                       Registros[6]= rs.getString("sondaje");
                       Registros[7]= rs.getString("actividad");
                       Registros[8]= rs.getString("horas");
+                      Registros[9]= rs.getString("area");
                       
                       model.addRow(Registros);
                 } 
@@ -109,6 +111,7 @@ public class Tiempos extends javax.swing.JFrame {
        txtSondaje.setText ("");
        txtActividad.setText ("");
        txtHora.setText ("");
+       txtArea.setText ("");
        
        }
 
@@ -121,6 +124,7 @@ public class Tiempos extends javax.swing.JFrame {
        txtSondaje.setEnabled(false);
        txtActividad.setEnabled(false);
        txtHora.setEnabled(false);
+       txtArea.setEnabled(false);
        }
        void desbloquear(){
        txtFecha.setEnabled(true);
@@ -131,6 +135,7 @@ public class Tiempos extends javax.swing.JFrame {
        txtSondaje.setEnabled(true);
        txtActividad.setEnabled(true);
        txtHora.setEnabled(true);
+       txtArea.setEnabled(true);
        }
 
     /**
@@ -167,7 +172,7 @@ public class Tiempos extends javax.swing.JFrame {
         txtSondaje = new javax.swing.JTextField();
         txtActividad = new javax.swing.JTextField();
         txtHora = new javax.swing.JTextField();
-        txtHora1 = new javax.swing.JTextField();
+        txtArea = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -296,9 +301,9 @@ public class Tiempos extends javax.swing.JFrame {
             }
         });
 
-        txtHora1.addActionListener(new java.awt.event.ActionListener() {
+        txtArea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtHora1ActionPerformed(evt);
+                txtAreaActionPerformed(evt);
             }
         });
 
@@ -314,17 +319,10 @@ public class Tiempos extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addGap(39, 39, 39)
                             .addComponent(btnCancelar))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel19)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnMostrar, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEliminar))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(33, 33, 33)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,7 +350,14 @@ public class Tiempos extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel9)
                                     .addGap(36, 36, 36)
-                                    .addComponent(txtHora1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addComponent(jLabel19)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnMostrar)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(243, 243, 243)
                         .addComponent(jLabel18)))
@@ -401,7 +406,7 @@ public class Tiempos extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(5, 5, 5)
                                         .addComponent(jLabel9))
-                                    .addComponent(txtHora1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -417,13 +422,13 @@ public class Tiempos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModificar)
                     .addComponent(btnEliminar))
-                .addGap(57, 57, 57)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19)
                     .addComponent(btnMostrar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancelar)
                 .addGap(113, 113, 113))
@@ -467,7 +472,7 @@ public class Tiempos extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             desbloquear();
-            String sql = "Update ope_tiempos set fecha=?, proyecto=?, zona=?, maquina=?, turno=?, sondaje=?, actividad=?, horas=?" + "where id=?";
+            String sql = "Update ope_tiempos set fecha=?, proyecto=?, zona=?, maquina=?, turno=?, sondaje=?, actividad=?, horas=?, area=?" + "where id=?";
             int fila = t_datos.getSelectedRow();
             String dao = (String) t_datos.getValueAt(fila, 0);
             PreparedStatement ps = cn.prepareStatement(sql);
@@ -479,7 +484,8 @@ public class Tiempos extends javax.swing.JFrame {
             ps.setString(6, txtSondaje.getText());
             ps.setString(7, txtActividad.getText());
             ps.setString(8, txtHora.getText());
-            ps.setString(9, dao);
+            ps.setString(9, txtArea.getText());
+            ps.setString(10, dao);
 
             int n = ps.executeUpdate();
             if (n > 0) {
@@ -516,6 +522,7 @@ public class Tiempos extends javax.swing.JFrame {
                 txtSondaje.setText(rs.getString("sondaje"));
                 txtActividad.setText(rs.getString("actividad"));
                 txtHora.setText(rs.getString("horas"));
+                txtArea.setText(rs.getString("area"));
         
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -563,9 +570,10 @@ public class Tiempos extends javax.swing.JFrame {
            txtHora.transferFocus();
     }//GEN-LAST:event_txtHoraActionPerformed
 
-    private void txtHora1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHora1ActionPerformed
+    private void txtAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAreaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtHora1ActionPerformed
+        txtArea.transferFocus();
+    }//GEN-LAST:event_txtAreaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -627,10 +635,10 @@ public class Tiempos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable t_datos;
     private javax.swing.JTextField txtActividad;
+    private javax.swing.JTextField txtArea;
     private javax.swing.JTextField txtBusqueda;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtHora;
-    private javax.swing.JTextField txtHora1;
     private javax.swing.JTextField txtMaquina;
     private javax.swing.JTextField txtProyecto;
     private javax.swing.JTextField txtSondaje;

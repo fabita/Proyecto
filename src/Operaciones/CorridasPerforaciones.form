@@ -37,7 +37,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jTextField24" min="-2" pref="107" max="-2" attributes="0"/>
+                              <Component id="txtProfFinal" min="-2" pref="107" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -45,7 +45,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jTextField23" min="-2" pref="107" max="-2" attributes="0"/>
+                              <Component id="txtProfInicial" min="-2" pref="107" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
@@ -60,11 +60,11 @@
                               </Group>
                               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTextField29" min="-2" pref="107" max="-2" attributes="0"/>
-                                  <Component id="jTextField28" min="-2" pref="107" max="-2" attributes="0"/>
-                                  <Component id="jTextField27" min="-2" pref="107" max="-2" attributes="0"/>
-                                  <Component id="jTextField26" min="-2" pref="107" max="-2" attributes="0"/>
-                                  <Component id="jTextField25" min="-2" pref="107" max="-2" attributes="0"/>
+                                  <Component id="txtCompacto" min="-2" pref="107" max="-2" attributes="0"/>
+                                  <Component id="txtRetorno" min="-2" pref="107" max="-2" attributes="0"/>
+                                  <Component id="txtRecup" min="-2" pref="107" max="-2" attributes="0"/>
+                                  <Component id="txtLongRecup" min="-2" pref="107" max="-2" attributes="0"/>
+                                  <Component id="txtLongPerf" min="-2" pref="107" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -76,15 +76,15 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTextField32" min="-2" pref="107" max="-2" attributes="0"/>
-                                  <Component id="jTextField30" min="-2" pref="107" max="-2" attributes="0"/>
-                                  <Component id="jTextField31" min="-2" pref="107" max="-2" attributes="0"/>
+                                  <Component id="txtMuyFract" min="-2" pref="107" max="-2" attributes="0"/>
+                                  <Component id="txtSemiComp" min="-2" pref="107" max="-2" attributes="0"/>
+                                  <Component id="txtFracturado" min="-2" pref="107" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jTextField33" min="-2" pref="107" max="-2" attributes="0"/>
+                                      <Component id="txtVacios" min="-2" pref="107" max="-2" attributes="0"/>
                                       <EmptySpace pref="48" max="32767" attributes="0"/>
                                       <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jTextField34" min="-2" pref="107" max="-2" attributes="0"/>
+                                      <Component id="txtArea" min="-2" pref="107" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -121,12 +121,12 @@
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jTextField19" min="-2" pref="107" max="-2" attributes="0"/>
-                                              <Component id="jTextField18" min="-2" pref="107" max="-2" attributes="0"/>
-                                              <Component id="jTextField1" min="-2" pref="107" max="-2" attributes="0"/>
-                                              <Component id="jTextField20" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
-                                              <Component id="jTextField21" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
-                                              <Component id="jTextField22" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
+                                              <Component id="txtProyecto" min="-2" pref="107" max="-2" attributes="0"/>
+                                              <Component id="txtZona" min="-2" pref="107" max="-2" attributes="0"/>
+                                              <Component id="txtFecha" min="-2" pref="107" max="-2" attributes="0"/>
+                                              <Component id="txtMaquina" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
+                                              <Component id="txtTurno" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
+                                              <Component id="txtSondaje" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
@@ -150,58 +150,58 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtFecha" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField19" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtProyecto" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField18" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtZona" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField20" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtMaquina" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField21" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTurno" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField22" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtSondaje" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField23" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtProfInicial" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField24" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtProfFinal" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField25" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtLongPerf" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField26" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtLongRecup" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField27" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtRecup" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -211,22 +211,22 @@
                               <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="jTextField28" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtRetorno" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField29" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCompacto" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jTextField30" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtSemiComp" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jTextField31" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtFracturado" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jTextField32" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtMuyFract" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -234,9 +234,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField33" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtVacios" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField34" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtArea" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -417,46 +417,46 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="txtFecha">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField18">
+    <Component class="javax.swing.JTextField" name="txtZona">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField19">
+    <Component class="javax.swing.JTextField" name="txtProyecto">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField20">
+    <Component class="javax.swing.JTextField" name="txtMaquina">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField21">
+    <Component class="javax.swing.JTextField" name="txtTurno">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField22">
+    <Component class="javax.swing.JTextField" name="txtSondaje">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField23">
+    <Component class="javax.swing.JTextField" name="txtProfInicial">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField24">
+    <Component class="javax.swing.JTextField" name="txtProfFinal">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField25">
+    <Component class="javax.swing.JTextField" name="txtLongPerf">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField26">
+    <Component class="javax.swing.JTextField" name="txtLongRecup">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField27">
+    <Component class="javax.swing.JTextField" name="txtRecup">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField28">
+    <Component class="javax.swing.JTextField" name="txtRetorno">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField29">
+    <Component class="javax.swing.JTextField" name="txtCompacto">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField30">
+    <Component class="javax.swing.JTextField" name="txtSemiComp">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField31">
+    <Component class="javax.swing.JTextField" name="txtFracturado">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField32">
+    <Component class="javax.swing.JTextField" name="txtMuyFract">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField33">
+    <Component class="javax.swing.JTextField" name="txtVacios">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel20">
       <Properties>
         <Property name="text" type="java.lang.String" value="Area :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField34">
+    <Component class="javax.swing.JTextField" name="txtArea">
     </Component>
   </SubComponents>
 </Form>
