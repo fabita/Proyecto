@@ -76,10 +76,16 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTextField33" min="-2" pref="107" max="-2" attributes="0"/>
                                   <Component id="jTextField32" min="-2" pref="107" max="-2" attributes="0"/>
                                   <Component id="jTextField30" min="-2" pref="107" max="-2" attributes="0"/>
                                   <Component id="jTextField31" min="-2" pref="107" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jTextField33" min="-2" pref="107" max="-2" attributes="0"/>
+                                      <EmptySpace pref="48" max="32767" attributes="0"/>
+                                      <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jTextField34" min="-2" pref="107" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
@@ -130,7 +136,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="224" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -229,6 +235,8 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextField33" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextField34" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -442,6 +450,13 @@
     <Component class="javax.swing.JTextField" name="jTextField32">
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField33">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel20">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Area :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextField34">
     </Component>
   </SubComponents>
 </Form>

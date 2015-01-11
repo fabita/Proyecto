@@ -3,7 +3,8 @@
  * and open the template in the editor.
  */
 package Reporte;
-import Clases.Reporte;
+import Clases.LlenarTablaAccesorios;
+import Clases.LlenarTablaAditivos;
 import com.mxrck.autocompleter.TextAutoCompleter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,6 +17,9 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pro_min.BDConexion;
+import Clases.Clase_CellEditor;
+import Clases.Clase_CellRender;
+import Clases.LlenarTablaAvances;
 /**
  *
  * @author Usuario
@@ -29,8 +33,44 @@ public class Report extends javax.swing.JFrame {
     BDConexion bd = new BDConexion();
     Connection cn = bd.conexion();
     Statement st;
+    LlenarTablaAccesorios llenarTablaAcces = new LlenarTablaAccesorios();
+    LlenarTablaAditivos llenarTablaAditi = new LlenarTablaAditivos();
+    LlenarTablaAvances llenarTablaAvan = new LlenarTablaAvances();
+    DefaultTableModel modeloAcces = new DefaultTableModel();
+    DefaultTableModel modeloAdit = new DefaultTableModel();
+    DefaultTableModel modeloAvan = new DefaultTableModel();
+    
     public Report() {
         initComponents();
+        //llenar tabla accesorios
+        tblAccessPerf.setModel(modeloAcces);
+        modeloAcces.addColumn("Elegir");
+        modeloAcces.addColumn("Accesorios de Perforacion");
+        modeloAcces.addColumn("Cantidad");
+        //se crea el JCheckBox en la columna indicada en getColum(cuenta desde 0)
+        tblAccessPerf.getColumnModel().getColumn(0).setCellEditor( new Clase_CellEditor() );
+        tblAccessPerf.getColumnModel().getColumn(0).setCellRenderer(new Clase_CellRender() );
+        
+        //llenar tabla aditivos
+        tblAditivos1.setModel(modeloAdit);
+        modeloAdit.addColumn("Elegir");
+        modeloAdit.addColumn("Aditivos");
+        modeloAdit.addColumn("Precio");
+        modeloAdit.addColumn("Cantidad");
+        //se crea el JCheckBox en la columna indicada en getColum(cuenta desde 0)
+        tblAditivos1.getColumnModel().getColumn(0).setCellEditor( new Clase_CellEditor() );
+        tblAditivos1.getColumnModel().getColumn(0).setCellRenderer(new Clase_CellRender() );
+        
+        //llenar tabla avances
+        tblControlAvances.setModel(modeloAvan);
+        modeloAvan.addColumn("Elegir");
+        modeloAvan.addColumn("Aditivos");
+        //modeloAdit.addColumn("Cantidad");
+        //se crea el JCheckBox en la columna indicada en getColum(cuenta desde 0)
+        tblControlAvances.getColumnModel().getColumn(0).setCellEditor( new Clase_CellEditor() );
+        tblControlAvances.getColumnModel().getColumn(0).setCellRenderer(new Clase_CellRender() );
+        
+        // operaciones
         turno();
         nroMaquina();
         cliente();
@@ -410,6 +450,11 @@ public class Report extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocationByPlatform(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setPreferredSize(new java.awt.Dimension(927, 1000));
 
@@ -574,19 +619,10 @@ public class Report extends javax.swing.JFrame {
 
         tblAditivos1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "Aus Gel Xstra", null},
-                {"2", "Bentonita Pellets 3/8", null},
-                {"3", "CR 650", null},
-                {"4", "Ezee Trol AMC", null},
-                {"5", "K-lon", null},
-                {"6", "Max Gel", null},
-                {"7", "Kwik Plug 3/8", null},
-                {"8", "Poly Plus RD", null},
-                {"9", "Hibtrol", null},
-                {"10", "Kla Gard", null}
+
             },
             new String [] {
-                "ID", "Cantidad", "Aditivos"
+
             }
         ));
         tblAditivos.setViewportView(tblAditivos1);
@@ -615,15 +651,10 @@ public class Report extends javax.swing.JFrame {
 
         tblAccessPerf.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "Corel Barel de 5'", null},
-                {"2", "Corel Barel de 10'", null},
-                {"3", "Tubo Interior de 5'", null},
-                {"4", "Tubo Interior de 10'", null},
-                {"5", "Core lifter case", null},
-                {"6", "Core lifter", null}
+
             },
             new String [] {
-                "Id", "Accesorios de Perforacion", "PCantidad"
+
             }
         ));
         jScrollPane4.setViewportView(tblAccessPerf);
@@ -1018,7 +1049,7 @@ public class Report extends javax.swing.JFrame {
                         .addComponent(txtInclinacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtAzimut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addComponent(jTabbedPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel17)
@@ -1070,7 +1101,9 @@ public class Report extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 845, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1022, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 54, Short.MAX_VALUE))
         );
 
         pack();
@@ -1099,7 +1132,7 @@ public class Report extends javax.swing.JFrame {
     
     public void opeAvances(){
         try {
-            PreparedStatement pst = cn.prepareStatement("INSERT INTO ope_avances(fecha, proyecto, area, zona, maquina, turno, sondaje) VALUES (?,?,?,?,?,?,?)");
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO ope_avances(fecha, proyecto, area, zona, maquina, turno, sondaje, perforista) VALUES (?,?,?,?,?,?,?,?)");
             pst.setDate(1, new java.sql.Date(jDateChooser1.getDate().getTime()));
             pst.setString(2, txtNomProyec.getText());
             pst.setString(3, txtArea.getText());
@@ -1107,6 +1140,7 @@ public class Report extends javax.swing.JFrame {
             pst.setString(5, txtNroMaquina.getText());
             pst.setString(6, txtTurno.getText());
             pst.setString(7, txtSondaje.getText());
+            pst.setString(8, txtPerforista.getText());
             pst.executeUpdate();
             //buscarpedido("");
         } catch (SQLException ex) {
@@ -1148,11 +1182,25 @@ public class Report extends javax.swing.JFrame {
     }
     public void opeHerramientas(){
         try {
-            PreparedStatement pst = cn.prepareStatement("INSERT INTO ope_herramientas(fecha, proyecto, turno, sondaje) VALUES (?,?,?,?)");
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO ope_herramientas(fecha, proyecto, turno, sondaje, perforista) VALUES (?,?,?,?,?)");
             pst.setDate(1, new java.sql.Date(jDateChooser1.getDate().getTime()));
             pst.setString(2, txtNomProyec.getText());
             pst.setString(3, txtTurno.getText());
             pst.setString(4, txtSondaje.getText());
+            pst.setString(5, txtPerforista.getText());
+            pst.executeUpdate();
+            //buscarpedido("");
+        } catch (SQLException ex) {
+            Logger.getLogger(Report.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void opeValorizaciones(){
+        try {
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO ope_herramientas(maquina,sondaje) VALUES (?,?)");
+            //pst.setDate(1, new java.sql.Date(jDateChooser1.getDate().getTime()));
+            pst.setString(1, txtNroMaquina.getText());
+            pst.setString(2, txtSondaje.getText());
             pst.executeUpdate();
             //buscarpedido("");
         } catch (SQLException ex) {
@@ -1222,11 +1270,19 @@ public class Report extends javax.swing.JFrame {
             opeCorrPerf();
             opeConsumoAgua();
             opeAvances();
+            opeValorizaciones();
             JOptionPane.showMessageDialog(null, "Registro Guardado con exito");
         } catch (SQLException e) {
             System.out.print(e.getMessage());
         }
     }//GEN-LAST:event_txtGuardarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        llenarTablaAcces.llenar_tabla_Accesorios(3, 1, modeloAcces, tblAccessPerf);
+        llenarTablaAditi.llenar_tabla_Aditivos(4, 1, modeloAdit, tblAditivos1);
+        //llenarTablaAvan.llenar_tabla_Avances(3, SOMEBITS, model, tblAditivos1);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

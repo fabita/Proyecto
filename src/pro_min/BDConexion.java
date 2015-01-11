@@ -27,4 +27,42 @@ public class BDConexion {
         return conect;
      
     }
+    
+    /**
+    *
+    *Método utilizado para realizar las instrucciones: INSERT, DELETE y UPDATE
+    *@param sql Cadena que contiene la instrucción SQL a ejecutar
+    *@return estado regresa el estado de la ejecución, true(éxito) o false(error)
+    *
+    */
+    public boolean ejecutarSQL(String sql)
+    {
+       try {
+           PreparedStatement sentencia = conect.prepareStatement(sql);
+          sentencia.execute(sql);
+          return true;
+       } catch (SQLException ex) {
+            return false;
+       }
+    }
+
+    /**
+    *
+    *Método utilizado para realizar la instrucción SELECT
+    *@param sql Cadena que contiene la instrucción SQL a ejecutar
+    *@return resultado regresa los registros generados por la consulta
+    *
+    */
+    public ResultSet ejecutarSQLSelect(String sql)
+    {
+       ResultSet resultado;
+       try {
+          PreparedStatement sentencia = conect.prepareStatement(sql);
+          resultado = sentencia.executeQuery();
+          return resultado;
+       } catch (SQLException ex) {
+          System.err.println("Error "+ex);
+          return null;
+       }
+    }
 }

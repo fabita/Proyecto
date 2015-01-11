@@ -37,6 +37,14 @@ CREATE TABLE `ope_accesorios` (
   PRIMARY KEY (`id`)
 );
 
+CREATE TABLE `ope_aditivos` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `aditivos` varchar(25),
+  `precio` varchar(25),
+  `cantidad` varchar(25),
+  PRIMARY KEY (`id`)
+);
+
 CREATE TABLE `actividades` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `actividad` varchar(45) NOT NULL,

@@ -11,6 +11,9 @@
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -31,7 +34,10 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane1" min="-2" pref="845" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jScrollPane1" min="-2" pref="1022" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="54" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -256,7 +262,7 @@
                               <Component id="txtAzimut" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="82" max="32767" attributes="0"/>
+                      <EmptySpace pref="85" max="32767" attributes="0"/>
                       <Component id="jTabbedPane8" min="-2" pref="440" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
@@ -735,33 +741,10 @@
                         <Component class="javax.swing.JTable" name="tblAditivos1">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="3" rowCount="10">
-                                <Column editable="true" title="ID" type="java.lang.Object">
-                                  <Data value="1"/>
-                                  <Data value="2"/>
-                                  <Data value="3"/>
-                                  <Data value="4"/>
-                                  <Data value="5"/>
-                                  <Data value="6"/>
-                                  <Data value="7"/>
-                                  <Data value="8"/>
-                                  <Data value="9"/>
-                                  <Data value="10"/>
-                                </Column>
-                                <Column editable="true" title="Cantidad" type="java.lang.Object">
-                                  <Data value="Aus Gel Xstra"/>
-                                  <Data value="Bentonita Pellets 3/8"/>
-                                  <Data value="CR 650"/>
-                                  <Data value="Ezee Trol AMC"/>
-                                  <Data value="K-lon"/>
-                                  <Data value="Max Gel"/>
-                                  <Data value="Kwik Plug 3/8"/>
-                                  <Data value="Poly Plus RD"/>
-                                  <Data value="Hibtrol"/>
-                                  <Data value="Kla Gard"/>
-                                </Column>
-                                <Column editable="true" title="Aditivos" type="java.lang.Object"/>
-                              </Table>
+                              <Table columnCount="0" rowCount="0"/>
+                            </Property>
+                            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                              <TableColumnModel selectionModel="0"/>
                             </Property>
                             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
@@ -816,25 +799,10 @@
                         <Component class="javax.swing.JTable" name="tblAccessPerf">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="3" rowCount="6">
-                                <Column editable="true" title="Id" type="java.lang.Object">
-                                  <Data value="1"/>
-                                  <Data value="2"/>
-                                  <Data value="3"/>
-                                  <Data value="4"/>
-                                  <Data value="5"/>
-                                  <Data value="6"/>
-                                </Column>
-                                <Column editable="true" title="Accesorios de Perforacion" type="java.lang.Object">
-                                  <Data value="Corel Barel de 5&apos;"/>
-                                  <Data value="Corel Barel de 10&apos;"/>
-                                  <Data value="Tubo Interior de 5&apos;"/>
-                                  <Data value="Tubo Interior de 10&apos;"/>
-                                  <Data value="Core lifter case"/>
-                                  <Data value="Core lifter"/>
-                                </Column>
-                                <Column editable="true" title="PCantidad" type="java.lang.Object"/>
-                              </Table>
+                              <Table columnCount="0" rowCount="0"/>
+                            </Property>
+                            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                              <TableColumnModel selectionModel="0"/>
                             </Property>
                             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
