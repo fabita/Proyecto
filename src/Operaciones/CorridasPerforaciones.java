@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package Operaciones;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,14 +24,163 @@ public class CorridasPerforaciones extends javax.swing.JFrame {
     /**
      * Creates new form CorridasPerforaciones
      */
-       DefaultTableModel model;
-       BDConexion bd = new BDConexion();
-       Connection cn = bd.conexion();
-       Statement sent;
-       
+    DefaultTableModel model;
+    BDConexion bd = new BDConexion();
+    Connection cn = bd.conexion();
+    Statement sent;
+
     public CorridasPerforaciones() {
         initComponents();
-        
+        setLocationRelativeTo(null);
+        limpiar();
+        bloquear();
+        cargarCorridasPerforaciones("");
+        mostrarCorridasPerforaciones();
+
+    }
+
+    void cargarCorridasPerforaciones(String valor) {
+
+        String[] titulos = {"Id", "Fecha", "Proyecto", "Zona", "Maquina", "Turno", "Sondaje", "ProfInic", "ProfFinal",
+            "LongPerf", "LongRecup", "Recup", "Retorno", "Compacto", "SemiComp", "Fract", "MuyFract", "Vacios", "Area"};
+        String[] Registros = new String[19];
+
+        String sql = "SELECT * FROM ope_corridasPerf WHERE CONCAT(id, fecha, proyecto, zona, maquina, turno,sondaje,"
+                + "profInicial, profFinal, longPerf, longRecup, recup, retorno, compacto, semiCompacto, fracturado,muyFracturado, vacios, area ) LIKE '%" + valor + "%'";
+        model = new DefaultTableModel(null, titulos);
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                Registros[0] = rs.getString("id");
+                Registros[1] = rs.getString("fecha");
+                Registros[2] = rs.getString("proyecto");
+                Registros[3] = rs.getString("zona");
+                Registros[4] = rs.getString("maquina");
+                Registros[5] = rs.getString("turno");
+                Registros[6] = rs.getString("sondaje");
+                Registros[7] = rs.getString("profInicial");
+                Registros[8] = rs.getString("profFinal");
+                Registros[9] = rs.getString("longPerf");
+                Registros[10] = rs.getString("longRecup");
+                Registros[11] = rs.getString("recup");
+                Registros[12] = rs.getString("retorno");
+                Registros[13] = rs.getString("compacto");
+                Registros[14] = rs.getString("semiCompacto");
+                Registros[15] = rs.getString("fracturado");
+                Registros[16] = rs.getString("muyFracturado");
+                Registros[17] = rs.getString("vacios");
+                Registros[18] = rs.getString("area");
+                model.addRow(Registros);
+            }
+            t_datos.setModel(model);
+        } catch (SQLException ex) {
+            Logger.getLogger(CorridasPerforaciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    void mostrarCorridasPerforaciones() {
+
+        String[] titulos = {"Id", "Fecha", "Proyecto", "Zona", "Maquina", "Turno", "Sondaje", "ProfInic", "ProfFinal",
+            "LongPerf", "LongRecup", "Recup", "Retorno", "Compacto", "SemiComp", "Fract", "MuyFract", "Vacios", "Area"};
+        String[] Registros = new String[19];
+
+        String sql = "SELECT * FROM ope_corridasPerf";
+        model = new DefaultTableModel(null, titulos);
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                Registros[0] = rs.getString("id");
+                Registros[1] = rs.getString("fecha");
+                Registros[2] = rs.getString("proyecto");
+                Registros[3] = rs.getString("zona");
+                Registros[4] = rs.getString("maquina");
+                Registros[5] = rs.getString("turno");
+                Registros[6] = rs.getString("sondaje");
+                Registros[7] = rs.getString("profInicial");
+                Registros[8] = rs.getString("profFinal");
+                Registros[9] = rs.getString("longPerf");
+                Registros[10] = rs.getString("longRecup");
+                Registros[11] = rs.getString("recup");
+                Registros[12] = rs.getString("retorno");
+                Registros[13] = rs.getString("compacto");
+                Registros[14] = rs.getString("semiCompacto");
+                Registros[15] = rs.getString("fracturado");
+                Registros[16] = rs.getString("muyFracturado");
+                Registros[17] = rs.getString("vacios");
+                Registros[18] = rs.getString("area");
+                model.addRow(Registros);
+            }
+            t_datos.setModel(model);
+        } catch (SQLException ex) {
+            Logger.getLogger(CorridasPerforaciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    void limpiar() {
+        txtFecha.setText("");
+        txtProyecto.setText("");
+        txtZona.setText("");
+        txtMaquina.setText("");
+        txtTurno.setText("");
+        txtSondaje.setText("");
+        txtProfInicial.setText("");
+        txtProfFinal.setText("");
+        txtLongPerf.setText("");
+        txtLongRecup.setText("");
+        txtRecup.setText("");
+        txtRetorno.setText("");
+      txtCompacto.setText("");
+        txtSemiComp.setText("");
+        txtFracturado.setText("");
+        txtMuyFract.setText("");
+        txtVacios.setText("");
+        txtArea.setText("");
+    }
+
+    void bloquear() {
+        txtFecha.setEnabled(false);
+        txtProyecto.setEnabled(false);
+        txtZona.setEnabled(false);
+        txtMaquina.setEnabled(false);
+        txtTurno.setEnabled(false);
+        txtSondaje.setEnabled(false);
+        txtProfInicial.setEnabled(false);
+        txtProfFinal.setEnabled(false);
+        txtLongPerf.setEnabled(false);
+        txtLongRecup.setEnabled(false);
+        txtRecup.setEnabled(false);
+        txtRetorno.setEnabled(false);
+        txtCompacto.setEnabled(false);
+        txtSemiComp.setEnabled(false);
+        txtFracturado.setEnabled(false);
+        txtMuyFract.setEnabled(false);
+        txtVacios.setEnabled(false);
+        txtArea.setEnabled(false);
+    }
+
+    void desbloquear() {
+        txtFecha.setEnabled(true);
+        txtProyecto.setEnabled(true);
+        txtZona.setEnabled(true);
+        txtMaquina.setEnabled(true);
+        txtTurno.setEnabled(true);
+        txtSondaje.setEnabled(true);
+        txtProfInicial.setEnabled(true);
+        txtProfFinal.setEnabled(true);
+        txtLongPerf.setEnabled(true);
+        txtLongRecup.setEnabled(true);
+        txtRecup.setEnabled(true);
+        txtRetorno.setEnabled(true);
+        txtCompacto.setEnabled(true);
+        txtSemiComp.setEnabled(true);
+        txtFracturado.setEnabled(true);
+        txtMuyFract.setEnabled(true);
+        txtVacios.setEnabled(true);
+        txtArea.setEnabled(true);
     }
 
     /**
@@ -379,34 +529,115 @@ public class CorridasPerforaciones extends javax.swing.JFrame {
 
     private void txtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaActionPerformed
         // TODO add your handling code here:
-        
+        cargarCorridasPerforaciones(txtBusqueda.getText());
     }//GEN-LAST:event_txtBusquedaActionPerformed
 
     private void txtBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyReleased
         // TODO add your handling code here:
-        
+        cargarCorridasPerforaciones(txtBusqueda.getText());
     }//GEN-LAST:event_txtBusquedaKeyReleased
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         // TODO add your handling code here:
-        
+        mostrarCorridasPerforaciones();
     }//GEN-LAST:event_btnMostrarActionPerformed
 
     private void t_datosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_datosMouseClicked
         // TODO add your handling code here:
+        if (evt.getButton() == 1) {
+            int fila = t_datos.getSelectedRow();
+            try {
+                desbloquear();
+                String sql = "select * from ope_corridasPerf where id=" + t_datos.getValueAt(fila, 0);
+                sent = cn.createStatement();
+                ResultSet rs = sent.executeQuery(sql);
+                rs.next();
+                txtFecha.setText(rs.getString("fecha"));
+                txtProyecto.setText(rs.getString("proyecto"));
+                txtZona.setText(rs.getString("zona"));
+                txtMaquina.setText(rs.getString("maquina"));
+                txtTurno.setText(rs.getString("turno"));
+                txtSondaje.setText(rs.getString("sondaje"));
+                txtProfInicial.setText(rs.getString("profInicial"));
+                txtProfFinal.setText(rs.getString("profFinal"));
+                txtLongPerf.setText(rs.getString("longPerf"));
+                txtLongRecup.setText(rs.getString("longRecup"));
+                txtRecup.setText(rs.getString("recup"));
+                txtRetorno.setText(rs.getString("retorno"));
+                txtCompacto.setText(rs.getString("compacto"));
+                txtSemiComp.setText(rs.getString("semiCompacto"));
+                txtFracturado.setText(rs.getString("fracturado"));
+                txtMuyFract.setText(rs.getString("muyFracturado"));
+                txtVacios.setText(rs.getString("vacios"));
+                txtArea.setText(rs.getString("area"));
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
         
+    
     }//GEN-LAST:event_t_datosMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        
+        try {
+            int fila = t_datos.getSelectedRow();
+            String sql = "delete from ope_corridasPerf where id=" + t_datos.getValueAt(fila, 0);
+            sent = cn.createStatement();
+            int n = sent.executeUpdate(sql);
+            if (n > 0) {
+                mostrarCorridasPerforaciones();
+                JOptionPane.showMessageDialog(null, "Datos Eliminados");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnModificarActionPerformed
+        try {
+            desbloquear();
+            String sql = "Update ope_corridasPerf set fecha=?, proyecto=?, zona=?, maquina=?, turno=?, sondaje=?, "
+                    + "profInicial=?, profFinal=?,longPerf=?, longRecup=?, recup=?, retorno=?, compacto=?, semiCompacto=?, "
+                    + "fracturado=?, muyFracturado=?, vacios=?, area=?" + "where id=?";
+            int fila = t_datos.getSelectedRow();
+            String dao = (String) t_datos.getValueAt(fila, 0);
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, txtFecha.getText());
+            ps.setString(2, txtProyecto.getText());
+            ps.setString(3, txtZona.getText());
+            ps.setString(4, txtMaquina.getText());
+            ps.setString(5, txtTurno.getText());
+            ps.setString(6, txtSondaje.getText());
+            ps.setString(7, txtProfInicial.getText());
+            ps.setString(8, txtProfFinal.getText());
+            ps.setString(9, txtLongPerf.getText());
+            ps.setString(10, txtLongRecup.getText());
+            ps.setString(11, txtRecup.getText());
+            ps.setString(12, txtRetorno.getText());
+            ps.setString(13, txtCompacto.getText());
+            ps.setString(14, txtSemiComp.getText());
+            ps.setString(15, txtFracturado.getText());
+            ps.setString(16, txtMuyFract.getText());
+            ps.setString(17, txtVacios.getText());
+            ps.setString(18, txtArea.getText());
+            ps.setString(19, dao);
 
+            int n = ps.executeUpdate();
+            if (n > 0) {
+                limpiar();
+                mostrarCorridasPerforaciones();
+                JOptionPane.showMessageDialog(null, "Datos Modificados");
+                bloquear();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
+        }
+    
+    }//GEN-LAST:event_btnModificarActionPerformed
+    
+        
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         this.dispose();
@@ -447,7 +678,6 @@ public class CorridasPerforaciones extends javax.swing.JFrame {
          * Create and display the form
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
-
             public void run() {
                 new CorridasPerforaciones().setVisible(true);
             }

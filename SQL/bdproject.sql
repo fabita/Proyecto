@@ -103,6 +103,7 @@ CREATE TABLE `ope_herramientas` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `fecha` varchar(10),
   `proyecto` varchar(25),
+  `area` varchar(30),
   `zona` varchar(10),
   `maquina` varchar(25),
   `turno` varchar(6),
