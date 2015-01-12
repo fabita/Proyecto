@@ -41,10 +41,10 @@ public class Combustible extends javax.swing.JFrame {
     
         void cargarCombustible(String valor){
         
-            String []titulos={"Id", "Fecha", "Tipo Equipo", "Codigo", "Tip Combustible", "Proveedor","Doc Ingreso", "Cantidad Ingreso", "Hor Kil Ini", "Hor Kil Fin","Consumo", "Observaciones"};  
-            String []Registros= new String[12];
+            String []titulos={"Id", "Fecha", "Tipo Equipo", "Codigo", "Tip Combustible", "Proveedor","Doc Ingreso", "Cantidad Ingreso", "Hor Kil Ini", "Hor Kil Fin","Consumo", "Observaciones", "Area"};  
+            String []Registros= new String[13];
         
-            String sql="SELECT * FROM ope_combustibles WHERE CONCAT(id, fecha, tipoEquipo, codigo, tipCombustible, proveedor,docIngreso,cantidadIngreso, HorKilIni, HorKilFin, consumo, observaciones) LIKE '%"+valor+"%'";
+            String sql="SELECT * FROM ope_combustibles WHERE CONCAT(id, fecha, tipoEquipo, codigo, tipCombustible, proveedor,docIngreso,cantidadIngreso, HorKilIni, HorKilFin, consumo, observaciones, area) LIKE '%"+valor+"%'";
             model=new DefaultTableModel(null,titulos);
 
             try {
@@ -64,6 +64,7 @@ public class Combustible extends javax.swing.JFrame {
                     Registros[9]= rs.getString("HorKilFin");
                     Registros[10]= rs.getString("consumo");
                     Registros[11]= rs.getString("observaciones");
+                    Registros[12]= rs.getString("area");
 
                     model.addRow(Registros);
                 } 
@@ -75,8 +76,8 @@ public class Combustible extends javax.swing.JFrame {
     
     void mostrarCombustible(){
         
-            String []titulos={"Id", "Fecha", "Tipo Equipo", "Codigo", "Tip Combustible", "Proveedor","Doc Ingreso", "Cantidad Ingreso", "Hor Kil Ini", "Hor Kil Fin","Consumo", "Observaciones"};  
-            String []Registros= new String[12];
+            String []titulos={"Id", "Fecha", "Tipo Equipo", "Codigo", "Tip Combustible", "Proveedor","Doc Ingreso", "Cantidad Ingreso", "Hor Kil Ini", "Hor Kil Fin","Consumo", "Observaciones","Area"};  
+            String []Registros= new String[13];
         
             String sql="SELECT * FROM ope_combustibles";
             model=new DefaultTableModel(null,titulos);
@@ -98,6 +99,7 @@ public class Combustible extends javax.swing.JFrame {
                    Registros[9]= rs.getString("HorKilFin");
                    Registros[10]= rs.getString("consumo");
                    Registros[11]= rs.getString("observaciones");
+                   Registros[12]= rs.getString("area");
                   
                    model.addRow(Registros);
              } 
@@ -119,6 +121,7 @@ public class Combustible extends javax.swing.JFrame {
         txtHor_Kil_Fin.setText ("");
         txtConsumo.setText ("");
         txtObservacion.setText ("");
+        txtArea.setText ("");
         }
         void bloquear(){
         txtFecha.setEnabled(false);
@@ -132,6 +135,7 @@ public class Combustible extends javax.swing.JFrame {
         txtHor_Kil_Fin.setEnabled(false);
         txtConsumo.setEnabled(false);
         txtObservacion.setEnabled(false);
+        txtArea.setEnabled(false);
         }
         void desbloquear(){
         txtFecha.setEnabled(true);
@@ -145,6 +149,7 @@ public class Combustible extends javax.swing.JFrame {
         txtHor_Kil_Fin.setEnabled(true);
         txtConsumo.setEnabled(true);
         txtObservacion.setEnabled(true);
+        txtArea.setEnabled(true);
         }
     
     
@@ -189,6 +194,8 @@ public class Combustible extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         txtObservacion = new javax.swing.JTextField();
+        Area = new javax.swing.JLabel();
+        txtArea = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -340,6 +347,15 @@ public class Combustible extends javax.swing.JFrame {
             }
         });
 
+        Area.setText("Area");
+
+        txtArea.setName(""); // NOI18N
+        txtArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAreaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -383,12 +399,15 @@ public class Combustible extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
                             .addComponent(jLabel9)
-                            .addComponent(jLabel10))
+                            .addComponent(jLabel10)
+                            .addComponent(Area))
                         .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtHor_Kil_Fin, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtObservacion, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(txtHor_Kil_Fin, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtObservacion, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtArea, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -428,7 +447,11 @@ public class Combustible extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
-                            .addComponent(txtObservacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtObservacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Area)
+                            .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
@@ -516,7 +539,7 @@ public class Combustible extends javax.swing.JFrame {
          try {
             desbloquear();
             String sql = "Update ope_combustibles set fecha=?, tipoEquipo=?, codigo=?, tipCombustible=?, proveedor=?, docIngreso=?, "
-                    + "cantidadIngreso=?, HorKilIni=?,HorKilFin=?, consumo=?, observaciones=?" + "where id=?";
+                    + "cantidadIngreso=?, HorKilIni=?,HorKilFin=?, consumo=?, observaciones=?,area=?" + "where id=?";
             
             int fila = t_datos.getSelectedRow();
             String dao = (String) t_datos.getValueAt(fila, 0);
@@ -533,8 +556,8 @@ public class Combustible extends javax.swing.JFrame {
             ps.setString(9, txtHor_Kil_Fin.getText());
             ps.setString(10, txtConsumo.getText());
             ps.setString(11, txtObservacion.getText());
-            
-            ps.setString(12, dao);
+            ps.setString(12, txtArea.getText());
+            ps.setString(13, dao);
 
             int n = ps.executeUpdate();
             if (n > 0) {
@@ -575,6 +598,7 @@ public class Combustible extends javax.swing.JFrame {
                 txtHor_Kil_Fin.setText(rs.getString("HorKilFin"));
                 txtConsumo.setText(rs.getString("consumo"));
                 txtObservacion.setText(rs.getString("observaciones"));
+                 txtArea.setText(rs.getString("area"));
                            
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -637,6 +661,11 @@ public class Combustible extends javax.swing.JFrame {
          txtObservacion.transferFocus();
     }//GEN-LAST:event_txtObservacionActionPerformed
 
+    private void txtAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAreaActionPerformed
+        // TODO add your handling code here:
+         txtArea.transferFocus();
+    }//GEN-LAST:event_txtAreaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -679,6 +708,7 @@ public class Combustible extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Area;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
@@ -698,6 +728,7 @@ public class Combustible extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable t_datos;
+    private javax.swing.JTextField txtArea;
     private javax.swing.JTextField txtBusqueda;
     private javax.swing.JTextField txtCant_Ing;
     private javax.swing.JTextField txtCodigo;

@@ -180,6 +180,7 @@ CREATE TABLE `ope_combustibles` (
   `HorKilFin` double,
   `consumo` varchar(20),
   `observaciones` varchar(45),
+  `area` varchar(30),
    PRIMARY KEY (`id`)
 );
 
